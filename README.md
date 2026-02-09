@@ -1,5 +1,3 @@
-<div align="center">
-
 # 📧 Open Mail CLI
 
 **A Powerful Email Client Built for AI Agents**
@@ -9,6 +7,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 [English](#english) | [中文](#chinese)
+
+</div>
 
 ---
 
@@ -324,10 +324,6 @@ mail-cli sync daemon start
 
 ---
 
-<div align="center">
-
 **Built for AI agents, by developers**
 
 [⬆ Back to Top](#-open-mail-cli)
-
-</div>
