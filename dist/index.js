@@ -8948,9 +8948,7 @@ var require_forward = __commonJS({
         const cfg = config_default.load();
         if (!cfg.smtp.host || !cfg.smtp.user || !cfg.smtp.password) {
           console.error(
-            import_chalk7.default.red(
-              "SMTP configuration incomplete. Please run: mail-cli config"
-            )
+            import_chalk7.default.red("SMTP configuration incomplete. Please run: mail-cli config")
           );
           process.exit(1);
         }
@@ -11219,9 +11217,7 @@ var require_reply = __commonJS({
         const cfg = config_default.load();
         if (!cfg.smtp.host || !cfg.smtp.user || !cfg.smtp.password) {
           console.error(
-            import_chalk7.default.red(
-              "SMTP configuration incomplete. Please run: mail-cli config"
-            )
+            import_chalk7.default.red("SMTP configuration incomplete. Please run: mail-cli config")
           );
           process.exit(1);
         }
@@ -12104,9 +12100,7 @@ var require_send = __commonJS({
         const cfg = config_default.load();
         if (!cfg.smtp.host || !cfg.smtp.user || !cfg.smtp.password) {
           console.error(
-            import_chalk7.default.red(
-              "SMTP configuration incomplete. Please run: mail-cli config"
-            )
+            import_chalk7.default.red("SMTP configuration incomplete. Please run: mail-cli config")
           );
           process.exit(1);
         }
@@ -14342,7 +14336,7 @@ var import_commander2 = require("commander");
 // package.json
 var package_default = {
   name: "open-mail-cli",
-  version: "1.0.0",
+  version: "1.0.1",
   description: "A command-line email client with IMAP/SMTP support",
   main: "dist/index.js",
   bin: {
