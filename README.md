@@ -56,6 +56,16 @@ In an era dominated by web-based email clients, **Open Mail CLI** brings the pow
 - **Power Users** seeking keyboard-driven workflows
 - **DevOps Engineers** integrating email into scripts and pipelines
 
+## 🤖 Agent Skills
+
+Open Mail CLI is available as an [Agent Skill](https://skills.sh) for AI coding agents (Claude Code, Cursor, etc.). Install the skill to give your agent the ability to send, receive, search, and manage emails.
+
+```bash
+npx skills add eric8810/open-mail-cli
+```
+
+Once installed, the agent can use `mail-cli` commands to handle email tasks autonomously — sending messages, checking inbox, managing contacts, and more.
+
 ## 🚀 Quick Start
 
 ### Installation
@@ -229,6 +239,16 @@ If you find this project useful, please consider giving it a ⭐!
 - **🔔 智能通知** - 桌面提醒，智能过滤
 - **📦 导入/导出** - 完整支持 EML 和 MBOX 格式
 - **🔐 多账户** - 无缝管理多个邮箱账户
+
+## 🤖 Agent Skills
+
+Open Mail CLI 已作为 [Agent Skill](https://skills.sh) 发布，支持 AI 编程代理（Claude Code、Cursor 等）。安装此 skill 可赋予你的 agent 收发、搜索和管理邮件的能力。
+
+```bash
+npx skills add eric8810/open-mail-cli
+```
+
+安装后，agent 可以自主使用 `mail-cli` 命令处理邮件任务——发送消息、查看收件箱、管理联系人等。
 
 ## 🚀 快速开始
 
