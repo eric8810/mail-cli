@@ -14340,7 +14340,7 @@ var import_commander2 = require("commander");
 // package.json
 var package_default = {
   name: "open-mail-cli",
-  version: "1.0.2",
+  version: "1.0.5",
   description: "A command-line email client with IMAP/SMTP support",
   main: "dist/index.js",
   bin: {
