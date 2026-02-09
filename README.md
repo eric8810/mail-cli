@@ -2,7 +2,7 @@
 
 # 📧 Open Mail CLI
 
-**A Modern, Feature-Rich Command-Line Email Client**
+**A Powerful Email Client Built for AI Agents**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
@@ -10,19 +10,18 @@
 
 [English](#english) | [中文](#chinese)
 
-</div>
-
 ---
 
 ## <a name="english"></a>🌟 Why Open Mail CLI?
 
-In an era dominated by web-based email clients, **Open Mail CLI** brings the power of email management back to the terminal. Built for developers, system administrators, and power users who value:
+**Open Mail CLI** is a command-line email client specifically designed for AI agents and automation tools. It provides a reliable, programmatic interface for email operations that AI agents can use autonomously:
 
-- **🚀 Speed**: Lightning-fast email operations without browser overhead
-- **🔒 Privacy**: Your emails stay on your machine, encrypted and secure
-- **⚡ Efficiency**: Keyboard-driven workflow with powerful automation
-- **🎯 Focus**: Distraction-free email management in your terminal
-- **🔧 Extensibility**: Built with modern Node.js, easy to customize and extend
+- **🤖 Agent-First Design** - Built from the ground up for AI agents and automation tools
+- **📡 CLI Interface** - Simple, predictable command-line output that's easy to parse
+- **⚡ Reliable Operations** - Offline-first architecture with conflict resolution
+- **🔒 Secure & Private** - Local storage with encrypted credentials
+- **🔧 Easy Integration** - Perfect for Claude Code, Cursor, and other AI coding agents
+- **🎯 Comprehensive API** - Full IMAP/SMTP support for all email operations
 
 ## ✨ Key Features
 
@@ -50,11 +49,11 @@ In an era dominated by web-based email clients, **Open Mail CLI** brings the pow
 
 ## 🎯 Perfect For
 
-- **Developers** who live in the terminal
-- **System Administrators** managing email automation
-- **Privacy-Conscious Users** who want local email storage
-- **Power Users** seeking keyboard-driven workflows
-- **DevOps Engineers** integrating email into scripts and pipelines
+- **AI Agents** (Claude Code, Cursor, etc.) that need email capabilities
+- **Automation Tools** that require programmatic email access
+- **CI/CD Pipelines** for email notifications and reports
+- **Monitoring Systems** that send alerts via email
+- **Bots** that need to read/write emails as part of their workflow
 
 ## 🤖 Agent Skills
 
@@ -208,13 +207,14 @@ If you find this project useful, please consider giving it a ⭐!
 
 ## <a name="chinese"></a>🌟 为什么选择 Open Mail CLI？
 
-在网页邮件客户端主导的时代，**Open Mail CLI** 将邮件管理的强大功能带回终端。专为开发者、系统管理员和高级用户打造：
+**Open Mail CLI** 是一个专为 AI 代理和自动化工具设计的命令行邮件客户端。它为 AI 代理提供了可靠、可编程的邮件操作接口：
 
-- **🚀 速度**: 无浏览器开销的闪电般快速邮件操作
-- **🔒 隐私**: 邮件保存在本地，加密且安全
-- **⚡ 效率**: 键盘驱动的工作流，强大的自动化能力
-- **🎯 专注**: 终端中无干扰的邮件管理
-- **🔧 可扩展**: 基于现代 Node.js 构建，易于定制和扩展
+- **🤖 AI 优先设计** - 专为 AI 代理和自动化工具从零打造
+- **📡 CLI 接口** - 简单、可预测的命令行输出，易于解析
+- **⚡ 可靠操作** - 离线优先架构，内置冲突解决
+- **🔒 安全私密** - 本地存储，凭据加密
+- **🔧 易于集成** - 完美适配 Claude Code、Cursor 等编程代理
+- **🎯 全面 API** - 完整的 IMAP/SMTP 支持，覆盖所有邮件操作
 
 ## ✨ 核心特性
 
@@ -326,7 +326,7 @@ mail-cli sync daemon start
 
 <div align="center">
 
-**Made with ❤️ by developers, for developers**
+**Built for AI agents, by developers**
 
 [⬆ Back to Top](#-open-mail-cli)
 

@@ -53,3 +53,6 @@ config.json
 
 # Binary builds
 dist/binary/
+
+# Distribution files
+dist/
