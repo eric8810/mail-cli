@@ -29,8 +29,8 @@ describe('helpers', () => {
   });
 
   it('returns platform-specific directories', () => {
-    expect(getConfigDir()).toContain('mail-client');
-    expect(getDataDir()).toContain('mail-client');
+    expect(getConfigDir()).toContain('open-mail-client');
+    expect(getDataDir()).toContain('open-mail-client');
   });
 
   it('formats date as YYYY-MM-DD', () => {

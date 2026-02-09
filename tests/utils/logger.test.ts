@@ -27,7 +27,7 @@ describe('logger', () => {
   it('writes log line to file', () => {
     logger.info('Info message', { scope: 'unit-test' });
 
-    const logFile = path.join(tempDir, 'mail-client.log');
+    const logFile = path.join(tempDir, 'open-mail-client.log');
     const content = fs.readFileSync(logFile, 'utf8');
 
     expect(fs.existsSync(logFile)).toBe(true);

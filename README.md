@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📧 Mail CLI
+# 📧 Open Mail CLI
 
 **A Modern, Feature-Rich Command-Line Email Client**
 
@@ -14,9 +14,9 @@
 
 ---
 
-## <a name="english"></a>🌟 Why Mail CLI?
+## <a name="english"></a>🌟 Why Open Mail CLI?
 
-In an era dominated by web-based email clients, **Mail CLI** brings the power of email management back to the terminal. Built for developers, system administrators, and power users who value:
+In an era dominated by web-based email clients, **Open Mail CLI** brings the power of email management back to the terminal. Built for developers, system administrators, and power users who value:
 
 - **🚀 Speed**: Lightning-fast email operations without browser overhead
 - **🔒 Privacy**: Your emails stay on your machine, encrypted and secure
@@ -62,8 +62,8 @@ In an era dominated by web-based email clients, **Mail CLI** brings the power of
 
 ```bash
 # Clone the repository
-git clone https://github.com/eric8810/mail-cli.git
-cd mail-cli
+git clone https://github.com/eric8810/open-mail-cli.git
+cd open-mail-cli
 
 # Install dependencies
 npm install
@@ -76,35 +76,35 @@ npm link
 
 ```bash
 # Interactive configuration wizard
-mail-client config
+mail-cli config
 
 # Or configure manually
-mail-client config --set imap.host=imap.gmail.com
-mail-client config --set imap.port=993
-mail-client config --set smtp.host=smtp.gmail.com
-mail-client config --set smtp.port=465
+mail-cli config --set imap.host=imap.gmail.com
+mail-cli config --set imap.port=993
+mail-cli config --set smtp.host=smtp.gmail.com
+mail-cli config --set smtp.port=465
 ```
 
 ### Basic Usage
 
 ```bash
 # Sync your inbox
-mail-client sync
+mail-cli sync
 
 # List emails
-mail-client list
+mail-cli list
 
 # Read an email
-mail-client read 1
+mail-cli read 1
 
 # Send an email
-mail-client send --to user@example.com --subject "Hello" --body "World"
+mail-cli send --to user@example.com --subject "Hello" --body "World"
 
 # Search emails
-mail-client search "meeting"
+mail-cli search "meeting"
 
 # Start background sync daemon
-mail-client sync daemon start
+mail-cli sync daemon start
 ```
 
 ## 📚 Documentation
@@ -137,33 +137,33 @@ mail-client sync daemon start
 ### Email Templates with Variables
 ```bash
 # Create a template
-mail-client template create --name "Meeting" \
+mail-cli template create --name "Meeting" \
   --subject "Meeting on {{date}}" \
   --text "Hi {{name}}, let's meet at {{time}}"
 
 # Use the template
-mail-client template use 1 --var name=John --var time="2pm"
+mail-cli template use 1 --var name=John --var time="2pm"
 ```
 
 ### Smart Notifications
 ```bash
 # Enable notifications
-mail-client notify enable
+mail-cli notify enable
 
 # Configure filters
-mail-client notify config --sender boss@company.com --important-only
+mail-cli notify config --sender boss@company.com --important-only
 
 # Test notifications
-mail-client notify test
+mail-cli notify test
 ```
 
 ### Import/Export
 ```bash
 # Export folder to MBOX
-mail-client export folder INBOX backup.mbox
+mail-cli export folder INBOX backup.mbox
 
 # Import emails from EML
-mail-client import eml message.eml --folder INBOX
+mail-cli import eml message.eml --folder INBOX
 ```
 
 ## 🤝 Contributing
@@ -196,9 +196,9 @@ If you find this project useful, please consider giving it a ⭐!
 
 ---
 
-## <a name="chinese"></a>🌟 为什么选择 Mail CLI？
+## <a name="chinese"></a>🌟 为什么选择 Open Mail CLI？
 
-在网页邮件客户端主导的时代，**Mail CLI** 将邮件管理的强大功能带回终端。专为开发者、系统管理员和高级用户打造：
+在网页邮件客户端主导的时代，**Open Mail CLI** 将邮件管理的强大功能带回终端。专为开发者、系统管理员和高级用户打造：
 
 - **🚀 速度**: 无浏览器开销的闪电般快速邮件操作
 - **🔒 隐私**: 邮件保存在本地，加密且安全
@@ -236,8 +236,8 @@ If you find this project useful, please consider giving it a ⭐!
 
 ```bash
 # 克隆仓库
-git clone https://github.com/eric8810/mail-cli.git
-cd mail-cli
+git clone https://github.com/eric8810/open-mail-cli.git
+cd open-mail-cli
 
 # 安装依赖
 npm install
@@ -250,33 +250,33 @@ npm link
 
 ```bash
 # 交互式配置向导
-mail-client config
+mail-cli config
 
 # 或手动配置
-mail-client config --set imap.host=imap.gmail.com
-mail-client config --set imap.port=993
+mail-cli config --set imap.host=imap.gmail.com
+mail-cli config --set imap.port=993
 ```
 
 ### 基本使用
 
 ```bash
 # 同步收件箱
-mail-client sync
+mail-cli sync
 
 # 列出邮件
-mail-client list
+mail-cli list
 
 # 阅读邮件
-mail-client read 1
+mail-cli read 1
 
 # 发送邮件
-mail-client send --to user@example.com --subject "你好" --body "世界"
+mail-cli send --to user@example.com --subject "你好" --body "世界"
 
 # 搜索邮件
-mail-client search "会议"
+mail-cli search "会议"
 
 # 启动后台同步守护进程
-mail-client sync daemon start
+mail-cli sync daemon start
 ```
 
 ## 📊 项目统计
@@ -308,6 +308,6 @@ mail-client sync daemon start
 
 **Made with ❤️ by developers, for developers**
 
-[⬆ Back to Top](#-mail-cli)
+[⬆ Back to Top](#-open-mail-cli)
 
 </div>

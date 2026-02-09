@@ -9,11 +9,11 @@
 ### 11.2 安装方式
 ```bash
 # 通过npm全局安装
-npm install -g mail-client
+npm install -g mail-cli
 
 # 通过源码安装
-git clone https://github.com/username/mail-client.git
-cd mail-client
+git clone https://github.com/username/mail-cli.git
+cd mail-cli
 npm install
 npm link
 ```

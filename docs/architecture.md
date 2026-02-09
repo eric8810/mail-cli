@@ -49,7 +49,7 @@
 ## 2. 项目目录结构
 
 ```
-mail-client/
+mail-cli/
 ├── src/
 │   ├── index.js                 # 程序入口
 │   ├── cli/
@@ -334,39 +334,39 @@ class AttachmentModel {
 
 ```bash
 # 配置命令
-mail-client config                  # 交互式配置向导
-mail-client config --show           # 显示当前配置
-mail-client config --set key=value  # 设置配置项
+mail-cli config                  # 交互式配置向导
+mail-cli config --show           # 显示当前配置
+mail-cli config --set key=value  # 设置配置项
 
 # 同步命令
-mail-client sync                    # 同步所有文件夹
-mail-client sync --folder INBOX     # 同步指定文件夹
-mail-client sync --since 2024-01-01 # 同步指定日期后的邮件
+mail-cli sync                    # 同步所有文件夹
+mail-cli sync --folder INBOX     # 同步指定文件夹
+mail-cli sync --since 2024-01-01 # 同步指定日期后的邮件
 
 # 列表命令
-mail-client list                    # 列出收件箱邮件
-mail-client list --folder Sent      # 列出指定文件夹
-mail-client list --unread           # 只显示未读邮件
-mail-client list --limit 20         # 限制显示数量
-mail-client list --page 2           # 分页显示
+mail-cli list                    # 列出收件箱邮件
+mail-cli list --folder Sent      # 列出指定文件夹
+mail-cli list --unread           # 只显示未读邮件
+mail-cli list --limit 20         # 限制显示数量
+mail-cli list --page 2           # 分页显示
 
 # 读取命令
-mail-client read <id>               # 读取邮件详情
-mail-client read <id> --raw         # 显示原始内容
+mail-cli read <id>               # 读取邮件详情
+mail-cli read <id> --raw         # 显示原始内容
 
 # 发送命令
-mail-client send                    # 交互式发送
-mail-client send --to user@example.com --subject "Test" --body "Hello"
+mail-cli send                    # 交互式发送
+mail-cli send --to user@example.com --subject "Test" --body "Hello"
 
 # 搜索命令
-mail-client search "keyword"        # 搜索邮件
-mail-client search --from user@example.com
-mail-client search --subject "meeting"
-mail-client search --date 2024-01-01
+mail-cli search "keyword"        # 搜索邮件
+mail-cli search --from user@example.com
+mail-cli search --subject "meeting"
+mail-cli search --date 2024-01-01
 
 # 帮助命令
-mail-client --help                  # 显示帮助
-mail-client <command> --help        # 显示命令帮助
+mail-cli --help                  # 显示帮助
+mail-cli <command> --help        # 显示命令帮助
 ```
 
 **输出格式示例**:
@@ -418,7 +418,7 @@ logger.info('Sync completed', { newEmails: 5 });
 logger.debug('IMAP command', { command: 'FETCH' });
 ```
 
-日志文件位置：`data/logs/mail-client.log`
+日志文件位置：`data/logs/mail-cli.log`
 
 ## 5. 安全考虑
 
@@ -459,12 +459,12 @@ logger.debug('IMAP command', { command: 'FETCH' });
 
 ```json
 {
-  "name": "mail-client",
+  "name": "mail-cli",
   "version": "1.0.0",
   "description": "A command-line email client with IMAP/SMTP support",
   "main": "src/index.js",
   "bin": {
-    "mail-client": "./src/index.js"
+    "mail-cli": "./src/index.js"
   },
   "scripts": {
     "start": "node src/index.js",
@@ -479,7 +479,7 @@ logger.debug('IMAP command', { command: 'FETCH' });
     "imap",
     "smtp",
     "cli",
-    "mail-client"
+    "mail-cli"
   ],
   "author": "",
   "license": "MIT",
@@ -511,7 +511,7 @@ logger.debug('IMAP command', { command: 'FETCH' });
 ```bash
 # 克隆项目
 git clone <repository-url>
-cd mail-client
+cd mail-cli
 
 # 安装依赖
 npm install
@@ -569,29 +569,29 @@ npm pack
 
 **全局安装**:
 ```bash
-npm install -g mail-client
-mail-client --help
+npm install -g mail-cli
+mail-cli --help
 ```
 
 **本地安装**:
 ```bash
-npm install mail-client
-npx mail-client --help
+npm install mail-cli
+npx mail-cli --help
 ```
 
 **从源码安装**:
 ```bash
 git clone <repository-url>
-cd mail-client
+cd mail-cli
 npm install
 npm link
 ```
 
 ### 9.3 配置文件位置
 
-- Linux/macOS: `~/.config/mail-client/config.json`
-- Windows: `%APPDATA%\mail-client\config.json`
-- 数据目录: `~/.local/share/mail-client/` (Linux/macOS) 或 `%LOCALAPPDATA%\mail-client\` (Windows)
+- Linux/macOS: `~/.config/mail-cli/config.json`
+- Windows: `%APPDATA%\mail-cli\config.json`
+- 数据目录: `~/.local/share/mail-cli/` (Linux/macOS) 或 `%LOCALAPPDATA%\mail-cli\` (Windows)
 
 ## 10. 依赖关系图
 

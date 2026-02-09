@@ -31,7 +31,7 @@ function searchCommand(action, options) {
       (Object.keys(query).length === 1 && query.limit)
     ) {
       console.error(chalk.red('Error: Please provide search criteria'));
-      console.log('Usage: mail-client search <keyword> [options]');
+      console.log('Usage: mail-cli search <keyword> [options]');
       console.log();
       console.log('Options:');
       console.log('  --from <email>        Search by sender');

@@ -1,6 +1,5 @@
 # Node.js
 node_modules/
-dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -51,3 +50,6 @@ config.json
 
 # Claude Code
 .claude/
+
+# Binary builds
+dist/binary/

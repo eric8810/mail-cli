@@ -37,7 +37,7 @@ async function handleRegularSync(action, options) {
     // Load configuration
     const cfg = config.load();
     if (!cfg.imap.host || !cfg.imap.user || !cfg.imap.password) {
-      spinner.fail('Configuration incomplete. Please run: mail-client config');
+      spinner.fail('Configuration incomplete. Please run: mail-cli config');
       process.exit(1);
     }
 

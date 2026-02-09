@@ -1,6 +1,6 @@
-# Contributing to Mail CLI
+# Contributing to Open Mail CLI
 
-First off, thank you for considering contributing to Mail CLI! It's people like you that make Mail CLI such a great tool.
+First off, thank you for considering contributing to Open Mail CLI! It's people like you that make Open Mail CLI such a great tool.
 
 ## Code of Conduct
 
@@ -43,8 +43,8 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR-USERNAME/mail-cli.git
-cd mail-cli
+git clone https://github.com/YOUR-USERNAME/open-mail-cli.git
+cd open-mail-cli
 
 # Install dependencies
 npm install

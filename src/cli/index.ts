@@ -46,7 +46,7 @@ function createCLI(): Command {
   const program = new Command();
 
   program
-    .name('mail-client')
+    .name('mail-cli')
     .description('A command-line email client with IMAP/SMTP support')
     .version(packageJson.version);
 

@@ -16,7 +16,7 @@
 ### 1. 创建签名
 
 ```bash
-mail-client signature create --name "工作签名" --text "此致敬礼，\n张三" --default
+mail-cli signature create --name "工作签名" --text "此致敬礼，\n张三" --default
 ```
 
 **选项**：
@@ -30,19 +30,19 @@ mail-client signature create --name "工作签名" --text "此致敬礼，\n张�
 
 ```bash
 # 创建简单的文本签名
-mail-client signature create --name "个人签名" --text "Best regards,\nJohn"
+mail-cli signature create --name "个人签名" --text "Best regards,\nJohn"
 
 # 创建HTML签名
-mail-client signature create --name "公司签名" --html "<p>Best regards,<br><b>John Doe</b><br>CEO</p>" --default
+mail-cli signature create --name "公司签名" --html "<p>Best regards,<br><b>John Doe</b><br>CEO</p>" --default
 
 # 为特定账户创建签名
-mail-client signature create --name "工作签名" --text "此致敬礼，\n张三" --account work@company.com
+mail-cli signature create --name "工作签名" --text "此致敬礼，\n张三" --account work@company.com
 ```
 
 ### 2. 列出所有签名
 
 ```bash
-mail-client signature list
+mail-cli signature list
 ```
 
 **选项**：
@@ -65,7 +65,7 @@ Signatures (2):
 ### 3. 编辑签名
 
 ```bash
-mail-client signature edit --id 1 --name "新名称" --text "新内容"
+mail-cli signature edit --id 1 --name "新名称" --text "新内容"
 ```
 
 **选项**：
@@ -80,16 +80,16 @@ mail-client signature edit --id 1 --name "新名称" --text "新内容"
 
 ```bash
 # 更新签名内容
-mail-client signature edit --id 1 --text "Updated signature content"
+mail-cli signature edit --id 1 --text "Updated signature content"
 
 # 更改签名名称
-mail-client signature edit --id 2 --name "新的签名名称"
+mail-cli signature edit --id 2 --name "新的签名名称"
 ```
 
 ### 4. 删除签名
 
 ```bash
-mail-client signature delete --id 1
+mail-cli signature delete --id 1
 ```
 
 **选项**：
@@ -98,7 +98,7 @@ mail-client signature delete --id 1
 ### 5. 设置默认签名
 
 ```bash
-mail-client signature set-default --id 2
+mail-cli signature set-default --id 2
 ```
 
 **选项**：
@@ -118,7 +118,7 @@ mail-client signature set-default --id 2
 **使用示例**：
 
 ```bash
-mail-client signature create --name "模板签名" --text "Best regards,\n{{name}}\n{{email}}\n{{date}}"
+mail-cli signature create --name "模板签名" --text "Best regards,\n{{name}}\n{{email}}\n{{date}}"
 ```
 
 发送邮件时会自动替换为：
@@ -133,10 +133,10 @@ john@example.com
 
 签名会在以下情况自动插入到邮件中：
 
-1. **发送新邮件**：使用 `mail-client send` 命令时
-2. **回复邮件**：使用 `mail-client reply` 命令时
-3. **转发邮件**：使用 `mail-client forward` 命令时
-4. **发送草稿**：使用 `mail-client draft send` 命令时
+1. **发送新邮件**：使用 `mail-cli send` 命令时
+2. **回复邮件**：使用 `mail-cli reply` 命令时
+3. **转发邮件**：使用 `mail-cli forward` 命令时
+4. **发送草稿**：使用 `mail-cli draft send` 命令时
 
 系统会自动：
 - 查找当前账户的默认签名
@@ -243,12 +243,12 @@ CREATE TABLE signatures (
 
 1. 检查是否设置了默认签名：
    ```bash
-   mail-client signature list
+   mail-cli signature list
    ```
 
 2. 确认签名关联的账户正确：
    ```bash
-   mail-client config --show
+   mail-cli config --show
    ```
 
 3. 查看日志文件了解详细错误信息
@@ -262,7 +262,7 @@ CREATE TABLE signatures (
 
 ```bash
 # 1. 创建工作签名
-mail-client signature create \
+mail-cli signature create \
   --name "工作签名" \
   --text "此致敬礼，\n{{name}}\n{{email}}\n{{date}}" \
   --html "<p>此致敬礼，<br><b>{{name}}</b><br>{{email}}<br>{{date}}</p>" \
@@ -270,28 +270,28 @@ mail-client signature create \
   --account work@company.com
 
 # 2. 创建个人签名
-mail-client signature create \
+mail-cli signature create \
   --name "个人签名" \
   --text "Cheers,\n{{name}}" \
   --account personal@gmail.com
 
 # 3. 查看所有签名
-mail-client signature list
+mail-cli signature list
 
 # 4. 发送邮件（会自动添加默认签名）
-mail-client send \
+mail-cli send \
   --to friend@example.com \
   --subject "Hello" \
   --body "This is a test email"
 
 # 5. 更改默认签名
-mail-client signature set-default --id 2
+mail-cli signature set-default --id 2
 
 # 6. 编辑签名
-mail-client signature edit --id 1 --text "Updated content"
+mail-cli signature edit --id 1 --text "Updated content"
 
 # 7. 删除签名
-mail-client signature delete --id 1
+mail-cli signature delete --id 1
 ```
 
 ## 相关文件

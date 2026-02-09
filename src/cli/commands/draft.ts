@@ -131,7 +131,7 @@ async function editDraft(options) {
 
   if (!draftId) {
     console.error(chalk.red('Draft ID is required'));
-    console.log(chalk.gray('Usage: mail-client draft edit <draft-id>'));
+    console.log(chalk.gray('Usage: mail-cli draft edit <draft-id>'));
     process.exit(1);
   }
 
@@ -213,7 +213,7 @@ async function deleteDraft(options) {
 
   if (!draftId) {
     console.error(chalk.red('Draft ID is required'));
-    console.log(chalk.gray('Usage: mail-client draft delete <draft-id>'));
+    console.log(chalk.gray('Usage: mail-cli draft delete <draft-id>'));
     process.exit(1);
   }
 
@@ -262,7 +262,7 @@ async function sendDraft(options) {
 
   if (!draftId) {
     console.error(chalk.red('Draft ID is required'));
-    console.log(chalk.gray('Usage: mail-client draft send <draft-id>'));
+    console.log(chalk.gray('Usage: mail-cli draft send <draft-id>'));
     process.exit(1);
   }
 
@@ -310,7 +310,7 @@ async function sendDraft(options) {
     const cfg = config.load();
     if (!cfg.smtp.host || !cfg.smtp.user || !cfg.smtp.password) {
       spinner.fail('SMTP configuration incomplete');
-      console.error(chalk.red('Please run: mail-client config'));
+      console.error(chalk.red('Please run: mail-cli config'));
       process.exit(1);
     }
 
@@ -352,7 +352,7 @@ async function syncDrafts(options) {
     const cfg = config.load();
     if (!cfg.imap.host || !cfg.imap.user || !cfg.imap.password) {
       spinner.fail('IMAP configuration incomplete');
-      console.error(chalk.red('Please run: mail-client config'));
+      console.error(chalk.red('Please run: mail-cli config'));
       process.exit(1);
     }
 

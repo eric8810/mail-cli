@@ -16,7 +16,7 @@ async function createFilter(options) {
     if (!options.name) {
       console.error('Error: Filter name is required');
       console.log(
-        'Usage: mail-client filter create --name <name> [--description <desc>]'
+        'Usage: mail-cli filter create --name <name> [--description <desc>]'
       );
       return;
     }
@@ -36,13 +36,13 @@ async function createFilter(options) {
     console.log('');
     console.log('Next steps:');
     console.log(
-      `  1. Add conditions: mail-client filter add-condition ${filterId} --field <field> --operator <op> --value <val>`
+      `  1. Add conditions: mail-cli filter add-condition ${filterId} --field <field> --operator <op> --value <val>`
     );
     console.log(
-      `  2. Add actions: mail-client filter add-action ${filterId} --type <type> [--value <val>]`
+      `  2. Add actions: mail-cli filter add-action ${filterId} --type <type> [--value <val>]`
     );
     console.log(
-      `  3. Test filter: mail-client filter test ${filterId} <email-id>`
+      `  3. Test filter: mail-cli filter test ${filterId} <email-id>`
     );
   } catch (error) {
     console.error('Failed to create filter:', error.message);
@@ -58,7 +58,7 @@ async function addCondition(filterId, options) {
     if (!options.field || !options.operator || !options.value) {
       console.error('Error: field, operator, and value are required');
       console.log(
-        'Usage: mail-client filter add-condition <filter-id> --field <field> --operator <op> --value <val>'
+        'Usage: mail-cli filter add-condition <filter-id> --field <field> --operator <op> --value <val>'
       );
       console.log('');
       console.log(
@@ -101,7 +101,7 @@ async function addAction(filterId, options) {
     if (!options.type) {
       console.error('Error: action type is required');
       console.log(
-        'Usage: mail-client filter add-action <filter-id> --type <type> [--value <val>]'
+        'Usage: mail-cli filter add-action <filter-id> --type <type> [--value <val>]'
       );
       console.log('');
       console.log('Available actions:');
@@ -246,7 +246,7 @@ async function editFilter(filterId, options) {
     if (Object.keys(updates).length === 0) {
       console.error('Error: No updates provided');
       console.log(
-        'Usage: mail-client filter edit <filter-id> [--name <name>] [--description <desc>] [--priority <num>] [--matchAll <true|false>]'
+        'Usage: mail-cli filter edit <filter-id> [--name <name>] [--description <desc>] [--priority <num>] [--matchAll <true|false>]'
       );
       return;
     }
@@ -489,7 +489,7 @@ async function filterCommand(action, ...args) {
       case 'add-condition':
         if (!args[0]) {
           console.error(
-            'Usage: mail-client filter add-condition <filter-id> --field <field> --operator <op> --value <val>'
+            'Usage: mail-cli filter add-condition <filter-id> --field <field> --operator <op> --value <val>'
           );
           return;
         }
@@ -500,7 +500,7 @@ async function filterCommand(action, ...args) {
       case 'add-action':
         if (!args[0]) {
           console.error(
-            'Usage: mail-client filter add-action <filter-id> --type <type> [--value <val>]'
+            'Usage: mail-cli filter add-action <filter-id> --type <type> [--value <val>]'
           );
           return;
         }
@@ -515,7 +515,7 @@ async function filterCommand(action, ...args) {
 
       case 'show':
         if (!args[0]) {
-          console.error('Usage: mail-client filter show <filter-id>');
+          console.error('Usage: mail-cli filter show <filter-id>');
           return;
         }
         await showFilter(parseInt(args[0]));
@@ -524,7 +524,7 @@ async function filterCommand(action, ...args) {
       case 'edit':
         if (!args[0]) {
           console.error(
-            'Usage: mail-client filter edit <filter-id> [--name <name>] [--description <desc>] [--priority <num>]'
+            'Usage: mail-cli filter edit <filter-id> [--name <name>] [--description <desc>] [--priority <num>]'
           );
           return;
         }
@@ -534,7 +534,7 @@ async function filterCommand(action, ...args) {
 
       case 'delete':
         if (!args[0]) {
-          console.error('Usage: mail-client filter delete <filter-id>');
+          console.error('Usage: mail-cli filter delete <filter-id>');
           return;
         }
         await deleteFilter(parseInt(args[0]));
@@ -542,7 +542,7 @@ async function filterCommand(action, ...args) {
 
       case 'enable':
         if (!args[0]) {
-          console.error('Usage: mail-client filter enable <filter-id>');
+          console.error('Usage: mail-cli filter enable <filter-id>');
           return;
         }
         await enableFilter(parseInt(args[0]));
@@ -550,7 +550,7 @@ async function filterCommand(action, ...args) {
 
       case 'disable':
         if (!args[0]) {
-          console.error('Usage: mail-client filter disable <filter-id>');
+          console.error('Usage: mail-cli filter disable <filter-id>');
           return;
         }
         await disableFilter(parseInt(args[0]));
@@ -558,9 +558,7 @@ async function filterCommand(action, ...args) {
 
       case 'test':
         if (!args[0] || !args[1]) {
-          console.error(
-            'Usage: mail-client filter test <filter-id> <email-id>'
-          );
+          console.error('Usage: mail-cli filter test <filter-id> <email-id>');
           return;
         }
         await testFilter(parseInt(args[0]), parseInt(args[1]));
@@ -568,9 +566,7 @@ async function filterCommand(action, ...args) {
 
       case 'apply':
         if (!args[0] || !args[1]) {
-          console.error(
-            'Usage: mail-client filter apply <filter-id> <email-id>'
-          );
+          console.error('Usage: mail-cli filter apply <filter-id> <email-id>');
           return;
         }
         await applyFilterToEmail(parseInt(args[0]), parseInt(args[1]));
@@ -588,26 +584,26 @@ async function filterCommand(action, ...args) {
       default:
         console.log('Filter Management Commands:');
         console.log(
-          '  mail-client filter create --name <name> [--description <desc>]'
+          '  mail-cli filter create --name <name> [--description <desc>]'
         );
         console.log(
-          '  mail-client filter add-condition <id> --field <field> --operator <op> --value <val>'
+          '  mail-cli filter add-condition <id> --field <field> --operator <op> --value <val>'
         );
         console.log(
-          '  mail-client filter add-action <id> --type <type> [--value <val>]'
+          '  mail-cli filter add-action <id> --type <type> [--value <val>]'
         );
-        console.log('  mail-client filter list');
-        console.log('  mail-client filter show <id>');
+        console.log('  mail-cli filter list');
+        console.log('  mail-cli filter show <id>');
         console.log(
-          '  mail-client filter edit <id> [--name <name>] [--description <desc>]'
+          '  mail-cli filter edit <id> [--name <name>] [--description <desc>]'
         );
-        console.log('  mail-client filter delete <id>');
-        console.log('  mail-client filter enable <id>');
-        console.log('  mail-client filter disable <id>');
-        console.log('  mail-client filter test <filter-id> <email-id>');
-        console.log('  mail-client filter apply <filter-id> <email-id>');
-        console.log('  mail-client filter apply-all [--limit <num>]');
-        console.log('  mail-client filter stats');
+        console.log('  mail-cli filter delete <id>');
+        console.log('  mail-cli filter enable <id>');
+        console.log('  mail-cli filter disable <id>');
+        console.log('  mail-cli filter test <filter-id> <email-id>');
+        console.log('  mail-cli filter apply <filter-id> <email-id>');
+        console.log('  mail-cli filter apply-all [--limit <num>]');
+        console.log('  mail-cli filter stats');
     }
   } catch (error) {
     console.error('Filter command failed:', error.message);

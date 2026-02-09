@@ -1,8 +1,8 @@
-# AI Agent Guide for Mail CLI
+# AI Agent Guide for Open Mail CLI
 
 ## Project Overview
 
-Mail CLI is a command-line email client with IMAP/SMTP support built with Node.js 18+. It provides offline-first email management with SQLite storage, supporting features like email threading, contact management, signatures, spam detection, filters, templates, notifications, import/export, and multi-account support. The project uses modular architecture with clear separation of concerns across CLI, storage, IMAP/SMTP clients, and utility modules.
+Open Mail CLI is a command-line email client with IMAP/SMTP support built with Node.js 18+. It provides offline-first email management with SQLite storage, supporting features like email threading, contact management, signatures, spam detection, filters, templates, notifications, import/export, and multi-account support. The project uses modular architecture with clear separation of concerns across CLI, storage, IMAP/SMTP clients, and utility modules.
 
 **Key Stats**: 100+ files, 32,000+ lines of code, 16 CLI commands, 11 modules
 
@@ -46,7 +46,7 @@ pnpm link
 ## Project Structure
 
 ```
-mail-cli/
+open-mail-cli/
 ├── src/
 │   ├── index.js                 # Main entry point (#!/usr/bin/env node)
 │   ├── cli/
@@ -151,7 +151,7 @@ mail-cli/
 │   ├── config.json            # User configuration (passwords encrypted)
 │   ├── mail.db                # SQLite database
 │   └── logs/
-│       └── mail-client.log    # Application logs
+│       └── open-mail-client.log    # Application logs
 └── package.json               # Project configuration
 ```
 
@@ -251,8 +251,8 @@ Data models in `src/storage/models/` follow this structure:
 ## Configuration
 
 ### Config File Location
-- **Linux/macOS**: `~/.config/mail-client/config.json`
-- **Windows**: `%APPDATA%\mail-client\config.json`
+- **Linux/macOS**: `~/.config/open-mail-client/config.json`
+- **Windows**: `%APPDATA%\open-mail-client\config.json`
 
 ### Config Structure
 ```javascript
@@ -388,7 +388,7 @@ pnpm test:coverage
 
 ### Debugging
 - Set log level to DEBUG: `logger.setLevel('DEBUG')`
-- Check log file: `data/logs/mail-client.log`
+- Check log file: `data/logs/open-mail-client.log`
 - Use `--help` flag for command options
 - Enable verbose logging for sync operations
 

@@ -55,57 +55,57 @@ src/cli/commands/
 
 ```bash
 # 标记邮件为垃圾邮件
-mail-client spam mark <email-id>
+mail-cli spam mark <email-id>
 
 # 取消垃圾邮件标记
-mail-client spam unmark <email-id>
+mail-cli spam unmark <email-id>
 ```
 
 ### 2. 查看垃圾邮件
 
 ```bash
 # 列出所有垃圾邮件
-mail-client spam list
+mail-cli spam list
 ```
 
 ### 3. 黑名单管理
 
 ```bash
 # 添加到黑名单
-mail-client spam blacklist add spam@example.com "发送垃圾邮件"
+mail-cli spam blacklist add spam@example.com "发送垃圾邮件"
 
 # 从黑名单移除
-mail-client spam blacklist remove spam@example.com
+mail-cli spam blacklist remove spam@example.com
 
 # 查看黑名单
-mail-client spam blacklist list
+mail-cli spam blacklist list
 ```
 
 ### 4. 白名单管理
 
 ```bash
 # 添加到白名单
-mail-client spam whitelist add friend@example.com
+mail-cli spam whitelist add friend@example.com
 
 # 从白名单移除
-mail-client spam whitelist remove friend@example.com
+mail-cli spam whitelist remove friend@example.com
 
 # 查看白名单
-mail-client spam whitelist list
+mail-cli spam whitelist list
 ```
 
 ### 5. 运行垃圾邮件过滤
 
 ```bash
 # 手动扫描收件箱中的垃圾邮件
-mail-client spam filter
+mail-cli spam filter
 ```
 
 ### 6. 查看统计信息
 
 ```bash
 # 显示垃圾邮件过滤统计
-mail-client spam stats
+mail-cli spam stats
 ```
 
 ## 检测规则
@@ -164,7 +164,7 @@ mail-client spam stats
 示例：
 ```bash
 # 标记邮件为垃圾邮件，系统会学习其特征
-mail-client spam mark 123
+mail-cli spam mark 123
 
 # 输出：
 # Email #123 marked as spam
@@ -294,15 +294,15 @@ await spamModel.createRule({
 
 解决方案：
 1. 检查黑白名单是否正确配置
-2. 查看检测规则是否启用：`mail-client spam stats`
+2. 查看检测规则是否启用：`mail-cli spam stats`
 3. 调整检测阈值
 4. 手动标记更多样本以改进学习型过滤器
 
 ### 问题：合法邮件被误标记为垃圾邮件
 
 解决方案：
-1. 将发件人添加到白名单：`mail-client spam whitelist add sender@example.com`
-2. 取消垃圾邮件标记：`mail-client spam unmark <email-id>`
+1. 将发件人添加到白名单：`mail-cli spam whitelist add sender@example.com`
+2. 取消垃圾邮件标记：`mail-cli spam unmark <email-id>`
 3. 系统会学习并减少类似误报
 
 ### 问题：垃圾邮件过滤器不工作
@@ -310,7 +310,7 @@ await spamModel.createRule({
 解决方案：
 1. 确保数据库迁移已执行
 2. 检查日志文件查看错误信息
-3. 手动运行过滤器：`mail-client spam filter`
+3. 手动运行过滤器：`mail-cli spam filter`
 
 ## 未来改进方向
 

@@ -289,7 +289,7 @@ async function spamCommand(action, ...args) {
     switch (action) {
       case 'mark':
         if (!args[0]) {
-          console.error('Usage: mail-client spam mark <email-id>');
+          console.error('Usage: mail-cli spam mark <email-id>');
           return;
         }
         await markAsSpam(parseInt(args[0]));
@@ -297,7 +297,7 @@ async function spamCommand(action, ...args) {
 
       case 'unmark':
         if (!args[0]) {
-          console.error('Usage: mail-client spam unmark <email-id>');
+          console.error('Usage: mail-cli spam unmark <email-id>');
           return;
         }
         await unmarkAsSpam(parseInt(args[0]));
@@ -312,14 +312,14 @@ async function spamCommand(action, ...args) {
         if (blacklistAction === 'add') {
           if (!args[1]) {
             console.error(
-              'Usage: mail-client spam blacklist add <email> [reason]'
+              'Usage: mail-cli spam blacklist add <email> [reason]'
             );
             return;
           }
           await addToBlacklist(args[1], args.slice(2).join(' '));
         } else if (blacklistAction === 'remove') {
           if (!args[1]) {
-            console.error('Usage: mail-client spam blacklist remove <email>');
+            console.error('Usage: mail-cli spam blacklist remove <email>');
             return;
           }
           await removeFromBlacklist(args[1]);
@@ -327,7 +327,7 @@ async function spamCommand(action, ...args) {
           await listBlacklist();
         } else {
           console.error(
-            'Usage: mail-client spam blacklist <add|remove|list> [email]'
+            'Usage: mail-cli spam blacklist <add|remove|list> [email]'
           );
         }
         break;
@@ -336,13 +336,13 @@ async function spamCommand(action, ...args) {
         const whitelistAction = args[0];
         if (whitelistAction === 'add') {
           if (!args[1]) {
-            console.error('Usage: mail-client spam whitelist add <email>');
+            console.error('Usage: mail-cli spam whitelist add <email>');
             return;
           }
           await addToWhitelist(args[1]);
         } else if (whitelistAction === 'remove') {
           if (!args[1]) {
-            console.error('Usage: mail-client spam whitelist remove <email>');
+            console.error('Usage: mail-cli spam whitelist remove <email>');
             return;
           }
           await removeFromWhitelist(args[1]);
@@ -350,7 +350,7 @@ async function spamCommand(action, ...args) {
           await listWhitelist();
         } else {
           console.error(
-            'Usage: mail-client spam whitelist <add|remove|list> [email]'
+            'Usage: mail-cli spam whitelist <add|remove|list> [email]'
           );
         }
         break;
@@ -366,37 +366,37 @@ async function spamCommand(action, ...args) {
       default:
         console.log('Spam Management Commands:');
         console.log(
-          '  mail-client spam mark <email-id>           - Mark email as spam'
+          '  mail-cli spam mark <email-id>           - Mark email as spam'
         );
         console.log(
-          '  mail-client spam unmark <email-id>         - Unmark email as spam'
+          '  mail-cli spam unmark <email-id>         - Unmark email as spam'
         );
         console.log(
-          '  mail-client spam list                      - List spam emails'
+          '  mail-cli spam list                      - List spam emails'
         );
         console.log(
-          '  mail-client spam blacklist add <email>     - Add to blacklist'
+          '  mail-cli spam blacklist add <email>     - Add to blacklist'
         );
         console.log(
-          '  mail-client spam blacklist remove <email>  - Remove from blacklist'
+          '  mail-cli spam blacklist remove <email>  - Remove from blacklist'
         );
         console.log(
-          '  mail-client spam blacklist list            - List blacklist'
+          '  mail-cli spam blacklist list            - List blacklist'
         );
         console.log(
-          '  mail-client spam whitelist add <email>     - Add to whitelist'
+          '  mail-cli spam whitelist add <email>     - Add to whitelist'
         );
         console.log(
-          '  mail-client spam whitelist remove <email>  - Remove from whitelist'
+          '  mail-cli spam whitelist remove <email>  - Remove from whitelist'
         );
         console.log(
-          '  mail-client spam whitelist list            - List whitelist'
+          '  mail-cli spam whitelist list            - List whitelist'
         );
         console.log(
-          '  mail-client spam filter                    - Run spam filter on inbox'
+          '  mail-cli spam filter                    - Run spam filter on inbox'
         );
         console.log(
-          '  mail-client spam stats                     - Show spam statistics'
+          '  mail-cli spam stats                     - Show spam statistics'
         );
     }
   } catch (error) {

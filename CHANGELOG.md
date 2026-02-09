@@ -66,4 +66,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[1.0.0]: https://github.com/eric8810/mail-cli/releases/tag/v1.0.0
+[1.0.0]: https://github.com/eric8810/open-mail-cli/releases/tag/v1.0.0

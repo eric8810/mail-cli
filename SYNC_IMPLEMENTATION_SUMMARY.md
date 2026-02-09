@@ -73,9 +73,9 @@
 
 **Commands:**
 ```bash
-mail-client sync --auto
-mail-client sync --auto --interval 10
-mail-client sync --auto --folders "INBOX,Sent"
+mail-cli sync --auto
+mail-cli sync --auto --interval 10
+mail-cli sync --auto --folders "INBOX,Sent"
 ```
 
 #### ✅ 2. Background Daemon
@@ -87,10 +87,10 @@ mail-client sync --auto --folders "INBOX,Sent"
 
 **Commands:**
 ```bash
-mail-client sync daemon start
-mail-client sync daemon stop
-mail-client sync daemon status
-mail-client sync daemon logs
+mail-cli sync daemon start
+mail-cli sync daemon stop
+mail-cli sync daemon status
+mail-cli sync daemon logs
 ```
 
 #### ✅ 3. Selective Sync
@@ -100,9 +100,9 @@ mail-client sync daemon logs
 
 **Commands:**
 ```bash
-mail-client sync --folders "INBOX,Sent,Drafts"
-mail-client sync --account user@example.com
-mail-client sync --since 2024-01-01
+mail-cli sync --folders "INBOX,Sent,Drafts"
+mail-cli sync --account user@example.com
+mail-cli sync --since 2024-01-01
 ```
 
 #### ✅ 4. Sync Statistics
@@ -173,19 +173,19 @@ SyncScheduler emits:
 #### Manual Testing Commands
 ```bash
 # Test regular sync
-mail-client sync
+mail-cli sync
 
 # Test auto sync
-mail-client sync --auto --interval 1
+mail-cli sync --auto --interval 1
 
 # Test daemon
-mail-client sync daemon start --interval 1
-mail-client sync daemon status
-mail-client sync daemon logs
-mail-client sync daemon stop
+mail-cli sync daemon start --interval 1
+mail-cli sync daemon status
+mail-cli sync daemon logs
+mail-cli sync daemon stop
 
 # Test selective sync
-mail-client sync --folders "INBOX,Sent"
+mail-cli sync --folders "INBOX,Sent"
 ```
 
 #### Unit Tests

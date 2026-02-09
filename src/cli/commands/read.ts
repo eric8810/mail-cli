@@ -15,7 +15,7 @@ async function readCommand(emailId, options) {
   try {
     if (!emailId) {
       console.error(chalk.red('Error: Email ID is required'));
-      console.log('Usage: mail-client read <id>');
+      console.log('Usage: mail-cli read <id>');
       process.exit(1);
     }
 

@@ -50,13 +50,13 @@ Require stack:
 
 #### 复现步骤
 1. 安装邮箱客户端
-2. 运行命令: `mail-client draft list`
-3. 或运行命令: `mail-client trash list`
+2. 运行命令: `mail-cli draft list`
+3. 或运行命令: `mail-cli trash list`
 4. 观察到错误
 
 #### 影响范围
-- ❌ `mail-client draft list` - 无法运行
-- ❌ `mail-client trash list` - 无法运行
+- ❌ `mail-cli draft list` - 无法运行
+- ❌ `mail-cli trash list` - 无法运行
 - ✅ 其他命令 - 不受影响
 
 #### 受影响文件
@@ -79,8 +79,8 @@ Require stack:
 ```
 
 #### 修复验证
-- ✅ `mail-client draft list` - 正常运行
-- ✅ `mail-client trash list` - 正常运行
+- ✅ `mail-cli draft list` - 正常运行
+- ✅ `mail-cli trash list` - 正常运行
 - ✅ 表格显示正常
 
 ---
@@ -114,8 +114,8 @@ Require stack:
 2. 观察到模块未找到错误
 
 #### 影响范围
-- ❌ `mail-client delete <id>` - 无法运行
-- ❌ `mail-client delete <id> --permanent` - 无法运行
+- ❌ `mail-cli delete <id>` - 无法运行
+- ❌ `mail-cli delete <id> --permanent` - 无法运行
 - ✅ 其他命令 - 不受影响
 
 #### 受影响文件
@@ -162,8 +162,8 @@ if (cfg.imap.host && cfg.imap.user && cfg.imap.password) {
 ```
 
 #### 修复验证
-- ✅ `mail-client delete <id>` - 正常运行
-- ✅ `mail-client delete <id> --permanent` - 正常运行
+- ✅ `mail-cli delete <id>` - 正常运行
+- ✅ `mail-cli delete <id> --permanent` - 正常运行
 - ✅ IMAP连接正常
 - ✅ 邮件删除功能正常
 
@@ -255,17 +255,17 @@ try {
 修复 Bug #1 后，需要执行以下回归测试：
 
 #### 草稿功能测试
-- [ ] `mail-client draft save` - 保存草稿
-- [ ] `mail-client draft list` - 列出草稿 (重点测试)
-- [ ] `mail-client draft edit --id 1` - 编辑草稿
-- [ ] `mail-client draft send --id 1` - 发送草稿
-- [ ] `mail-client draft delete --id 1` - 删除草稿
+- [ ] `mail-cli draft save` - 保存草稿
+- [ ] `mail-cli draft list` - 列出草稿 (重点测试)
+- [ ] `mail-cli draft edit --id 1` - 编辑草稿
+- [ ] `mail-cli draft send --id 1` - 发送草稿
+- [ ] `mail-cli draft delete --id 1` - 删除草稿
 
 #### 垃圾箱功能测试
-- [ ] `mail-client delete 1` - 删除邮件
-- [ ] `mail-client trash list` - 列出垃圾箱 (重点测试)
-- [ ] `mail-client trash restore 1` - 恢复邮件
-- [ ] `mail-client trash empty` - 清空垃圾箱
+- [ ] `mail-cli delete 1` - 删除邮件
+- [ ] `mail-cli trash list` - 列出垃圾箱 (重点测试)
+- [ ] `mail-cli trash restore 1` - 恢复邮件
+- [ ] `mail-cli trash empty` - 清空垃圾箱
 
 #### 表格显示测试
 - [ ] 验证表格格式正确

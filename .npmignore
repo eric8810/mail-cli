@@ -1,0 +1,64 @@
+# Build artifacts (we only want dist/ in npm)
+src/
+tests/
+docs/
+scripts/
+.dimcode/
+.github/
+.husky/
+_/
+
+# Binary files (released separately)
+dist/binary/
+
+# Data and logs
+data/
+logs/
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment
+.env
+.env.*
+config.json
+
+# OS and IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test files
+test-*.js
+test-*.eml
+test-*.mbox
+*.test.ts
+*.spec.ts
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+attachments/
+
+# Claude Code
+.claude/
+
+# Development files
+.gitignore
+.eslintrc.json
+.prettierrc
+.prettierignore
+tsconfig.json
+tsup.config.ts
+vitest.config.ts
+.github-project-info.md
+AGENTS.md
+CONTRIBUTING.md
+CHANGELOG.md
+TODO.md

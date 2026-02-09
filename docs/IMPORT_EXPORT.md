@@ -25,36 +25,36 @@ This document describes the email import/export functionality implemented in the
 
 #### Export Single Email to EML
 ```bash
-mail-client export email <id> <file>
+mail-cli export email <id> <file>
 ```
 Example:
 ```bash
-mail-client export email 123 ~/backup/email-123.eml
+mail-cli export email 123 ~/backup/email-123.eml
 ```
 
 #### Export Folder to MBOX
 ```bash
-mail-client export folder <folder> <file>
+mail-cli export folder <folder> <file>
 ```
 Example:
 ```bash
-mail-client export folder INBOX ~/backup/inbox.mbox
+mail-cli export folder INBOX ~/backup/inbox.mbox
 ```
 
 #### Export All Emails to MBOX
 ```bash
-mail-client export all <file>
+mail-cli export all <file>
 ```
 Example:
 ```bash
-mail-client export all ~/backup/all-emails.mbox
+mail-cli export all ~/backup/all-emails.mbox
 ```
 
 ### Import Commands
 
 #### Import EML File
 ```bash
-mail-client import eml <file> [options]
+mail-cli import eml <file> [options]
 ```
 Options:
 - `-f, --folder <folder>`: Target folder (default: INBOX)
@@ -62,13 +62,13 @@ Options:
 
 Example:
 ```bash
-mail-client import eml ~/backup/email.eml --folder INBOX
-mail-client import eml ~/backup/email.eml --folder Archive --account 1
+mail-cli import eml ~/backup/email.eml --folder INBOX
+mail-cli import eml ~/backup/email.eml --folder Archive --account 1
 ```
 
 #### Import MBOX File
 ```bash
-mail-client import mbox <file> [options]
+mail-cli import mbox <file> [options]
 ```
 Options:
 - `-f, --folder <folder>`: Target folder (default: INBOX)
@@ -76,8 +76,8 @@ Options:
 
 Example:
 ```bash
-mail-client import mbox ~/backup/inbox.mbox --folder INBOX
-mail-client import mbox ~/backup/archive.mbox --folder Archive --account 1
+mail-cli import mbox ~/backup/inbox.mbox --folder INBOX
+mail-cli import mbox ~/backup/archive.mbox --folder Archive --account 1
 ```
 
 ## Implementation Details
@@ -130,26 +130,26 @@ src/import-export/
 ### Backup Workflow
 ```bash
 # Export all emails to backup
-mail-client export all ~/backup/all-emails-$(date +%Y%m%d).mbox
+mail-cli export all ~/backup/all-emails-$(date +%Y%m%d).mbox
 
 # Export specific folder
-mail-client export folder "Important" ~/backup/important.mbox
+mail-cli export folder "Important" ~/backup/important.mbox
 ```
 
 ### Migration Workflow
 ```bash
 # Import emails from another client
-mail-client import mbox ~/old-client/inbox.mbox --folder INBOX
-mail-client import mbox ~/old-client/sent.mbox --folder Sent
+mail-cli import mbox ~/old-client/inbox.mbox --folder INBOX
+mail-cli import mbox ~/old-client/sent.mbox --folder Sent
 ```
 
 ### Single Email Operations
 ```bash
 # Export important email
-mail-client export email 456 ~/documents/contract-email.eml
+mail-cli export email 456 ~/documents/contract-email.eml
 
 # Import email from file
-mail-client import eml ~/downloads/invoice.eml --folder Receipts
+mail-cli import eml ~/downloads/invoice.eml --folder Receipts
 ```
 
 ## Error Handling

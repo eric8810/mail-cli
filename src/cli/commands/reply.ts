@@ -17,9 +17,7 @@ async function replyCommand(emailId, options) {
     const cfg = config.load();
     if (!cfg.smtp.host || !cfg.smtp.user || !cfg.smtp.password) {
       console.error(
-        chalk.red(
-          'SMTP configuration incomplete. Please run: mail-client config'
-        )
+        chalk.red('SMTP configuration incomplete. Please run: mail-cli config')
       );
       process.exit(1);
     }

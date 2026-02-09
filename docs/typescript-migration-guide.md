@@ -363,7 +363,7 @@ export default defineConfig({
 {
   "main": "dist/index.js",
   "bin": {
-    "mail-client": "./dist/index.js"
+    "mail-cli": "./dist/index.js"
   },
   "scripts": {
     "build": "tsup",

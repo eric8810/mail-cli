@@ -25,41 +25,41 @@
 
 ### 启用通知
 ```bash
-mail-client notify enable
+mail-cli notify enable
 ```
 
 ### 禁用通知
 ```bash
-mail-client notify disable
+mail-cli notify disable
 ```
 
 ### 配置通知
 
 #### 交互式配置
 ```bash
-mail-client notify config
+mail-cli notify config
 ```
 
 #### 命令行配置
 ```bash
 # 设置发件人过滤
-mail-client notify config --sender "boss@company.com,important@example.com"
+mail-cli notify config --sender "boss@company.com,important@example.com"
 
 # 设置标签过滤
-mail-client notify config --tag "urgent,important"
+mail-cli notify config --tag "urgent,important"
 
 # 仅通知重要邮件
-mail-client notify config --important
+mail-cli notify config --important
 ```
 
 ### 测试通知
 ```bash
-mail-client notify test
+mail-cli notify test
 ```
 
 ### 查看状态
 ```bash
-mail-client notify status
+mail-cli notify status
 ```
 
 ## 集成说明
@@ -144,36 +144,36 @@ if (folderName === 'INBOX') {
 
 ```bash
 # 启用通知
-mail-client notify enable
+mail-cli notify enable
 
 # 配置发件人过滤
-mail-client notify config --sender "boss@company.com"
+mail-cli notify config --sender "boss@company.com"
 
 # 测试
-mail-client notify test
+mail-cli notify test
 ```
 
 ### 场景 2: 只接收重要邮件通知
 
 ```bash
 # 启用通知
-mail-client notify enable
+mail-cli notify enable
 
 # 配置仅重要邮件
-mail-client notify config --important
+mail-cli notify config --important
 
 # 查看状态
-mail-client notify status
+mail-cli notify status
 ```
 
 ### 场景 3: 按标签过滤通知
 
 ```bash
 # 启用通知
-mail-client notify enable
+mail-cli notify enable
 
 # 配置标签过滤
-mail-client notify config --tag "urgent,work"
+mail-cli notify config --tag "urgent,work"
 ```
 
 ## 注意事项
@@ -224,8 +224,8 @@ mail-client notify config --tag "urgent,work"
 
 1. **基本功能测试**
    ```bash
-   mail-client notify enable
-   mail-client notify test
+   mail-cli notify enable
+   mail-cli notify test
    ```
 
 2. **过滤规则测试**

@@ -27,7 +27,7 @@ If applicable, provide example commands or usage scenarios:
 
 ```bash
 # Example command
-mail-client new-feature --option value
+mail-cli new-feature --option value
 ```
 
 ## Additional Context

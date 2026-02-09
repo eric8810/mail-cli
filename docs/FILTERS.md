@@ -45,25 +45,25 @@
 
 ### 1. 创建过滤规则
 ```bash
-mail-client filter create --name "工作邮件" --description "自动处理工作相关邮件"
+mail-cli filter create --name "工作邮件" --description "自动处理工作相关邮件"
 ```
 
 ### 2. 添加条件
 ```bash
 # 添加条件：发件人包含公司域名
-mail-client filter add-condition 1 --field from --operator contains --value "@company.com"
+mail-cli filter add-condition 1 --field from --operator contains --value "@company.com"
 
 # 添加条件：主题包含"紧急"
-mail-client filter add-condition 1 --field subject --operator contains --value "紧急"
+mail-cli filter add-condition 1 --field subject --operator contains --value "紧急"
 ```
 
 ### 3. 添加动作
 ```bash
 # 移动到"工作"文件夹
-mail-client filter add-action 1 --type move --value "Work"
+mail-cli filter add-action 1 --type move --value "Work"
 
 # 标记为重要
-mail-client filter add-action 1 --type flag
+mail-cli filter add-action 1 --type flag
 
 # 添加"工作"标签
-mail-client filter add-action 1 --type add_tag --value "工作"
+mail-cli filter add-action 1 --type add_tag --value "工作"

@@ -54,11 +54,11 @@ export function getConfigDir(): string {
   if (process.platform === 'win32') {
     return path.join(
       process.env.APPDATA ?? path.join(os.homedir(), 'AppData', 'Roaming'),
-      'mail-client'
+      'open-mail-client'
     );
   }
 
-  return path.join(os.homedir(), '.config', 'mail-client');
+  return path.join(os.homedir(), '.config', 'open-mail-client');
 }
 
 /**
@@ -68,11 +68,11 @@ export function getDataDir(): string {
   if (process.platform === 'win32') {
     return path.join(
       process.env.LOCALAPPDATA ?? path.join(os.homedir(), 'AppData', 'Local'),
-      'mail-client'
+      'open-mail-client'
     );
   }
 
-  return path.join(os.homedir(), '.local', 'share', 'mail-client');
+  return path.join(os.homedir(), '.local', 'share', 'open-mail-client');
 }
 
 /**

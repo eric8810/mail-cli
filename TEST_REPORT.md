@@ -2,7 +2,7 @@
 
 ## 测试概述
 
-**项目名称**: mail-client
+**项目名称**: mail-cli
 **测试日期**: 2026-02-07
 **测试工程师**: tester
 **测试环境**: Windows, Node.js v22.11.0, npm v10.9.0
@@ -25,7 +25,7 @@
 
 #### 1.1 帮助命令测试
 ```bash
-$ mail-client --help
+$ mail-cli --help
 ```
 **结果**: ✅ 通过
 - 正确显示所有可用命令
@@ -34,16 +34,16 @@ $ mail-client --help
 
 #### 1.2 版本命令测试
 ```bash
-$ mail-client --version
+$ mail-cli --version
 ```
 **结果**: ✅ 通过
 - 正确显示版本号: 1.0.0
 
 #### 1.3 子命令帮助测试
 ```bash
-$ mail-client sync --help
-$ mail-client send --help
-$ mail-client list --help
+$ mail-cli sync --help
+$ mail-cli send --help
+$ mail-cli list --help
 ```
 **结果**: ✅ 通过
 - 所有子命令帮助信息完整
@@ -53,7 +53,7 @@ $ mail-client list --help
 
 #### 2.1 配置显示测试
 ```bash
-$ mail-client config --show
+$ mail-cli config --show
 ```
 **结果**: ✅ 通过
 - 正确显示默认配置
@@ -81,7 +81,7 @@ SMTP:
 
 #### 2.2 配置文件路径验证
 **结果**: ✅ 通过
-- Windows路径正确: `%APPDATA%\mail-client\config.json`
+- Windows路径正确: `%APPDATA%\mail-cli\config.json`
 - 配置目录自动创建功能正常
 
 #### 2.3 配置加密功能验证
@@ -101,7 +101,7 @@ SMTP:
 
 **日志输出**:
 ```
-[INFO] Database initialized {"path":"C:\\Users\\eric8\\AppData\\Local\\mail-client\\mail.db"}
+[INFO] Database initialized {"path":"C:\\Users\\eric8\\AppData\\Local\\mail-cli\\mail.db"}
 [INFO] Database migrations completed
 ```
 
@@ -137,7 +137,7 @@ SMTP:
 
 #### 4.1 空数据库测试
 ```bash
-$ mail-client list
+$ mail-cli list
 ```
 **结果**: ✅ 通过
 - 正确处理空数据库
@@ -154,7 +154,7 @@ $ mail-client list
 
 #### 5.1 空结果测试
 ```bash
-$ mail-client search test
+$ mail-cli search test
 ```
 **结果**: ✅ 通过
 - 正确处理空搜索结果
@@ -173,7 +173,7 @@ $ mail-client search test
 
 #### 6.1 不存在邮件测试
 ```bash
-$ mail-client read 999
+$ mail-cli read 999
 ```
 **结果**: ✅ 通过
 - 正确处理不存在的邮件

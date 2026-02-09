@@ -11,16 +11,16 @@ The sync scheduler enables automatic periodic synchronization of emails.
 **Usage:**
 ```bash
 # Start auto sync with default interval (5 minutes)
-mail-client sync --auto
+mail-cli sync --auto
 
 # Start auto sync with custom interval (in minutes)
-mail-client sync --auto --interval 10
+mail-cli sync --auto --interval 10
 
 # Auto sync specific folders
-mail-client sync --auto --folders "INBOX,Sent,Drafts"
+mail-cli sync --auto --folders "INBOX,Sent,Drafts"
 
 # Auto sync specific account
-mail-client sync --auto --account user@example.com
+mail-cli sync --auto --account user@example.com
 ```
 
 **Features:**
@@ -37,25 +37,25 @@ Run email synchronization as a background daemon process.
 **Usage:**
 ```bash
 # Start daemon with default settings
-mail-client sync daemon start
+mail-cli sync daemon start
 
 # Start daemon with custom interval
-mail-client sync daemon start --interval 15
+mail-cli sync daemon start --interval 15
 
 # Start daemon for specific folders
-mail-client sync daemon start --folders "INBOX,Important"
+mail-cli sync daemon start --folders "INBOX,Important"
 
 # Check daemon status
-mail-client sync daemon status
+mail-cli sync daemon status
 
 # View daemon logs (last 50 lines)
-mail-client sync daemon logs
+mail-cli sync daemon logs
 
 # View more log lines
-mail-client sync daemon logs --lines=100
+mail-cli sync daemon logs --lines=100
 
 # Stop daemon
-mail-client sync daemon stop
+mail-cli sync daemon stop
 ```
 
 **Features:**
@@ -72,19 +72,19 @@ Sync only specific folders, accounts, or date ranges.
 **Usage:**
 ```bash
 # Sync specific folder
-mail-client sync --folder INBOX
+mail-cli sync --folder INBOX
 
 # Sync multiple folders
-mail-client sync --folders "INBOX,Sent,Drafts"
+mail-cli sync --folders "INBOX,Sent,Drafts"
 
 # Sync emails since specific date
-mail-client sync --since 2024-01-01
+mail-cli sync --since 2024-01-01
 
 # Sync specific account
-mail-client sync --account user@example.com
+mail-cli sync --account user@example.com
 
 # Combine options
-mail-client sync --folders "INBOX,Sent" --since 2024-01-01 --account user@example.com
+mail-cli sync --folders "INBOX,Sent" --since 2024-01-01 --account user@example.com
 ```
 
 ### 4. Sync Statistics
@@ -176,41 +176,41 @@ The SyncScheduler emits the following events:
 ### Example 1: Quick Sync
 ```bash
 # Sync INBOX immediately
-mail-client sync
+mail-cli sync
 ```
 
 ### Example 2: Auto Sync with Custom Settings
 ```bash
 # Auto sync every 10 minutes
-mail-client sync --auto --interval 10 --folders "INBOX,Sent"
+mail-cli sync --auto --interval 10 --folders "INBOX,Sent"
 ```
 
 ### Example 3: Background Daemon
 ```bash
 # Start daemon
-mail-client sync daemon start --interval 15
+mail-cli sync daemon start --interval 15
 
 # Check status
-mail-client sync daemon status
+mail-cli sync daemon status
 
 # View logs
-mail-client sync daemon logs
+mail-cli sync daemon logs
 
 # Stop daemon
-mail-client sync daemon stop
+mail-cli sync daemon stop
 ```
 
 ### Example 4: Selective Sync
 ```bash
 # Sync only recent emails
-mail-client sync --since 2024-01-01 --folders "INBOX,Important"
+mail-cli sync --since 2024-01-01 --folders "INBOX,Important"
 ```
 
 ## Troubleshooting
 
 ### Daemon won't start
-- Check if daemon is already running: `mail-client sync daemon status`
-- Check log file for errors: `mail-client sync daemon logs`
+- Check if daemon is already running: `mail-cli sync daemon status`
+- Check log file for errors: `mail-cli sync daemon logs`
 - Ensure data directory is writable
 
 ### Sync fails repeatedly

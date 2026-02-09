@@ -20,7 +20,7 @@ export class Logger {
    */
   constructor(logDir: string | null = null) {
     this.logDir = logDir ?? path.join(process.cwd(), 'data', 'logs');
-    this.logFile = path.join(this.logDir, 'mail-client.log');
+    this.logFile = path.join(this.logDir, 'open-mail-client.log');
     this.levels = {
       ERROR: 0,
       WARN: 1,
