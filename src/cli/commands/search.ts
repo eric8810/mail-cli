@@ -4,6 +4,8 @@ import emailModel from '../../storage/models/email';
 import savedSearchModel from '../../storage/models/saved-search';
 import logger from '../../utils/logger';
 import { formatEmailList } from '../utils/formatter';
+import { getFormatter, type FormatOptions } from '../formatters';
+import { parsePagination, calculateRange } from '../utils/pagination';
 
 /**
  * Search command - Search emails with advanced criteria
@@ -65,16 +67,57 @@ function searchCommand(action, options) {
     console.log(chalk.bold.cyan('Search Results:'));
     console.log();
 
+    const { limit, offset, page } = parsePagination(options);
+    query.limit = limit;
+    query.offset = offset;
+
     const emails = emailModel.search(query);
 
     if (emails.length === 0) {
-      console.log(chalk.yellow('No emails found matching your criteria.'));
+      const range = calculateRange(offset, limit, 0);
+      const format = options.idsOnly
+        ? 'ids-only'
+        : options.format || 'markdown';
+      const formatter = getFormatter(format);
+      const meta = {
+        total: 0,
+        unread: 0,
+        page,
+        limit,
+        offset,
+        totalPages: 0,
+        showing: range.showing,
+      };
+      console.log(formatter.formatList(emails, meta, options));
       return;
     }
 
-    console.log(formatEmailList(emails));
-    console.log();
-    console.log(chalk.gray(`Found ${emails.length} email(s)`));
+    const format = options.idsOnly ? 'ids-only' : options.format || 'markdown';
+
+    if (format !== 'ids-only') {
+      console.log(chalk.bold.cyan('Search Results:'));
+      console.log();
+    }
+
+    const range = calculateRange(offset, limit, emails.length);
+    const formatter = getFormatter(format);
+    const meta = {
+      total: emails.length,
+      unread: emails.filter((e) => !e.isRead).length,
+      page,
+      limit,
+      offset,
+      totalPages: page,
+      showing: range.showing,
+    };
+
+    const output = formatter.formatList(emails, meta, options);
+    console.log(output);
+
+    if (format === 'markdown') {
+      console.log();
+      console.log(chalk.gray(`Found ${emails.length} email(s)`));
+    }
 
     // Store last search for potential saving
     global.lastSearchQuery = query;
@@ -213,16 +256,45 @@ function loadSearch(options) {
     console.log(chalk.bold.cyan('Search Results:'));
     console.log();
 
+    const { limit, offset, page } = parsePagination(options);
+    query.limit = limit;
+    query.offset = offset;
+
     const emails = emailModel.search(query);
 
     if (emails.length === 0) {
-      console.log(chalk.yellow('No emails found matching your criteria.'));
+      const range = calculateRange(offset, limit, 0);
+      const format = options.idsOnly
+        ? 'ids-only'
+        : options.format || 'markdown';
+      const formatter = getFormatter(format);
+      const meta = {
+        total: 0,
+        unread: 0,
+        page,
+        limit,
+        offset,
+        totalPages: 0,
+        showing: range.showing,
+      };
+      console.log(formatter.formatList(emails, meta, options));
       return;
     }
 
-    console.log(formatEmailList(emails));
-    console.log();
-    console.log(chalk.gray(`Found ${emails.length} email(s)`));
+    const format = options.idsOnly ? 'ids-only' : options.format || 'markdown';
+
+    const range = calculateRange(offset, limit, emails.length);
+    const formatter = getFormatter(format);
+    const meta = {
+      total: emails.length,
+      unread: emails.filter((e) => !e.isRead).length,
+      page,
+      limit,
+      offset,
+      totalPages: page,
+      showing: range.showing,
+    };
+    console.log(formatter.formatList(emails, meta, options));
 
     // Store for potential re-saving
     global.lastSearchQuery = query;

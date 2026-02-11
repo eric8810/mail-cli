@@ -2608,9 +2608,9 @@ var require_manager = __commonJS({
 var require_account = __commonJS({
   "src/cli/commands/account.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
+    var import_chalk8 = __toESM(require("chalk"));
     var import_prompts = __toESM(require("prompts"));
-    var import_manager5 = __toESM(require_manager());
+    var import_manager6 = __toESM(require_manager());
     init_logger();
     async function accountCommand2(action, options) {
       try {
@@ -2646,21 +2646,21 @@ var require_account = __commonJS({
             await migrateConfig(options);
             break;
           default:
-            console.log(import_chalk7.default.red(`Unknown action: ${action}`));
+            console.log(import_chalk8.default.red(`Unknown action: ${action}`));
             console.log(
-              import_chalk7.default.yellow(
+              import_chalk8.default.yellow(
                 "Available actions: add, list, show, edit, delete, default, enable, disable, test, migrate"
               )
             );
         }
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Account command failed", { action, error: error2.message });
         process.exit(1);
       }
     }
     async function addAccount(options) {
-      console.log(import_chalk7.default.blue.bold("\nAdd New Email Account\n"));
+      console.log(import_chalk8.default.blue.bold("\nAdd New Email Account\n"));
       const questions = [];
       if (!options.email) {
         questions.push({
@@ -2742,81 +2742,81 @@ var require_account = __commonJS({
         isEnabled: true
       };
       if (options.test) {
-        console.log(import_chalk7.default.yellow("\nTesting connection..."));
+        console.log(import_chalk8.default.yellow("\nTesting connection..."));
       }
-      const account = await import_manager5.default.addAccount(accountData);
-      console.log(import_chalk7.default.green("\n\u2713 Account added successfully!"));
-      console.log(import_chalk7.default.gray(`Account ID: ${account.id}`));
-      console.log(import_chalk7.default.gray(`Email: ${account.email}`));
+      const account = await import_manager6.default.addAccount(accountData);
+      console.log(import_chalk8.default.green("\n\u2713 Account added successfully!"));
+      console.log(import_chalk8.default.gray(`Account ID: ${account.id}`));
+      console.log(import_chalk8.default.gray(`Email: ${account.email}`));
       if (account.isDefault) {
-        console.log(import_chalk7.default.yellow("This account is set as default"));
+        console.log(import_chalk8.default.yellow("This account is set as default"));
       }
     }
     async function listAccounts(options) {
-      const accounts = import_manager5.default.getAllAccounts(options.enabledOnly);
+      const accounts = import_manager6.default.getAllAccounts(options.enabledOnly);
       if (accounts.length === 0) {
-        console.log(import_chalk7.default.yellow("No accounts found"));
-        console.log(import_chalk7.default.gray('Use "account add" to add a new account'));
+        console.log(import_chalk8.default.yellow("No accounts found"));
+        console.log(import_chalk8.default.gray('Use "account add" to add a new account'));
         return;
       }
-      console.log(import_chalk7.default.blue.bold("\nEmail Accounts\n"));
+      console.log(import_chalk8.default.blue.bold("\nEmail Accounts\n"));
       accounts.forEach((account) => {
         const status = [];
-        if (account.isDefault) status.push(import_chalk7.default.yellow("DEFAULT"));
-        if (!account.isEnabled) status.push(import_chalk7.default.red("DISABLED"));
-        console.log(import_chalk7.default.bold(`[${account.id}] ${account.email}`));
+        if (account.isDefault) status.push(import_chalk8.default.yellow("DEFAULT"));
+        if (!account.isEnabled) status.push(import_chalk8.default.red("DISABLED"));
+        console.log(import_chalk8.default.bold(`[${account.id}] ${account.email}`));
         if (status.length > 0) {
           console.log(`    ${status.join(" ")}`);
         }
-        console.log(import_chalk7.default.gray(`    Display Name: ${account.displayName}`));
+        console.log(import_chalk8.default.gray(`    Display Name: ${account.displayName}`));
         console.log(
-          import_chalk7.default.gray(`    IMAP: ${account.imapHost}:${account.imapPort}`)
+          import_chalk8.default.gray(`    IMAP: ${account.imapHost}:${account.imapPort}`)
         );
         console.log(
-          import_chalk7.default.gray(`    SMTP: ${account.smtpHost}:${account.smtpPort}`)
+          import_chalk8.default.gray(`    SMTP: ${account.smtpHost}:${account.smtpPort}`)
         );
         if (account.lastSync) {
           console.log(
-            import_chalk7.default.gray(
+            import_chalk8.default.gray(
               `    Last Sync: ${new Date(account.lastSync).toLocaleString()}`
             )
           );
         }
         console.log("");
       });
-      console.log(import_chalk7.default.gray(`Total: ${accounts.length} account(s)`));
+      console.log(import_chalk8.default.gray(`Total: ${accounts.length} account(s)`));
     }
     async function showAccount(options) {
       if (!options.id) {
-        console.error(import_chalk7.default.red("Error: Account ID is required"));
-        console.log(import_chalk7.default.gray("Usage: account show --id <id>"));
+        console.error(import_chalk8.default.red("Error: Account ID is required"));
+        console.log(import_chalk8.default.gray("Usage: account show --id <id>"));
         process.exit(1);
       }
-      const account = import_manager5.default.getAccount(options.id);
+      const account = import_manager6.default.getAccount(options.id);
       if (!account) {
-        console.error(import_chalk7.default.red(`Account with ID ${options.id} not found`));
+        console.error(import_chalk8.default.red(`Account with ID ${options.id} not found`));
         process.exit(1);
       }
-      console.log(import_chalk7.default.blue.bold("\nAccount Details\n"));
-      console.log(import_chalk7.default.bold("ID:"), account.id);
-      console.log(import_chalk7.default.bold("Email:"), account.email);
-      console.log(import_chalk7.default.bold("Display Name:"), account.displayName);
-      console.log(import_chalk7.default.bold("Username:"), account.username);
+      console.log(import_chalk8.default.blue.bold("\nAccount Details\n"));
+      console.log(import_chalk8.default.bold("ID:"), account.id);
+      console.log(import_chalk8.default.bold("Email:"), account.email);
+      console.log(import_chalk8.default.bold("Display Name:"), account.displayName);
+      console.log(import_chalk8.default.bold("Username:"), account.username);
       console.log("");
-      console.log(import_chalk7.default.bold("IMAP Configuration:"));
+      console.log(import_chalk8.default.bold("IMAP Configuration:"));
       console.log(`  Host: ${account.imapHost}`);
       console.log(`  Port: ${account.imapPort}`);
       console.log(`  Secure: ${account.imapSecure ? "Yes" : "No"}`);
       console.log("");
-      console.log(import_chalk7.default.bold("SMTP Configuration:"));
+      console.log(import_chalk8.default.bold("SMTP Configuration:"));
       console.log(`  Host: ${account.smtpHost}`);
       console.log(`  Port: ${account.smtpPort}`);
       console.log(`  Secure: ${account.smtpSecure ? "Yes" : "No"}`);
       console.log("");
-      console.log(import_chalk7.default.bold("Status:"));
-      console.log(`  Default: ${account.isDefault ? import_chalk7.default.yellow("Yes") : "No"}`);
+      console.log(import_chalk8.default.bold("Status:"));
+      console.log(`  Default: ${account.isDefault ? import_chalk8.default.yellow("Yes") : "No"}`);
       console.log(
-        `  Enabled: ${account.isEnabled ? import_chalk7.default.green("Yes") : import_chalk7.default.red("No")}`
+        `  Enabled: ${account.isEnabled ? import_chalk8.default.green("Yes") : import_chalk8.default.red("No")}`
       );
       console.log(`  Sync Interval: ${account.syncInterval} seconds`);
       if (account.lastSync) {
@@ -2824,25 +2824,25 @@ var require_account = __commonJS({
       }
       console.log("");
       console.log(
-        import_chalk7.default.gray(`Created: ${new Date(account.createdAt).toLocaleString()}`)
+        import_chalk8.default.gray(`Created: ${new Date(account.createdAt).toLocaleString()}`)
       );
       console.log(
-        import_chalk7.default.gray(`Updated: ${new Date(account.updatedAt).toLocaleString()}`)
+        import_chalk8.default.gray(`Updated: ${new Date(account.updatedAt).toLocaleString()}`)
       );
     }
     async function editAccount(options) {
       if (!options.id) {
-        console.error(import_chalk7.default.red("Error: Account ID is required"));
-        console.log(import_chalk7.default.gray("Usage: account edit --id <id>"));
+        console.error(import_chalk8.default.red("Error: Account ID is required"));
+        console.log(import_chalk8.default.gray("Usage: account edit --id <id>"));
         process.exit(1);
       }
-      const account = import_manager5.default.getAccount(options.id);
+      const account = import_manager6.default.getAccount(options.id);
       if (!account) {
-        console.error(import_chalk7.default.red(`Account with ID ${options.id} not found`));
+        console.error(import_chalk8.default.red(`Account with ID ${options.id} not found`));
         process.exit(1);
       }
-      console.log(import_chalk7.default.blue.bold("\nEdit Account\n"));
-      console.log(import_chalk7.default.gray("Leave blank to keep current value\n"));
+      console.log(import_chalk8.default.blue.bold("\nEdit Account\n"));
+      console.log(import_chalk8.default.gray("Leave blank to keep current value\n"));
       const questions = [
         {
           type: "text",
@@ -2920,21 +2920,21 @@ var require_account = __commonJS({
         updateData.password = answers.password;
       }
       if (Object.keys(updateData).length === 0) {
-        console.log(import_chalk7.default.yellow("No changes made"));
+        console.log(import_chalk8.default.yellow("No changes made"));
         return;
       }
-      import_manager5.default.updateAccount(options.id, updateData);
-      console.log(import_chalk7.default.green("\n\u2713 Account updated successfully!"));
+      import_manager6.default.updateAccount(options.id, updateData);
+      console.log(import_chalk8.default.green("\n\u2713 Account updated successfully!"));
     }
     async function deleteAccount(options) {
       if (!options.id) {
-        console.error(import_chalk7.default.red("Error: Account ID is required"));
-        console.log(import_chalk7.default.gray("Usage: account delete --id <id>"));
+        console.error(import_chalk8.default.red("Error: Account ID is required"));
+        console.log(import_chalk8.default.gray("Usage: account delete --id <id>"));
         process.exit(1);
       }
-      const account = import_manager5.default.getAccount(options.id);
+      const account = import_manager6.default.getAccount(options.id);
       if (!account) {
-        console.error(import_chalk7.default.red(`Account with ID ${options.id} not found`));
+        console.error(import_chalk8.default.red(`Account with ID ${options.id} not found`));
         process.exit(1);
       }
       if (!options.yes) {
@@ -2945,83 +2945,83 @@ var require_account = __commonJS({
           initial: false
         });
         if (!answer.confirm) {
-          console.log(import_chalk7.default.yellow("Cancelled"));
+          console.log(import_chalk8.default.yellow("Cancelled"));
           return;
         }
       }
-      import_manager5.default.deleteAccount(options.id);
-      console.log(import_chalk7.default.green("\n\u2713 Account deleted successfully"));
+      import_manager6.default.deleteAccount(options.id);
+      console.log(import_chalk8.default.green("\n\u2713 Account deleted successfully"));
     }
     async function setDefaultAccount(options) {
       if (!options.id) {
-        console.error(import_chalk7.default.red("Error: Account ID is required"));
-        console.log(import_chalk7.default.gray("Usage: account default --id <id>"));
+        console.error(import_chalk8.default.red("Error: Account ID is required"));
+        console.log(import_chalk8.default.gray("Usage: account default --id <id>"));
         process.exit(1);
       }
-      import_manager5.default.setDefaultAccount(options.id);
-      const account = import_manager5.default.getAccount(options.id);
-      console.log(import_chalk7.default.green(`
+      import_manager6.default.setDefaultAccount(options.id);
+      const account = import_manager6.default.getAccount(options.id);
+      console.log(import_chalk8.default.green(`
 \u2713 "${account.email}" is now the default account`));
     }
     async function enableAccount(options) {
       if (!options.id) {
-        console.error(import_chalk7.default.red("Error: Account ID is required"));
-        console.log(import_chalk7.default.gray("Usage: account enable --id <id>"));
+        console.error(import_chalk8.default.red("Error: Account ID is required"));
+        console.log(import_chalk8.default.gray("Usage: account enable --id <id>"));
         process.exit(1);
       }
-      import_manager5.default.enableAccount(options.id);
-      console.log(import_chalk7.default.green("\n\u2713 Account enabled"));
+      import_manager6.default.enableAccount(options.id);
+      console.log(import_chalk8.default.green("\n\u2713 Account enabled"));
     }
     async function disableAccount(options) {
       if (!options.id) {
-        console.error(import_chalk7.default.red("Error: Account ID is required"));
-        console.log(import_chalk7.default.gray("Usage: account disable --id <id>"));
+        console.error(import_chalk8.default.red("Error: Account ID is required"));
+        console.log(import_chalk8.default.gray("Usage: account disable --id <id>"));
         process.exit(1);
       }
-      import_manager5.default.disableAccount(options.id);
-      console.log(import_chalk7.default.yellow("\n\u2713 Account disabled"));
+      import_manager6.default.disableAccount(options.id);
+      console.log(import_chalk8.default.yellow("\n\u2713 Account disabled"));
     }
     async function testAccount(options) {
       if (!options.id) {
-        console.error(import_chalk7.default.red("Error: Account ID is required"));
-        console.log(import_chalk7.default.gray("Usage: account test --id <id>"));
+        console.error(import_chalk8.default.red("Error: Account ID is required"));
+        console.log(import_chalk8.default.gray("Usage: account test --id <id>"));
         process.exit(1);
       }
-      const account = import_manager5.default.getAccount(options.id);
+      const account = import_manager6.default.getAccount(options.id);
       if (!account) {
-        console.error(import_chalk7.default.red(`Account with ID ${options.id} not found`));
+        console.error(import_chalk8.default.red(`Account with ID ${options.id} not found`));
         process.exit(1);
       }
-      console.log(import_chalk7.default.blue.bold("\nTesting Account Connection\n"));
-      console.log(import_chalk7.default.gray(`Account: ${account.email}
+      console.log(import_chalk8.default.blue.bold("\nTesting Account Connection\n"));
+      console.log(import_chalk8.default.gray(`Account: ${account.email}
 `));
-      const result = await import_manager5.default.testAccount(options.id);
+      const result = await import_manager6.default.testAccount(options.id);
       if (result.success) {
-        console.log(import_chalk7.default.green("\u2713 All connections successful!"));
-        console.log(import_chalk7.default.green("  \u2713 IMAP connection OK"));
-        console.log(import_chalk7.default.green("  \u2713 SMTP connection OK"));
+        console.log(import_chalk8.default.green("\u2713 All connections successful!"));
+        console.log(import_chalk8.default.green("  \u2713 IMAP connection OK"));
+        console.log(import_chalk8.default.green("  \u2713 SMTP connection OK"));
       } else {
-        console.log(import_chalk7.default.red("\u2717 Connection test failed\n"));
+        console.log(import_chalk8.default.red("\u2717 Connection test failed\n"));
         result.errors.forEach((error2) => {
-          console.log(import_chalk7.default.red(`  \u2717 ${error2.type}: ${error2.message}`));
+          console.log(import_chalk8.default.red(`  \u2717 ${error2.type}: ${error2.message}`));
         });
         process.exit(1);
       }
     }
     async function migrateConfig(options) {
-      console.log(import_chalk7.default.blue.bold("\nMigrating Legacy Configuration\n"));
-      const result = import_manager5.default.migrateLegacyConfig();
+      console.log(import_chalk8.default.blue.bold("\nMigrating Legacy Configuration\n"));
+      const result = import_manager6.default.migrateLegacyConfig();
       if (result) {
-        console.log(import_chalk7.default.green("\u2713 Legacy configuration migrated successfully"));
+        console.log(import_chalk8.default.green("\u2713 Legacy configuration migrated successfully"));
         console.log(
-          import_chalk7.default.gray(
+          import_chalk8.default.gray(
             "Your existing account has been converted to the new multi-account system"
           )
         );
       } else {
-        console.log(import_chalk7.default.yellow("No migration needed"));
+        console.log(import_chalk8.default.yellow("No migration needed"));
         console.log(
-          import_chalk7.default.gray("Either accounts already exist or no legacy config was found")
+          import_chalk8.default.gray("Either accounts already exist or no legacy config was found")
         );
       }
     }
@@ -3033,7 +3033,7 @@ var require_account = __commonJS({
 var require_config = __commonJS({
   "src/cli/commands/config.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
+    var import_chalk8 = __toESM(require("chalk"));
     var import_inquirer = __toESM(require("inquirer"));
     init_config();
     init_logger();
@@ -3049,47 +3049,47 @@ var require_config = __commonJS({
         }
         await configWizard();
       } catch (error2) {
-        console.error(import_chalk7.default.red("Configuration error:"), error2.message);
+        console.error(import_chalk8.default.red("Configuration error:"), error2.message);
         logger_default.error("Config command failed", { error: error2.message });
         process.exit(1);
       }
     }
     function showConfig() {
       const currentConfig = config_default.load();
-      console.log(import_chalk7.default.bold.cyan("Current Configuration:"));
-      console.log(import_chalk7.default.gray("\u2500".repeat(60)));
-      console.log(import_chalk7.default.bold("IMAP:"));
-      console.log(`  Host: ${currentConfig.imap.host || import_chalk7.default.gray("(not set)")}`);
+      console.log(import_chalk8.default.bold.cyan("Current Configuration:"));
+      console.log(import_chalk8.default.gray("\u2500".repeat(60)));
+      console.log(import_chalk8.default.bold("IMAP:"));
+      console.log(`  Host: ${currentConfig.imap.host || import_chalk8.default.gray("(not set)")}`);
       console.log(`  Port: ${currentConfig.imap.port}`);
       console.log(`  Secure: ${currentConfig.imap.secure}`);
-      console.log(`  User: ${currentConfig.imap.user || import_chalk7.default.gray("(not set)")}`);
+      console.log(`  User: ${currentConfig.imap.user || import_chalk8.default.gray("(not set)")}`);
       console.log(
-        `  Password: ${currentConfig.imap.password ? import_chalk7.default.gray("(set)") : import_chalk7.default.gray("(not set)")}`
+        `  Password: ${currentConfig.imap.password ? import_chalk8.default.gray("(set)") : import_chalk8.default.gray("(not set)")}`
       );
       console.log();
-      console.log(import_chalk7.default.bold("SMTP:"));
-      console.log(`  Host: ${currentConfig.smtp.host || import_chalk7.default.gray("(not set)")}`);
+      console.log(import_chalk8.default.bold("SMTP:"));
+      console.log(`  Host: ${currentConfig.smtp.host || import_chalk8.default.gray("(not set)")}`);
       console.log(`  Port: ${currentConfig.smtp.port}`);
       console.log(`  Secure: ${currentConfig.smtp.secure}`);
-      console.log(`  User: ${currentConfig.smtp.user || import_chalk7.default.gray("(not set)")}`);
+      console.log(`  User: ${currentConfig.smtp.user || import_chalk8.default.gray("(not set)")}`);
       console.log(
-        `  Password: ${currentConfig.smtp.password ? import_chalk7.default.gray("(set)") : import_chalk7.default.gray("(not set)")}`
+        `  Password: ${currentConfig.smtp.password ? import_chalk8.default.gray("(set)") : import_chalk8.default.gray("(not set)")}`
       );
     }
     function setConfigValue(keyValue) {
       const [key, value] = keyValue.split("=");
       if (!key || value === void 0) {
-        console.error(import_chalk7.default.red("Invalid format. Use: --set key=value"));
+        console.error(import_chalk8.default.red("Invalid format. Use: --set key=value"));
         process.exit(1);
       }
       config_default.load();
       config_default.set(key, value);
       config_default.save();
-      console.log(import_chalk7.default.green(`\u2713 Configuration updated: ${key} = ${value}`));
+      console.log(import_chalk8.default.green(`\u2713 Configuration updated: ${key} = ${value}`));
     }
     async function configWizard() {
-      console.log(import_chalk7.default.bold.cyan("Mail Client Configuration Wizard"));
-      console.log(import_chalk7.default.gray("Configure your IMAP and SMTP settings\n"));
+      console.log(import_chalk8.default.bold.cyan("Mail Client Configuration Wizard"));
+      console.log(import_chalk8.default.gray("Configure your IMAP and SMTP settings\n"));
       const currentConfig = config_default.exists() ? config_default.load() : null;
       const answers = await import_inquirer.default.prompt([
         {
@@ -3179,7 +3179,7 @@ var require_config = __commonJS({
         }
       };
       config_default.save(newConfig);
-      console.log(import_chalk7.default.green("\n\u2713 Configuration saved successfully!"));
+      console.log(import_chalk8.default.green("\n\u2713 Configuration saved successfully!"));
     }
     module2.exports = configCommand2;
   }
@@ -4149,8 +4149,8 @@ var require_contact = __commonJS({
   "src/cli/commands/contact.ts"(exports2, module2) {
     "use strict";
     var import_fs3 = __toESM(require("fs"));
-    var import_chalk7 = __toESM(require("chalk"));
-    var import_manager5 = __toESM(require_manager2());
+    var import_chalk8 = __toESM(require("chalk"));
+    var import_manager6 = __toESM(require_manager2());
     init_contact_group();
     init_logger();
     function contactCommand2(action, args, options) {
@@ -4175,25 +4175,25 @@ var require_contact = __commonJS({
           case "export":
             return exportContacts(args, options);
           default:
-            console.error(import_chalk7.default.red("Error:"), `Unknown action: ${action}`);
+            console.error(import_chalk8.default.red("Error:"), `Unknown action: ${action}`);
             console.log(
-              import_chalk7.default.gray(
+              import_chalk8.default.gray(
                 "Available actions: add, list, show, edit, delete, search, group, import, export"
               )
             );
             process.exit(1);
         }
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Contact command failed", { action, error: error2.message });
         process.exit(1);
       }
     }
     async function addContact(args, options) {
       if (!options.email) {
-        console.error(import_chalk7.default.red("Error:"), "Email address is required");
+        console.error(import_chalk8.default.red("Error:"), "Email address is required");
         console.log(
-          import_chalk7.default.gray(
+          import_chalk8.default.gray(
             "Usage: contact add --email <email> [--name <name>] [--phone <phone>] [--company <company>]"
           )
         );
@@ -4207,18 +4207,18 @@ var require_contact = __commonJS({
         jobTitle: options.title || null,
         notes: options.notes || null
       };
-      const contact = await import_manager5.default.addContact(contactData);
-      console.log(import_chalk7.default.green("\u2713"), "Contact added successfully");
-      console.log(import_chalk7.default.gray(`  ID: ${contact.id}`));
-      console.log(import_chalk7.default.gray(`  Email: ${contact.email}`));
+      const contact = await import_manager6.default.addContact(contactData);
+      console.log(import_chalk8.default.green("\u2713"), "Contact added successfully");
+      console.log(import_chalk8.default.gray(`  ID: ${contact.id}`));
+      console.log(import_chalk8.default.gray(`  Email: ${contact.email}`));
       if (contact.displayName) {
-        console.log(import_chalk7.default.gray(`  Name: ${contact.displayName}`));
+        console.log(import_chalk8.default.gray(`  Name: ${contact.displayName}`));
       }
       if (contact.phone) {
-        console.log(import_chalk7.default.gray(`  Phone: ${contact.phone}`));
+        console.log(import_chalk8.default.gray(`  Phone: ${contact.phone}`));
       }
       if (contact.company) {
-        console.log(import_chalk7.default.gray(`  Company: ${contact.company}`));
+        console.log(import_chalk8.default.gray(`  Company: ${contact.company}`));
       }
     }
     async function listContacts(args, options) {
@@ -4227,89 +4227,89 @@ var require_contact = __commonJS({
       if (groupName) {
         const group = contact_group_default.findByName(groupName);
         if (!group) {
-          console.error(import_chalk7.default.red("Error:"), `Group "${groupName}" not found`);
+          console.error(import_chalk8.default.red("Error:"), `Group "${groupName}" not found`);
           process.exit(1);
         }
         contacts = contact_group_default.getContacts(group.id);
-        console.log(import_chalk7.default.bold.cyan(`Contacts in group "${group.name}":`));
+        console.log(import_chalk8.default.bold.cyan(`Contacts in group "${group.name}":`));
       } else {
-        contacts = await import_manager5.default.listContacts(null, {
+        contacts = await import_manager6.default.listContacts(null, {
           limit: options.limit || 100,
           favoriteOnly: options.favorites || false
         });
-        console.log(import_chalk7.default.bold.cyan("All Contacts:"));
+        console.log(import_chalk8.default.bold.cyan("All Contacts:"));
       }
       if (contacts.length === 0) {
-        console.log(import_chalk7.default.yellow("No contacts found."));
+        console.log(import_chalk8.default.yellow("No contacts found."));
         return;
       }
       console.log();
       contacts.forEach((contact) => {
-        const favorite = contact.isFavorite ? import_chalk7.default.yellow("\u2605 ") : "  ";
+        const favorite = contact.isFavorite ? import_chalk8.default.yellow("\u2605 ") : "  ";
         console.log(
-          `${favorite}${import_chalk7.default.bold(contact.displayName || contact.email)}`
+          `${favorite}${import_chalk8.default.bold(contact.displayName || contact.email)}`
         );
-        console.log(import_chalk7.default.gray(`  ID: ${contact.id} | Email: ${contact.email}`));
+        console.log(import_chalk8.default.gray(`  ID: ${contact.id} | Email: ${contact.email}`));
         if (contact.phone) {
-          console.log(import_chalk7.default.gray(`  Phone: ${contact.phone}`));
+          console.log(import_chalk8.default.gray(`  Phone: ${contact.phone}`));
         }
         if (contact.company) {
-          console.log(import_chalk7.default.gray(`  Company: ${contact.company}`));
+          console.log(import_chalk8.default.gray(`  Company: ${contact.company}`));
         }
         console.log();
       });
-      console.log(import_chalk7.default.gray(`Total: ${contacts.length} contacts`));
+      console.log(import_chalk8.default.gray(`Total: ${contacts.length} contacts`));
     }
     async function showContact(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Contact ID is required");
-        console.log(import_chalk7.default.gray("Usage: contact show <id>"));
+        console.error(import_chalk8.default.red("Error:"), "Contact ID is required");
+        console.log(import_chalk8.default.gray("Usage: contact show <id>"));
         process.exit(1);
       }
       const contactId = parseInt(args[0]);
-      const contact = await import_manager5.default.getContact(contactId);
-      console.log(import_chalk7.default.bold.cyan("Contact Details:"));
+      const contact = await import_manager6.default.getContact(contactId);
+      console.log(import_chalk8.default.bold.cyan("Contact Details:"));
       console.log();
-      console.log(import_chalk7.default.bold("  ID:"), contact.id);
-      console.log(import_chalk7.default.bold("  Email:"), contact.email);
+      console.log(import_chalk8.default.bold("  ID:"), contact.id);
+      console.log(import_chalk8.default.bold("  Email:"), contact.email);
       if (contact.displayName) {
-        console.log(import_chalk7.default.bold("  Name:"), contact.displayName);
+        console.log(import_chalk8.default.bold("  Name:"), contact.displayName);
       }
       if (contact.firstName) {
-        console.log(import_chalk7.default.bold("  First Name:"), contact.firstName);
+        console.log(import_chalk8.default.bold("  First Name:"), contact.firstName);
       }
       if (contact.lastName) {
-        console.log(import_chalk7.default.bold("  Last Name:"), contact.lastName);
+        console.log(import_chalk8.default.bold("  Last Name:"), contact.lastName);
       }
       if (contact.phone) {
-        console.log(import_chalk7.default.bold("  Phone:"), contact.phone);
+        console.log(import_chalk8.default.bold("  Phone:"), contact.phone);
       }
       if (contact.company) {
-        console.log(import_chalk7.default.bold("  Company:"), contact.company);
+        console.log(import_chalk8.default.bold("  Company:"), contact.company);
       }
       if (contact.jobTitle) {
-        console.log(import_chalk7.default.bold("  Job Title:"), contact.jobTitle);
+        console.log(import_chalk8.default.bold("  Job Title:"), contact.jobTitle);
       }
       if (contact.notes) {
-        console.log(import_chalk7.default.bold("  Notes:"), contact.notes);
+        console.log(import_chalk8.default.bold("  Notes:"), contact.notes);
       }
-      console.log(import_chalk7.default.bold("  Favorite:"), contact.isFavorite ? "Yes" : "No");
-      console.log(import_chalk7.default.gray(`  Created: ${contact.createdAt}`));
-      console.log(import_chalk7.default.gray(`  Updated: ${contact.updatedAt}`));
+      console.log(import_chalk8.default.bold("  Favorite:"), contact.isFavorite ? "Yes" : "No");
+      console.log(import_chalk8.default.gray(`  Created: ${contact.createdAt}`));
+      console.log(import_chalk8.default.gray(`  Updated: ${contact.updatedAt}`));
       const groups = contact_group_default.getGroupsByContact(contactId);
       if (groups.length > 0) {
         console.log();
-        console.log(import_chalk7.default.bold("  Groups:"));
+        console.log(import_chalk8.default.bold("  Groups:"));
         groups.forEach((group) => {
-          console.log(import_chalk7.default.gray(`    - ${group.name}`));
+          console.log(import_chalk8.default.gray(`    - ${group.name}`));
         });
       }
     }
     async function editContact(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Contact ID is required");
+        console.error(import_chalk8.default.red("Error:"), "Contact ID is required");
         console.log(
-          import_chalk7.default.gray(
+          import_chalk8.default.gray(
             "Usage: contact edit <id> [--name <name>] [--email <email>] [--phone <phone>] [--company <company>]"
           )
         );
@@ -4326,78 +4326,78 @@ var require_contact = __commonJS({
       if (options.favorite !== void 0)
         updateData.isFavorite = options.favorite === "true";
       if (Object.keys(updateData).length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "No fields to update");
+        console.error(import_chalk8.default.red("Error:"), "No fields to update");
         console.log(
-          import_chalk7.default.gray(
+          import_chalk8.default.gray(
             "Usage: contact edit <id> [--name <name>] [--email <email>] [--phone <phone>] [--company <company>]"
           )
         );
         process.exit(1);
       }
-      const contact = await import_manager5.default.updateContact(contactId, updateData);
-      console.log(import_chalk7.default.green("\u2713"), "Contact updated successfully");
-      console.log(import_chalk7.default.gray(`  ID: ${contact.id}`));
-      console.log(import_chalk7.default.gray(`  Email: ${contact.email}`));
+      const contact = await import_manager6.default.updateContact(contactId, updateData);
+      console.log(import_chalk8.default.green("\u2713"), "Contact updated successfully");
+      console.log(import_chalk8.default.gray(`  ID: ${contact.id}`));
+      console.log(import_chalk8.default.gray(`  Email: ${contact.email}`));
       if (contact.displayName) {
-        console.log(import_chalk7.default.gray(`  Name: ${contact.displayName}`));
+        console.log(import_chalk8.default.gray(`  Name: ${contact.displayName}`));
       }
     }
     async function deleteContact(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Contact ID is required");
-        console.log(import_chalk7.default.gray("Usage: contact delete <id> [--yes]"));
+        console.error(import_chalk8.default.red("Error:"), "Contact ID is required");
+        console.log(import_chalk8.default.gray("Usage: contact delete <id> [--yes]"));
         process.exit(1);
       }
       const contactId = parseInt(args[0]);
-      const contact = await import_manager5.default.getContact(contactId);
+      const contact = await import_manager6.default.getContact(contactId);
       if (!options.yes) {
         console.log(
-          import_chalk7.default.yellow("Warning:"),
+          import_chalk8.default.yellow("Warning:"),
           `Delete contact "${contact.displayName || contact.email}"?`
         );
-        console.log(import_chalk7.default.gray("Use --yes to confirm deletion"));
+        console.log(import_chalk8.default.gray("Use --yes to confirm deletion"));
         process.exit(1);
       }
-      await import_manager5.default.deleteContact(contactId);
-      console.log(import_chalk7.default.green("\u2713"), "Contact deleted successfully");
+      await import_manager6.default.deleteContact(contactId);
+      console.log(import_chalk8.default.green("\u2713"), "Contact deleted successfully");
     }
     async function searchContacts(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Search keyword is required");
-        console.log(import_chalk7.default.gray("Usage: contact search <keyword>"));
+        console.error(import_chalk8.default.red("Error:"), "Search keyword is required");
+        console.log(import_chalk8.default.gray("Usage: contact search <keyword>"));
         process.exit(1);
       }
       const keyword = args.join(" ");
-      const contacts = await import_manager5.default.searchContacts(keyword, null, {
+      const contacts = await import_manager6.default.searchContacts(keyword, null, {
         limit: options.limit || 50
       });
       if (contacts.length === 0) {
-        console.log(import_chalk7.default.yellow(`No contacts found matching "${keyword}".`));
+        console.log(import_chalk8.default.yellow(`No contacts found matching "${keyword}".`));
         return;
       }
-      console.log(import_chalk7.default.bold.cyan(`Search results for "${keyword}":`));
+      console.log(import_chalk8.default.bold.cyan(`Search results for "${keyword}":`));
       console.log();
       contacts.forEach((contact) => {
-        const favorite = contact.isFavorite ? import_chalk7.default.yellow("\u2605 ") : "  ";
+        const favorite = contact.isFavorite ? import_chalk8.default.yellow("\u2605 ") : "  ";
         console.log(
-          `${favorite}${import_chalk7.default.bold(contact.displayName || contact.email)}`
+          `${favorite}${import_chalk8.default.bold(contact.displayName || contact.email)}`
         );
-        console.log(import_chalk7.default.gray(`  ID: ${contact.id} | Email: ${contact.email}`));
+        console.log(import_chalk8.default.gray(`  ID: ${contact.id} | Email: ${contact.email}`));
         if (contact.phone) {
-          console.log(import_chalk7.default.gray(`  Phone: ${contact.phone}`));
+          console.log(import_chalk8.default.gray(`  Phone: ${contact.phone}`));
         }
         if (contact.company) {
-          console.log(import_chalk7.default.gray(`  Company: ${contact.company}`));
+          console.log(import_chalk8.default.gray(`  Company: ${contact.company}`));
         }
         console.log();
       });
-      console.log(import_chalk7.default.gray(`Found: ${contacts.length} contacts`));
+      console.log(import_chalk8.default.gray(`Found: ${contacts.length} contacts`));
     }
     async function groupCommand(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Group action is required");
+        console.error(import_chalk8.default.red("Error:"), "Group action is required");
         console.log(
-          import_chalk7.default.gray("Available actions: create, list, add, remove, show")
+          import_chalk8.default.gray("Available actions: create, list, add, remove, show")
         );
         process.exit(1);
       }
@@ -4415,123 +4415,123 @@ var require_contact = __commonJS({
         case "show":
           return showGroup(subArgs, options);
         default:
-          console.error(import_chalk7.default.red("Error:"), `Unknown group action: ${action}`);
+          console.error(import_chalk8.default.red("Error:"), `Unknown group action: ${action}`);
           console.log(
-            import_chalk7.default.gray("Available actions: create, list, add, remove, show")
+            import_chalk8.default.gray("Available actions: create, list, add, remove, show")
           );
           process.exit(1);
       }
     }
     async function createGroup(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Group name is required");
+        console.error(import_chalk8.default.red("Error:"), "Group name is required");
         console.log(
-          import_chalk7.default.gray("Usage: contact group create <name> [--description <text>]")
+          import_chalk8.default.gray("Usage: contact group create <name> [--description <text>]")
         );
         process.exit(1);
       }
       const name = args.join(" ");
-      const group = await import_manager5.default.createGroup({
+      const group = await import_manager6.default.createGroup({
         name,
         description: options.description || null
       });
-      console.log(import_chalk7.default.green("\u2713"), `Group "${group.name}" created successfully`);
-      console.log(import_chalk7.default.gray(`  ID: ${group.id}`));
+      console.log(import_chalk8.default.green("\u2713"), `Group "${group.name}" created successfully`);
+      console.log(import_chalk8.default.gray(`  ID: ${group.id}`));
       if (group.description) {
-        console.log(import_chalk7.default.gray(`  Description: ${group.description}`));
+        console.log(import_chalk8.default.gray(`  Description: ${group.description}`));
       }
     }
     async function listGroups(options) {
-      const groups = await import_manager5.default.listGroups();
+      const groups = await import_manager6.default.listGroups();
       if (groups.length === 0) {
-        console.log(import_chalk7.default.yellow("No groups found."));
+        console.log(import_chalk8.default.yellow("No groups found."));
         return;
       }
-      console.log(import_chalk7.default.bold.cyan("Contact Groups:"));
+      console.log(import_chalk8.default.bold.cyan("Contact Groups:"));
       console.log();
       for (const group of groups) {
         const count = contact_group_default.countContacts(group.id);
-        console.log(import_chalk7.default.bold(group.name), import_chalk7.default.gray(`(${count} contacts)`));
-        console.log(import_chalk7.default.gray(`  ID: ${group.id}`));
+        console.log(import_chalk8.default.bold(group.name), import_chalk8.default.gray(`(${count} contacts)`));
+        console.log(import_chalk8.default.gray(`  ID: ${group.id}`));
         if (group.description) {
-          console.log(import_chalk7.default.gray(`  ${group.description}`));
+          console.log(import_chalk8.default.gray(`  ${group.description}`));
         }
         console.log();
       }
-      console.log(import_chalk7.default.gray(`Total: ${groups.length} groups`));
+      console.log(import_chalk8.default.gray(`Total: ${groups.length} groups`));
     }
     async function addToGroup(args, options) {
       if (!args || args.length < 2) {
         console.error(
-          import_chalk7.default.red("Error:"),
+          import_chalk8.default.red("Error:"),
           "Contact ID and group name are required"
         );
         console.log(
-          import_chalk7.default.gray("Usage: contact group add <contact-id> <group-name>")
+          import_chalk8.default.gray("Usage: contact group add <contact-id> <group-name>")
         );
         process.exit(1);
       }
       const contactId = parseInt(args[0]);
       const groupName = args.slice(1).join(" ");
-      const contact = await import_manager5.default.getContact(contactId);
+      const contact = await import_manager6.default.getContact(contactId);
       const group = contact_group_default.findByName(groupName);
       if (!group) {
-        console.error(import_chalk7.default.red("Error:"), `Group "${groupName}" not found`);
+        console.error(import_chalk8.default.red("Error:"), `Group "${groupName}" not found`);
         process.exit(1);
       }
-      await import_manager5.default.addContactToGroup(contactId, group.id);
+      await import_manager6.default.addContactToGroup(contactId, group.id);
       console.log(
-        import_chalk7.default.green("\u2713"),
+        import_chalk8.default.green("\u2713"),
         `Contact "${contact.displayName || contact.email}" added to group "${group.name}"`
       );
     }
     async function removeFromGroup(args, options) {
       if (!args || args.length < 2) {
         console.error(
-          import_chalk7.default.red("Error:"),
+          import_chalk8.default.red("Error:"),
           "Contact ID and group name are required"
         );
         console.log(
-          import_chalk7.default.gray("Usage: contact group remove <contact-id> <group-name>")
+          import_chalk8.default.gray("Usage: contact group remove <contact-id> <group-name>")
         );
         process.exit(1);
       }
       const contactId = parseInt(args[0]);
       const groupName = args.slice(1).join(" ");
-      const contact = await import_manager5.default.getContact(contactId);
+      const contact = await import_manager6.default.getContact(contactId);
       const group = contact_group_default.findByName(groupName);
       if (!group) {
-        console.error(import_chalk7.default.red("Error:"), `Group "${groupName}" not found`);
+        console.error(import_chalk8.default.red("Error:"), `Group "${groupName}" not found`);
         process.exit(1);
       }
-      await import_manager5.default.removeContactFromGroup(contactId, group.id);
+      await import_manager6.default.removeContactFromGroup(contactId, group.id);
       console.log(
-        import_chalk7.default.green("\u2713"),
+        import_chalk8.default.green("\u2713"),
         `Contact "${contact.displayName || contact.email}" removed from group "${group.name}"`
       );
     }
     async function showGroup(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Group name is required");
-        console.log(import_chalk7.default.gray("Usage: contact group show <group-name>"));
+        console.error(import_chalk8.default.red("Error:"), "Group name is required");
+        console.log(import_chalk8.default.gray("Usage: contact group show <group-name>"));
         process.exit(1);
       }
       const groupName = args.join(" ");
       const group = contact_group_default.findByName(groupName);
       if (!group) {
-        console.error(import_chalk7.default.red("Error:"), `Group "${groupName}" not found`);
+        console.error(import_chalk8.default.red("Error:"), `Group "${groupName}" not found`);
         process.exit(1);
       }
-      console.log(import_chalk7.default.bold.cyan("Group Details:"));
+      console.log(import_chalk8.default.bold.cyan("Group Details:"));
       console.log();
-      console.log(import_chalk7.default.bold("  Name:"), group.name);
-      console.log(import_chalk7.default.bold("  ID:"), group.id);
+      console.log(import_chalk8.default.bold("  Name:"), group.name);
+      console.log(import_chalk8.default.bold("  ID:"), group.id);
       if (group.description) {
-        console.log(import_chalk7.default.bold("  Description:"), group.description);
+        console.log(import_chalk8.default.bold("  Description:"), group.description);
       }
-      const contacts = await import_manager5.default.getGroupContacts(group.id);
+      const contacts = await import_manager6.default.getGroupContacts(group.id);
       console.log();
-      console.log(import_chalk7.default.bold("  Contacts:"), contacts.length);
+      console.log(import_chalk8.default.bold("  Contacts:"), contacts.length);
       if (contacts.length > 0) {
         console.log();
         contacts.forEach((contact) => {
@@ -4543,38 +4543,38 @@ var require_contact = __commonJS({
     }
     async function importContacts(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "CSV file path is required");
-        console.log(import_chalk7.default.gray("Usage: contact import <file.csv>"));
+        console.error(import_chalk8.default.red("Error:"), "CSV file path is required");
+        console.log(import_chalk8.default.gray("Usage: contact import <file.csv>"));
         process.exit(1);
       }
       const filePath = args[0];
       if (!import_fs3.default.existsSync(filePath)) {
-        console.error(import_chalk7.default.red("Error:"), `File not found: ${filePath}`);
+        console.error(import_chalk8.default.red("Error:"), `File not found: ${filePath}`);
         process.exit(1);
       }
       const csvData = import_fs3.default.readFileSync(filePath, "utf-8");
-      const result = await import_manager5.default.importFromCSV(csvData);
-      console.log(import_chalk7.default.green("\u2713"), "Import completed");
-      console.log(import_chalk7.default.gray(`  Imported: ${result.imported.length} contacts`));
+      const result = await import_manager6.default.importFromCSV(csvData);
+      console.log(import_chalk8.default.green("\u2713"), "Import completed");
+      console.log(import_chalk8.default.gray(`  Imported: ${result.imported.length} contacts`));
       if (result.errors.length > 0) {
-        console.log(import_chalk7.default.yellow(`  Errors: ${result.errors.length}`));
+        console.log(import_chalk8.default.yellow(`  Errors: ${result.errors.length}`));
         console.log();
-        console.log(import_chalk7.default.yellow("Errors:"));
+        console.log(import_chalk8.default.yellow("Errors:"));
         result.errors.forEach((error2) => {
-          console.log(import_chalk7.default.gray(`  Line ${error2.line}: ${error2.error}`));
+          console.log(import_chalk8.default.gray(`  Line ${error2.line}: ${error2.error}`));
         });
       }
     }
     async function exportContacts(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Output file path is required");
-        console.log(import_chalk7.default.gray("Usage: contact export <file.csv>"));
+        console.error(import_chalk8.default.red("Error:"), "Output file path is required");
+        console.log(import_chalk8.default.gray("Usage: contact export <file.csv>"));
         process.exit(1);
       }
       const filePath = args[0];
-      const csvData = await import_manager5.default.exportToCSV();
+      const csvData = await import_manager6.default.exportToCSV();
       import_fs3.default.writeFileSync(filePath, csvData, "utf-8");
-      console.log(import_chalk7.default.green("\u2713"), `Contacts exported to ${filePath}`);
+      console.log(import_chalk8.default.green("\u2713"), `Contacts exported to ${filePath}`);
     }
     module2.exports = contactCommand2;
   }
@@ -8240,10 +8240,10 @@ var init_composer = __esm({
 var require_draft = __commonJS({
   "src/cli/commands/draft.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
+    var import_chalk8 = __toESM(require("chalk"));
     var import_cli_table32 = __toESM(require("cli-table3"));
     var import_inquirer = __toESM(require("inquirer"));
-    var import_ora2 = __toESM(require("ora"));
+    var import_ora3 = __toESM(require("ora"));
     init_config();
     init_sync();
     init_client2();
@@ -8272,14 +8272,14 @@ var require_draft = __commonJS({
             await syncDrafts(options);
             break;
           default:
-            console.error(import_chalk7.default.red(`Unknown action: ${action}`));
+            console.error(import_chalk8.default.red(`Unknown action: ${action}`));
             console.log(
-              import_chalk7.default.gray("Available actions: save, list, edit, delete, send, sync")
+              import_chalk8.default.gray("Available actions: save, list, edit, delete, send, sync")
             );
             process.exit(1);
         }
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Draft command failed", { action, error: error2.message });
         process.exit(1);
       }
@@ -8296,11 +8296,11 @@ var require_draft = __commonJS({
       } else {
         draftData = await interactiveDraftCompose();
       }
-      const spinner = (0, import_ora2.default)("Saving draft...").start();
+      const spinner = (0, import_ora3.default)("Saving draft...").start();
       try {
         const draftId = email_default.saveDraft(draftData);
         spinner.succeed("Draft saved successfully!");
-        console.log(import_chalk7.default.gray(`Draft ID: ${draftId}`));
+        console.log(import_chalk8.default.gray(`Draft ID: ${draftId}`));
         if (options.sync) {
           await syncDraftToServer(draftId);
         }
@@ -8310,15 +8310,15 @@ var require_draft = __commonJS({
       }
     }
     async function listDrafts(options) {
-      const spinner = (0, import_ora2.default)("Loading drafts...").start();
+      const spinner = (0, import_ora3.default)("Loading drafts...").start();
       try {
         const drafts = email_default.findDrafts({ limit: options.limit || 50 });
         spinner.stop();
         if (drafts.length === 0) {
-          console.log(import_chalk7.default.yellow("No drafts found."));
+          console.log(import_chalk8.default.yellow("No drafts found."));
           return;
         }
-        console.log(import_chalk7.default.bold.cyan(`
+        console.log(import_chalk8.default.bold.cyan(`
 Drafts (${drafts.length}):
 `));
         const table = new import_cli_table32.default({
@@ -8334,7 +8334,7 @@ Drafts (${drafts.length}):
           ]);
         });
         console.log(table.toString());
-        console.log(import_chalk7.default.gray(`
+        console.log(import_chalk8.default.gray(`
 Total: ${drafts.length} drafts`));
       } catch (error2) {
         spinner.fail("Failed to load drafts");
@@ -8344,11 +8344,11 @@ Total: ${drafts.length} drafts`));
     async function editDraft(options) {
       const draftId = options.id || options._[1];
       if (!draftId) {
-        console.error(import_chalk7.default.red("Draft ID is required"));
-        console.log(import_chalk7.default.gray("Usage: mail-cli draft edit <draft-id>"));
+        console.error(import_chalk8.default.red("Draft ID is required"));
+        console.log(import_chalk8.default.gray("Usage: mail-cli draft edit <draft-id>"));
         process.exit(1);
       }
-      const spinner = (0, import_ora2.default)("Loading draft...").start();
+      const spinner = (0, import_ora3.default)("Loading draft...").start();
       try {
         const draft = email_default.findById(draftId);
         if (!draft || !draft.isDraft) {
@@ -8356,7 +8356,7 @@ Total: ${drafts.length} drafts`));
           process.exit(1);
         }
         spinner.stop();
-        console.log(import_chalk7.default.bold.cyan("Edit Draft"));
+        console.log(import_chalk8.default.bold.cyan("Edit Draft"));
         console.log();
         const answers = await import_inquirer.default.prompt([
           {
@@ -8391,10 +8391,10 @@ Total: ${drafts.length} drafts`));
           }
         ]);
         if (!answers.confirm) {
-          console.log(import_chalk7.default.yellow("Changes cancelled."));
+          console.log(import_chalk8.default.yellow("Changes cancelled."));
           return;
         }
-        const updateSpinner = (0, import_ora2.default)("Updating draft...").start();
+        const updateSpinner = (0, import_ora3.default)("Updating draft...").start();
         email_default.saveDraft({
           id: draftId,
           to: answers.to,
@@ -8411,18 +8411,18 @@ Total: ${drafts.length} drafts`));
     async function deleteDraft(options) {
       const draftId = options.id || options._[1];
       if (!draftId) {
-        console.error(import_chalk7.default.red("Draft ID is required"));
-        console.log(import_chalk7.default.gray("Usage: mail-cli draft delete <draft-id>"));
+        console.error(import_chalk8.default.red("Draft ID is required"));
+        console.log(import_chalk8.default.gray("Usage: mail-cli draft delete <draft-id>"));
         process.exit(1);
       }
       const draft = email_default.findById(draftId);
       if (!draft || !draft.isDraft) {
-        console.error(import_chalk7.default.red("Draft not found"));
+        console.error(import_chalk8.default.red("Draft not found"));
         process.exit(1);
       }
-      console.log(import_chalk7.default.bold.yellow("Delete Draft"));
-      console.log(import_chalk7.default.gray(`To: ${draft.to}`));
-      console.log(import_chalk7.default.gray(`Subject: ${draft.subject}`));
+      console.log(import_chalk8.default.bold.yellow("Delete Draft"));
+      console.log(import_chalk8.default.gray(`To: ${draft.to}`));
+      console.log(import_chalk8.default.gray(`Subject: ${draft.subject}`));
       console.log();
       const { confirm } = await import_inquirer.default.prompt([
         {
@@ -8433,10 +8433,10 @@ Total: ${drafts.length} drafts`));
         }
       ]);
       if (!confirm) {
-        console.log(import_chalk7.default.yellow("Deletion cancelled."));
+        console.log(import_chalk8.default.yellow("Deletion cancelled."));
         return;
       }
-      const spinner = (0, import_ora2.default)("Deleting draft...").start();
+      const spinner = (0, import_ora3.default)("Deleting draft...").start();
       try {
         email_default.deleteDraft(draftId);
         spinner.succeed("Draft deleted successfully!");
@@ -8448,25 +8448,25 @@ Total: ${drafts.length} drafts`));
     async function sendDraft(options) {
       const draftId = options.id || options._[1];
       if (!draftId) {
-        console.error(import_chalk7.default.red("Draft ID is required"));
-        console.log(import_chalk7.default.gray("Usage: mail-cli draft send <draft-id>"));
+        console.error(import_chalk8.default.red("Draft ID is required"));
+        console.log(import_chalk8.default.gray("Usage: mail-cli draft send <draft-id>"));
         process.exit(1);
       }
       const draft = email_default.findById(draftId);
       if (!draft || !draft.isDraft) {
-        console.error(import_chalk7.default.red("Draft not found"));
+        console.error(import_chalk8.default.red("Draft not found"));
         process.exit(1);
       }
       if (!draft.to || !draft.subject) {
-        console.error(import_chalk7.default.red("Draft is incomplete. Please edit it first."));
+        console.error(import_chalk8.default.red("Draft is incomplete. Please edit it first."));
         console.log(
-          import_chalk7.default.gray("Missing: ") + (!draft.to ? "recipient " : "") + (!draft.subject ? "subject" : "")
+          import_chalk8.default.gray("Missing: ") + (!draft.to ? "recipient " : "") + (!draft.subject ? "subject" : "")
         );
         process.exit(1);
       }
-      console.log(import_chalk7.default.bold.cyan("Send Draft"));
-      console.log(import_chalk7.default.gray(`To: ${draft.to}`));
-      console.log(import_chalk7.default.gray(`Subject: ${draft.subject}`));
+      console.log(import_chalk8.default.bold.cyan("Send Draft"));
+      console.log(import_chalk8.default.gray(`To: ${draft.to}`));
+      console.log(import_chalk8.default.gray(`Subject: ${draft.subject}`));
       console.log();
       const { confirm } = await import_inquirer.default.prompt([
         {
@@ -8477,15 +8477,15 @@ Total: ${drafts.length} drafts`));
         }
       ]);
       if (!confirm) {
-        console.log(import_chalk7.default.yellow("Sending cancelled."));
+        console.log(import_chalk8.default.yellow("Sending cancelled."));
         return;
       }
-      const spinner = (0, import_ora2.default)("Sending email...").start();
+      const spinner = (0, import_ora3.default)("Sending email...").start();
       try {
         const cfg = config_default.load();
         if (!cfg.smtp.host || !cfg.smtp.user || !cfg.smtp.password) {
           spinner.fail("SMTP configuration incomplete");
-          console.error(import_chalk7.default.red("Please run: mail-cli config"));
+          console.error(import_chalk8.default.red("Please run: mail-cli config"));
           process.exit(1);
         }
         const composer = new composer_default();
@@ -8497,7 +8497,7 @@ Total: ${drafts.length} drafts`));
         const result = await smtpClient.sendEmail(composer.compose());
         email_default.convertDraftToSent(draftId, result.messageId);
         spinner.succeed("Email sent successfully!");
-        console.log(import_chalk7.default.gray(`Message ID: ${result.messageId}`));
+        console.log(import_chalk8.default.gray(`Message ID: ${result.messageId}`));
         smtpClient.disconnect();
       } catch (error2) {
         spinner.fail("Failed to send email");
@@ -8505,26 +8505,26 @@ Total: ${drafts.length} drafts`));
       }
     }
     async function syncDrafts(options) {
-      const spinner = (0, import_ora2.default)("Syncing drafts with server...").start();
+      const spinner = (0, import_ora3.default)("Syncing drafts with server...").start();
       try {
         const cfg = config_default.load();
         if (!cfg.imap.host || !cfg.imap.user || !cfg.imap.password) {
           spinner.fail("IMAP configuration incomplete");
-          console.error(import_chalk7.default.red("Please run: mail-cli config"));
+          console.error(import_chalk8.default.red("Please run: mail-cli config"));
           process.exit(1);
         }
         const sync = new sync_default(cfg.imap);
         const result = await sync.syncDrafts();
         spinner.succeed("Drafts synced successfully!");
-        console.log(import_chalk7.default.gray(`Synced: ${result.synced} drafts`));
-        console.log(import_chalk7.default.gray(`Total on server: ${result.total} drafts`));
+        console.log(import_chalk8.default.gray(`Synced: ${result.synced} drafts`));
+        console.log(import_chalk8.default.gray(`Total on server: ${result.total} drafts`));
       } catch (error2) {
         spinner.fail("Failed to sync drafts");
         throw error2;
       }
     }
     async function interactiveDraftCompose() {
-      console.log(import_chalk7.default.bold.cyan("Compose Draft"));
+      console.log(import_chalk8.default.bold.cyan("Compose Draft"));
       console.log();
       const answers = await import_inquirer.default.prompt([
         {
@@ -8556,7 +8556,7 @@ Total: ${drafts.length} drafts`));
       };
     }
     async function syncDraftToServer(draftId) {
-      const spinner = (0, import_ora2.default)("Syncing draft to server...").start();
+      const spinner = (0, import_ora3.default)("Syncing draft to server...").start();
       try {
         const cfg = config_default.load();
         const draft = email_default.findById(draftId);
@@ -8624,30 +8624,6 @@ function formatEmailList(emails) {
   }
   return formatTable(rows);
 }
-function formatEmailDetails(email, attachments = []) {
-  const lines = [];
-  lines.push(import_chalk2.default.bold.cyan("Email Details"));
-  lines.push(import_chalk2.default.gray("\u2500".repeat(60)));
-  lines.push(`${import_chalk2.default.bold("ID:")} ${email.id}`);
-  lines.push(`${import_chalk2.default.bold("From:")} ${email.from}`);
-  lines.push(`${import_chalk2.default.bold("To:")} ${email.to}`);
-  if (email.cc) {
-    lines.push(`${import_chalk2.default.bold("CC:")} ${email.cc}`);
-  }
-  lines.push(`${import_chalk2.default.bold("Subject:")} ${email.subject}`);
-  lines.push(`${import_chalk2.default.bold("Date:")} ${email.date}`);
-  lines.push(`${import_chalk2.default.bold("Status:")} ${email.isRead ? "Read" : "Unread"}`);
-  if (attachments.length > 0) {
-    lines.push(`${import_chalk2.default.bold("Attachments:")} ${attachments.length}`);
-    attachments.forEach((att) => {
-      lines.push(`  - ${att.filename} (${formatFileSize(att.size)})`);
-    });
-  }
-  lines.push(import_chalk2.default.gray("\u2500".repeat(60)));
-  lines.push(import_chalk2.default.bold("Body:"));
-  lines.push(email.bodyText || email.bodyHtml || import_chalk2.default.gray("(No content)"));
-  return lines.join("\n");
-}
 function formatTable(rows) {
   if (!rows || rows.length === 0) return "";
   const colWidths = [];
@@ -8689,11 +8665,6 @@ function stripAnsi(str) {
     index += 1;
   }
   return output;
-}
-function formatFileSize(bytes) {
-  if (bytes < 1024) return bytes + " B";
-  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
-  return (bytes / (1024 * 1024)).toFixed(1) + " MB";
 }
 function formatSyncResults(results) {
   const lines = [];
@@ -8938,9 +8909,9 @@ var require_folder = __commonJS({
 var require_forward = __commonJS({
   "src/cli/commands/forward.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
+    var import_chalk8 = __toESM(require("chalk"));
     var import_inquirer = __toESM(require("inquirer"));
-    var import_ora2 = __toESM(require("ora"));
+    var import_ora3 = __toESM(require("ora"));
     init_config();
     init_client2();
     init_composer();
@@ -8952,19 +8923,19 @@ var require_forward = __commonJS({
         const cfg = config_default.load();
         if (!cfg.smtp.host || !cfg.smtp.user || !cfg.smtp.password) {
           console.error(
-            import_chalk7.default.red("SMTP configuration incomplete. Please run: mail-cli config")
+            import_chalk8.default.red("SMTP configuration incomplete. Please run: mail-cli config")
           );
           process.exit(1);
         }
         const originalEmail = email_default.findById(emailId);
         if (!originalEmail) {
-          console.error(import_chalk7.default.red(`Email with ID ${emailId} not found`));
+          console.error(import_chalk8.default.red(`Email with ID ${emailId} not found`));
           process.exit(1);
         }
-        console.log(import_chalk7.default.bold.cyan("Forwarding:"));
-        console.log(import_chalk7.default.gray(`From: ${originalEmail.from}`));
-        console.log(import_chalk7.default.gray(`Subject: ${originalEmail.subject}`));
-        console.log(import_chalk7.default.gray(`Date: ${originalEmail.date}`));
+        console.log(import_chalk8.default.bold.cyan("Forwarding:"));
+        console.log(import_chalk8.default.gray(`From: ${originalEmail.from}`));
+        console.log(import_chalk8.default.gray(`Subject: ${originalEmail.subject}`));
+        console.log(import_chalk8.default.gray(`Date: ${originalEmail.date}`));
         console.log();
         let recipients;
         if (options.to) {
@@ -9017,7 +8988,7 @@ To: ${originalEmail.to}
             const attachments = attachment_default.findByEmailId(emailId);
             if (attachments && attachments.length > 0) {
               console.log(
-                import_chalk7.default.gray(`Including ${attachments.length} attachment(s)`)
+                import_chalk8.default.gray(`Including ${attachments.length} attachment(s)`)
               );
               for (const attachment of attachments) {
                 if (attachment.filePath) {
@@ -9027,7 +8998,7 @@ To: ${originalEmail.to}
             }
           } catch (error2) {
             console.warn(
-              import_chalk7.default.yellow(`Warning: Could not attach files: ${error2.message}`)
+              import_chalk8.default.yellow(`Warning: Could not attach files: ${error2.message}`)
             );
           }
         }
@@ -9041,19 +9012,19 @@ To: ${originalEmail.to}
             }
           ]);
           if (!confirm) {
-            console.log(import_chalk7.default.yellow("Forward cancelled."));
+            console.log(import_chalk8.default.yellow("Forward cancelled."));
             process.exit(0);
           }
         }
-        const spinner = (0, import_ora2.default)("Forwarding email...").start();
+        const spinner = (0, import_ora3.default)("Forwarding email...").start();
         const smtpClient = new client_default2(cfg.smtp);
         const emailData = composer.compose();
         const result = await smtpClient.sendEmail(emailData);
         spinner.succeed("Email forwarded successfully!");
-        console.log(import_chalk7.default.gray(`Message ID: ${result.messageId}`));
+        console.log(import_chalk8.default.gray(`Message ID: ${result.messageId}`));
         smtpClient.disconnect();
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Forward command failed", { error: error2.message });
         process.exit(1);
       }
@@ -10700,11 +10671,425 @@ var init_tag = __esm({
   }
 });
 
+// src/cli/utils/field-selection.ts
+function parseFieldSelection(input) {
+  if (!input || input === "*") {
+    return { include: "*", exclude: [] };
+  }
+  const fields = input.split(",").map((f) => f.trim()).filter((f) => f);
+  const exclude = [];
+  const include = [];
+  for (const field of fields) {
+    if (field.startsWith("^")) {
+      exclude.push(field.slice(1));
+    } else if (field === "*") {
+      return { include: "*", exclude };
+    } else {
+      include.push(field);
+    }
+  }
+  return { include, exclude };
+}
+function selectFields(data, selection) {
+  if (selection.include === "*") {
+    const result2 = { ...data };
+    for (const field of selection.exclude) {
+      delete result2[field];
+    }
+    return result2;
+  }
+  const result = {};
+  for (const field of selection.include) {
+    if (field in data) {
+      result[field] = data[field];
+    }
+  }
+  return result;
+}
+function getDefaultFieldSelection(view) {
+  switch (view) {
+    case "list":
+    case "search":
+      return {
+        include: ["id", "from", "subject", "date", "isRead"],
+        exclude: []
+      };
+    case "detail":
+    case "read":
+      return {
+        include: "*",
+        exclude: []
+      };
+    case "thread":
+      return {
+        include: ["id", "subject", "participants", "lastDate", "messageCount"],
+        exclude: []
+      };
+    default:
+      return {
+        include: "*",
+        exclude: []
+      };
+  }
+}
+var init_field_selection = __esm({
+  "src/cli/utils/field-selection.ts"() {
+    "use strict";
+  }
+});
+
+// src/cli/formatters/markdown.ts
+var MarkdownFormatter;
+var init_markdown = __esm({
+  "src/cli/formatters/markdown.ts"() {
+    "use strict";
+    init_helpers();
+    init_field_selection();
+    MarkdownFormatter = class {
+      formatList(data, meta, options) {
+        if (!data || data.length === 0) {
+          return "No results found.";
+        }
+        const selection = options.fields ? parseFieldSelection(options.fields) : getDefaultFieldSelection("list");
+        const filteredData = data.map((item) => selectFields(item, selection));
+        const lines = [];
+        const showing = meta.showing ? `Showing ${meta.showing}` : "";
+        const unreadTotal = `${meta.unread ?? 0} unread, ${meta.total ?? data.length} total`;
+        const title = meta.folder || "Results";
+        const header = showing ? `${title} (${unreadTotal}) - ${showing}` : `${title} (${unreadTotal})`;
+        lines.push(`## ${header}`);
+        lines.push("");
+        const tableHeaders = this.buildTableHeaders(selection, filteredData[0]);
+        lines.push(tableHeaders.header);
+        lines.push(tableHeaders.separator);
+        for (let i = 0; i < filteredData.length; i++) {
+          const item = filteredData[i];
+          const originalItem = data[i];
+          const row = this.buildTableRow(selection, item, originalItem);
+          lines.push(row);
+        }
+        if (meta.totalPages) {
+          lines.push("");
+          lines.push(
+            `Page ${meta.page || 1} of ${meta.totalPages} (${meta.total} total emails)`
+          );
+        }
+        return lines.join("\n");
+      }
+      formatDetail(data, options) {
+        const selection = options.fields ? parseFieldSelection(options.fields) : getDefaultFieldSelection("detail");
+        const filtered = selectFields(data, selection);
+        const lines = [];
+        lines.push("## Email Details");
+        lines.push("");
+        const fieldOrder = [
+          "id",
+          "from",
+          "to",
+          "cc",
+          "bcc",
+          "subject",
+          "date",
+          "isRead",
+          "isStarred",
+          "isFlagged",
+          "attachments",
+          "bodyText",
+          "bodyHtml"
+        ];
+        for (const field of fieldOrder) {
+          if (!(field in filtered)) continue;
+          const value = filtered[field];
+          if (value === void 0 || value === null) continue;
+          switch (field) {
+            case "id":
+              lines.push(`- **ID:** ${value}`);
+              break;
+            case "from":
+              lines.push(`- **From:** ${this.escapeMarkdown(String(value))}`);
+              break;
+            case "to":
+              lines.push(`- **To:** ${this.escapeMarkdown(String(value))}`);
+              break;
+            case "cc":
+              lines.push(`- **CC:** ${this.escapeMarkdown(String(value))}`);
+              break;
+            case "bcc":
+              lines.push(`- **BCC:** ${this.escapeMarkdown(String(value))}`);
+              break;
+            case "subject":
+              lines.push(`- **Subject:** ${this.escapeMarkdown(String(value))}`);
+              break;
+            case "date":
+              lines.push(`- **Date:** ${this.formatDateISO(value)}`);
+              break;
+            case "isRead":
+              lines.push(`- **Status:** ${value ? "Read" : "Unread"}`);
+              break;
+            case "isStarred":
+              if (value) lines.push(`- **Starred:** Yes`);
+              break;
+            case "isFlagged":
+              if (value) lines.push(`- **Flagged (Important):** Yes`);
+              break;
+            case "attachments":
+              if (Array.isArray(value) && value.length > 0) {
+                lines.push(`- **Attachments:** ${value.length}`);
+                for (const att of value) {
+                  lines.push(`  - ${att.filename} (${this.formatFileSize(att.size)})`);
+                }
+              }
+              break;
+          }
+        }
+        if ("bodyText" in filtered || "bodyHtml" in filtered) {
+          lines.push("");
+          lines.push("### Body");
+          lines.push("");
+          const body = filtered.bodyText || filtered.bodyHtml || "";
+          lines.push(body || "(No content)");
+        }
+        return lines.join("\n");
+      }
+      buildTableHeaders(selection, sampleData) {
+        const fields = selection.include === "*" ? Object.keys(sampleData).filter((f) => !selection.exclude.includes(f)) : selection.include;
+        const headers = [];
+        const separators = [];
+        for (const field of fields) {
+          const headerName = this.getFieldDisplayName(field);
+          headers.push(` ${headerName} `);
+          separators.push("".padStart(headerName.length + 2, "-"));
+        }
+        return {
+          header: `|${headers.join("|")}|`,
+          separator: `|${separators.join("|")}|`
+        };
+      }
+      buildTableRow(selection, item, originalItem) {
+        const fields = selection.include === "*" ? Object.keys(item).filter((f) => !selection.exclude.includes(f)) : selection.include;
+        const values = [];
+        for (const field of fields) {
+          const value = this.formatFieldValue(field, item[field], originalItem);
+          values.push(` ${value} `);
+        }
+        return `|${values.join("|")}|`;
+      }
+      getFieldDisplayName(field) {
+        const displayNames = {
+          id: "ID",
+          from: "From",
+          to: "To",
+          cc: "CC",
+          bcc: "BCC",
+          subject: "Subject",
+          date: "Date",
+          isRead: "Status",
+          isStarred: "Starred",
+          isFlagged: "Flagged",
+          hasAttachments: "Attachments",
+          folder: "Folder",
+          bodyText: "Body",
+          bodyHtml: "HTML",
+          threadId: "Thread",
+          accountId: "Account"
+        };
+        return displayNames[field] || field.charAt(0).toUpperCase() + field.slice(1);
+      }
+      formatFieldValue(field, value, originalItem) {
+        if (value === void 0 || value === null) {
+          return "";
+        }
+        switch (field) {
+          case "id":
+          case "threadId":
+          case "accountId":
+            return String(value);
+          case "from":
+          case "to":
+          case "cc":
+          case "bcc":
+            return this.escapeMarkdownForTable(truncate(String(value), 20));
+          case "subject":
+            return this.escapeMarkdownForTable(truncate(String(value), 30));
+          case "date":
+            return formatDate(value);
+          case "isRead":
+            return value ? "Read" : "Unread";
+          case "isStarred":
+          case "isFlagged":
+          case "hasAttachments":
+            return value ? "Yes" : "No";
+          case "bodyText":
+          case "bodyHtml":
+            return this.escapeMarkdownForTable(truncate(String(value), 50));
+          case "folder":
+            return this.escapeMarkdownForTable(String(value));
+          default:
+            if (typeof value === "object") {
+              return this.escapeMarkdownForTable(JSON.stringify(value));
+            }
+            return this.escapeMarkdownForTable(truncate(String(value), 30));
+        }
+      }
+      escapeMarkdown(text) {
+        if (!text) return "";
+        return text.replace(/\|/g, "\\|");
+      }
+      escapeMarkdownForTable(text) {
+        if (!text) return "";
+        return text.replace(/\|/g, "\\|").replace(/\n/g, " ");
+      }
+      formatDateISO(date) {
+        if (!date) return "";
+        if (typeof date === "string" && date.includes("T")) {
+          return date;
+        }
+        return new Date(date).toISOString();
+      }
+      formatFileSize(bytes) {
+        if (bytes < 1024) return `${bytes} B`;
+        if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+        return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+      }
+    };
+  }
+});
+
+// src/cli/formatters/json.ts
+var JSONFormatter;
+var init_json = __esm({
+  "src/cli/formatters/json.ts"() {
+    "use strict";
+    init_field_selection();
+    JSONFormatter = class {
+      formatList(data, meta, options) {
+        const selection = options.fields ? parseFieldSelection(options.fields) : getDefaultFieldSelection("list");
+        const filteredData = data.map((item) => {
+          const sanitized = this.sanitizeItem(item);
+          return selectFields(sanitized, selection);
+        });
+        const result = {
+          data: filteredData,
+          meta: this.sanitizeMeta(meta)
+        };
+        return JSON.stringify(result, null, 2);
+      }
+      formatDetail(data, options) {
+        const selection = options.fields ? parseFieldSelection(options.fields) : getDefaultFieldSelection("detail");
+        const sanitized = this.sanitizeItem(data);
+        const filtered = selectFields(sanitized, selection);
+        const result = {
+          data: filtered
+        };
+        return JSON.stringify(result, null, 2);
+      }
+      sanitizeData(data) {
+        if (Array.isArray(data)) {
+          return data.map((item) => this.sanitizeItem(item));
+        }
+        return this.sanitizeItem(data);
+      }
+      sanitizeItem(item) {
+        if (!item) return item;
+        const result = {};
+        for (const key of Object.keys(item)) {
+          if (typeof key === "string" && key.startsWith("_")) continue;
+          const keyString = key;
+          if (keyString.includes("password") || keyString.includes("token") || keyString.includes("secret")) {
+            result[keyString] = "***REDACTED***";
+          } else if (keyString === "bodyHtml") {
+            result[keyString] = item[keyString] ? "<HTML content>" : null;
+          } else {
+            result[keyString] = item[keyString];
+          }
+        }
+        return result;
+      }
+      sanitizeMeta(meta) {
+        const result = {};
+        for (const key of Object.keys(meta)) {
+          result[key] = meta[key];
+        }
+        return result;
+      }
+    };
+  }
+});
+
+// src/cli/formatters/ids-only.ts
+var IDsOnlyFormatter;
+var init_ids_only = __esm({
+  "src/cli/formatters/ids-only.ts"() {
+    "use strict";
+    IDsOnlyFormatter = class {
+      formatList(data, meta, options) {
+        if (!data || data.length === 0) {
+          return "";
+        }
+        return data.map((item) => item.id).join(" ");
+      }
+      formatDetail(data, options) {
+        return String(data?.id || "");
+      }
+    };
+  }
+});
+
+// src/cli/formatters/index.ts
+function getFormatter(format = "markdown") {
+  switch (format) {
+    case "json":
+      return new JSONFormatter();
+    case "ids-only":
+      return new IDsOnlyFormatter();
+    case "markdown":
+    default:
+      return new MarkdownFormatter();
+  }
+}
+var init_formatters = __esm({
+  "src/cli/formatters/index.ts"() {
+    "use strict";
+    init_markdown();
+    init_json();
+    init_ids_only();
+  }
+});
+
+// src/cli/utils/pagination.ts
+function parsePagination(options = {}) {
+  const limit = Math.max(options.limit ?? 20, 1);
+  let offset = 0;
+  let page = 1;
+  if (options.offset !== void 0) {
+    offset = Math.max(options.offset, 0);
+    page = Math.floor(offset / limit) + 1;
+  } else if (options.page !== void 0) {
+    page = Math.max(options.page, 1);
+    offset = (page - 1) * limit;
+  }
+  return { limit, offset, page };
+}
+function calculateRange(offset, limit, total) {
+  if (total === 0 || offset >= total) {
+    return { start: 0, end: 0, total, showing: "0" };
+  }
+  const start = offset + 1;
+  const end = Math.min(offset + limit, total);
+  const showing = `${start}-${end}`;
+  return { start, end, total, showing };
+}
+var init_pagination = __esm({
+  "src/cli/utils/pagination.ts"() {
+    "use strict";
+  }
+});
+
 // src/cli/commands/list.ts
 var require_list = __commonJS({
   "src/cli/commands/list.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
+    var import_chalk8 = __toESM(require("chalk"));
     init_thread();
     init_account();
     init_email();
@@ -10712,13 +11097,12 @@ var require_list = __commonJS({
     var import_analyzer2 = __toESM(require_analyzer());
     init_builder();
     init_logger();
-    init_formatter();
+    init_formatters();
+    init_pagination();
     function listCommand2(options) {
       try {
         const folder = options.folder || "INBOX";
-        const limit = options.limit || 50;
-        const page = options.page || 1;
-        const offset = (page - 1) * limit;
+        const { limit, offset, page } = parsePagination(options);
         const unreadOnly = options.unread || false;
         const starred = options.starred || false;
         const flagged = options.flagged || false;
@@ -10760,7 +11144,7 @@ var require_list = __commonJS({
         } else if (tag) {
           const tagObj = tag_default.findByName(tag);
           if (!tagObj) {
-            console.error(import_chalk7.default.red("Error:"), `Tag "${tag}" not found`);
+            console.error(import_chalk8.default.red("Error:"), `Tag "${tag}" not found`);
             process.exit(1);
           }
           title = `Emails tagged with "${tag}"`;
@@ -10796,13 +11180,16 @@ var require_list = __commonJS({
         } else if (allAccounts) {
           title += " (All Accounts)";
         }
-        console.log(import_chalk7.default.bold.cyan(`${title}:`));
-        console.log();
-        if (emails.length === 0) {
-          console.log(import_chalk7.default.yellow("No emails found."));
-          return;
-        }
+        const format = options.idsOnly ? "ids-only" : options.format || "markdown";
         if (threadView) {
+          if (format === "ids-only" || format === "json") {
+            console.log(
+              import_chalk8.default.yellow(
+                "Thread view is not supported with --format json or --ids-only. Use flat view."
+              )
+            );
+            return;
+          }
           const allEmails = email_default.findByFolder(folder, {
             limit: limit * 5,
             offset: 0,
@@ -10810,6 +11197,22 @@ var require_list = __commonJS({
             accountId,
             allAccounts
           });
+          if (allEmails.length === 0) {
+            const range = calculateRange(offset, limit, total);
+            const formatter = getFormatter(format);
+            const meta = {
+              total,
+              unread: email_default.countByFolder(folder, true),
+              folder: title,
+              page,
+              limit,
+              offset,
+              totalPages: Math.ceil(total / limit),
+              showing: range.showing
+            };
+            console.log(formatter.formatList([], meta, options));
+            return;
+          }
           const relationships = import_analyzer2.default.analyzeRelationships(allEmails);
           const threads = builder_default.buildThreads(allEmails, relationships);
           threads.slice(0, limit).forEach((thread, index) => {
@@ -10817,30 +11220,41 @@ var require_list = __commonJS({
             const threadLines = formatThreadTree(thread, { expanded: false });
             console.log(threadLines.join("\n"));
             console.log(
-              import_chalk7.default.gray(
-                `  ${stats.messageCount} messages, ${stats.participants.length} participants, ${stats.hasUnread ? import_chalk7.default.blue("unread") : "all read"}`
+              import_chalk8.default.gray(
+                `  ${stats.messageCount} messages, ${stats.participants.length} participants, ${stats.hasUnread ? import_chalk8.default.blue("unread") : "all read"}`
               )
             );
             console.log("");
           });
           console.log(
-            import_chalk7.default.gray(
+            import_chalk8.default.gray(
               `Showing ${Math.min(limit, threads.length)} of ${threads.length} threads (thread view)`
             )
           );
         } else {
-          console.log(formatEmailList(emails));
-          console.log();
-          const totalPages = Math.ceil(total / limit);
-          console.log(
-            import_chalk7.default.gray(`Page ${page} of ${totalPages} (${total} total emails)`)
-          );
+          const formatter = getFormatter(format);
+          const range = calculateRange(offset, limit, total);
+          const unreadCount = options.folder ? email_default.countByFolder(folder, true) : unreadOnly ? total : email_default.countByFolder(folder, true);
+          const meta = {
+            total,
+            unread: unreadCount,
+            folder,
+            page,
+            limit,
+            offset,
+            totalPages: Math.ceil(total / limit),
+            showing: range.showing
+          };
+          const output = formatter.formatList(emails, meta, options);
+          console.log(output);
         }
-        if (unreadOnly) {
-          console.log(import_chalk7.default.gray("Showing unread emails only"));
+        if (format === "markdown") {
+          if (unreadOnly) {
+            console.log(import_chalk8.default.gray("Showing unread emails only"));
+          }
         }
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("List command failed", { error: error2.message });
         process.exit(1);
       }
@@ -10853,9 +11267,9 @@ var require_list = __commonJS({
 var require_notify = __commonJS({
   "src/cli/commands/notify.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
+    var import_chalk8 = __toESM(require("chalk"));
     var import_inquirer = __toESM(require("inquirer"));
-    var import_manager5 = __toESM(require_manager3());
+    var import_manager6 = __toESM(require_manager3());
     init_logger();
     async function notifyCommand2(action, options = {}) {
       try {
@@ -10871,34 +11285,34 @@ var require_notify = __commonJS({
           case "status":
             return handleStatus();
           default:
-            console.error(import_chalk7.default.red(`Unknown notify command: ${action}`));
+            console.error(import_chalk8.default.red(`Unknown notify command: ${action}`));
             console.log(
               "Available commands: enable, disable, config, test, status"
             );
             process.exit(1);
         }
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Notify command failed", { action, error: error2.message });
         process.exit(1);
       }
     }
     function handleEnable() {
-      import_manager5.default.enable();
-      console.log(import_chalk7.default.green("\u2713 Notifications enabled"));
+      import_manager6.default.enable();
+      console.log(import_chalk8.default.green("\u2713 Notifications enabled"));
       console.log();
       console.log(
-        import_chalk7.default.gray('Use "notify config" to configure notification filters')
+        import_chalk8.default.gray('Use "notify config" to configure notification filters')
       );
-      console.log(import_chalk7.default.gray('Use "notify test" to test notifications'));
+      console.log(import_chalk8.default.gray('Use "notify test" to test notifications'));
     }
     function handleDisable() {
-      import_manager5.default.disable();
-      console.log(import_chalk7.default.yellow("\u2713 Notifications disabled"));
+      import_manager6.default.disable();
+      console.log(import_chalk8.default.yellow("\u2713 Notifications disabled"));
     }
     async function handleConfig(options) {
-      const currentConfig = import_manager5.default.getConfig();
-      console.log(import_chalk7.default.blue("Current Notification Configuration:"));
+      const currentConfig = import_manager6.default.getConfig();
+      console.log(import_chalk8.default.blue("Current Notification Configuration:"));
       console.log();
       displayConfig(currentConfig);
       console.log();
@@ -10933,19 +11347,19 @@ var require_notify = __commonJS({
       if (options.sender) {
         const senders = options.sender.split(",").map((s) => s.trim());
         filters.senders = senders;
-        console.log(import_chalk7.default.green(`\u2713 Sender filter set: ${senders.join(", ")}`));
+        console.log(import_chalk8.default.green(`\u2713 Sender filter set: ${senders.join(", ")}`));
       }
       if (options.tag) {
         const tags = options.tag.split(",").map((t) => t.trim());
         filters.tags = tags;
-        console.log(import_chalk7.default.green(`\u2713 Tag filter set: ${tags.join(", ")}`));
+        console.log(import_chalk8.default.green(`\u2713 Tag filter set: ${tags.join(", ")}`));
       }
       if (options.important !== void 0) {
         filters.importantOnly = options.important;
-        console.log(import_chalk7.default.green(`\u2713 Important only: ${options.important}`));
+        console.log(import_chalk8.default.green(`\u2713 Important only: ${options.important}`));
       }
       if (Object.keys(filters).length > 0) {
-        import_manager5.default.updateFilters(filters);
+        import_manager6.default.updateFilters(filters);
       }
     }
     async function handleConfigAction(action, currentConfig) {
@@ -10960,13 +11374,13 @@ var require_notify = __commonJS({
             }
           ]);
           const senders = [...currentConfig.filters.senders, answer.sender.trim()];
-          import_manager5.default.updateFilters({ senders });
-          console.log(import_chalk7.default.green(`\u2713 Added sender filter: ${answer.sender}`));
+          import_manager6.default.updateFilters({ senders });
+          console.log(import_chalk8.default.green(`\u2713 Added sender filter: ${answer.sender}`));
           break;
         }
         case "remove-sender": {
           if (currentConfig.filters.senders.length === 0) {
-            console.log(import_chalk7.default.yellow("No sender filters to remove"));
+            console.log(import_chalk8.default.yellow("No sender filters to remove"));
             break;
           }
           const answer = await import_inquirer.default.prompt([
@@ -10980,8 +11394,8 @@ var require_notify = __commonJS({
           const senders = currentConfig.filters.senders.filter(
             (s) => s !== answer.sender
           );
-          import_manager5.default.updateFilters({ senders });
-          console.log(import_chalk7.default.green(`\u2713 Removed sender filter: ${answer.sender}`));
+          import_manager6.default.updateFilters({ senders });
+          console.log(import_chalk8.default.green(`\u2713 Removed sender filter: ${answer.sender}`));
           break;
         }
         case "add-tag": {
@@ -10994,13 +11408,13 @@ var require_notify = __commonJS({
             }
           ]);
           const tags = [...currentConfig.filters.tags, answer.tag.trim()];
-          import_manager5.default.updateFilters({ tags });
-          console.log(import_chalk7.default.green(`\u2713 Added tag filter: ${answer.tag}`));
+          import_manager6.default.updateFilters({ tags });
+          console.log(import_chalk8.default.green(`\u2713 Added tag filter: ${answer.tag}`));
           break;
         }
         case "remove-tag": {
           if (currentConfig.filters.tags.length === 0) {
-            console.log(import_chalk7.default.yellow("No tag filters to remove"));
+            console.log(import_chalk8.default.yellow("No tag filters to remove"));
             break;
           }
           const answer = await import_inquirer.default.prompt([
@@ -11012,15 +11426,15 @@ var require_notify = __commonJS({
             }
           ]);
           const tags = currentConfig.filters.tags.filter((t) => t !== answer.tag);
-          import_manager5.default.updateFilters({ tags });
-          console.log(import_chalk7.default.green(`\u2713 Removed tag filter: ${answer.tag}`));
+          import_manager6.default.updateFilters({ tags });
+          console.log(import_chalk8.default.green(`\u2713 Removed tag filter: ${answer.tag}`));
           break;
         }
         case "toggle-important": {
           const importantOnly = !currentConfig.filters.importantOnly;
-          import_manager5.default.updateFilters({ importantOnly });
+          import_manager6.default.updateFilters({ importantOnly });
           console.log(
-            import_chalk7.default.green(
+            import_chalk8.default.green(
               `\u2713 Important only: ${importantOnly ? "enabled" : "disabled"}`
             )
           );
@@ -11028,104 +11442,104 @@ var require_notify = __commonJS({
         }
         case "toggle-sound": {
           const sound = !currentConfig.sound;
-          import_manager5.default.updateSettings({ sound });
-          console.log(import_chalk7.default.green(`\u2713 Sound: ${sound ? "enabled" : "disabled"}`));
+          import_manager6.default.updateSettings({ sound });
+          console.log(import_chalk8.default.green(`\u2713 Sound: ${sound ? "enabled" : "disabled"}`));
           break;
         }
         case "toggle-desktop": {
           const desktop = !currentConfig.desktop;
-          import_manager5.default.updateSettings({ desktop });
+          import_manager6.default.updateSettings({ desktop });
           console.log(
-            import_chalk7.default.green(
+            import_chalk8.default.green(
               `\u2713 Desktop notifications: ${desktop ? "enabled" : "disabled"}`
             )
           );
           break;
         }
         case "clear-filters": {
-          import_manager5.default.updateFilters({
+          import_manager6.default.updateFilters({
             senders: [],
             tags: [],
             importantOnly: false
           });
-          console.log(import_chalk7.default.green("\u2713 All filters cleared"));
+          console.log(import_chalk8.default.green("\u2713 All filters cleared"));
           break;
         }
       }
     }
     async function handleTest() {
-      console.log(import_chalk7.default.blue("Sending test notification..."));
+      console.log(import_chalk8.default.blue("Sending test notification..."));
       try {
-        await import_manager5.default.test();
-        console.log(import_chalk7.default.green("\u2713 Test notification sent"));
+        await import_manager6.default.test();
+        console.log(import_chalk8.default.green("\u2713 Test notification sent"));
         console.log();
-        console.log(import_chalk7.default.gray("Check your system notifications"));
+        console.log(import_chalk8.default.gray("Check your system notifications"));
       } catch (error2) {
-        console.error(import_chalk7.default.red("\u2717 Failed to send test notification"));
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("\u2717 Failed to send test notification"));
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         console.log();
         console.log(
-          import_chalk7.default.yellow(
+          import_chalk8.default.yellow(
             "Note: Desktop notifications may not work in all environments"
           )
         );
       }
     }
     function handleStatus() {
-      const config = import_manager5.default.getConfig();
-      const stats = import_manager5.default.getFilterStats();
-      console.log(import_chalk7.default.blue("Notification Status:"));
+      const config = import_manager6.default.getConfig();
+      const stats = import_manager6.default.getFilterStats();
+      console.log(import_chalk8.default.blue("Notification Status:"));
       console.log();
       if (config.enabled) {
-        console.log(import_chalk7.default.green("\u2713 Enabled"));
+        console.log(import_chalk8.default.green("\u2713 Enabled"));
       } else {
-        console.log(import_chalk7.default.yellow("\u2717 Disabled"));
+        console.log(import_chalk8.default.yellow("\u2717 Disabled"));
       }
       console.log();
-      console.log(import_chalk7.default.blue("Settings:"));
+      console.log(import_chalk8.default.blue("Settings:"));
       console.log(
-        import_chalk7.default.gray(
+        import_chalk8.default.gray(
           `  Desktop notifications: ${config.desktop ? "enabled" : "disabled"}`
         )
       );
-      console.log(import_chalk7.default.gray(`  Sound: ${config.sound ? "enabled" : "disabled"}`));
+      console.log(import_chalk8.default.gray(`  Sound: ${config.sound ? "enabled" : "disabled"}`));
       console.log();
-      console.log(import_chalk7.default.blue("Filters:"));
-      console.log(import_chalk7.default.gray(`  Sender filters: ${stats.senderCount}`));
-      console.log(import_chalk7.default.gray(`  Tag filters: ${stats.tagCount}`));
+      console.log(import_chalk8.default.blue("Filters:"));
+      console.log(import_chalk8.default.gray(`  Sender filters: ${stats.senderCount}`));
+      console.log(import_chalk8.default.gray(`  Tag filters: ${stats.tagCount}`));
       console.log(
-        import_chalk7.default.gray(`  Important only: ${stats.importantOnly ? "yes" : "no"}`)
+        import_chalk8.default.gray(`  Important only: ${stats.importantOnly ? "yes" : "no"}`)
       );
       if (config.filters.senders.length > 0) {
         console.log();
-        console.log(import_chalk7.default.blue("Sender Filters:"));
+        console.log(import_chalk8.default.blue("Sender Filters:"));
         config.filters.senders.forEach((sender) => {
-          console.log(import_chalk7.default.gray(`  - ${sender}`));
+          console.log(import_chalk8.default.gray(`  - ${sender}`));
         });
       }
       if (config.filters.tags.length > 0) {
         console.log();
-        console.log(import_chalk7.default.blue("Tag Filters:"));
+        console.log(import_chalk8.default.blue("Tag Filters:"));
         config.filters.tags.forEach((tag) => {
-          console.log(import_chalk7.default.gray(`  - ${tag}`));
+          console.log(import_chalk8.default.gray(`  - ${tag}`));
         });
       }
     }
     function displayConfig(config) {
       console.log(
-        import_chalk7.default.gray(`  Status: ${config.enabled ? "enabled" : "disabled"}`)
+        import_chalk8.default.gray(`  Status: ${config.enabled ? "enabled" : "disabled"}`)
       );
       console.log(
-        import_chalk7.default.gray(`  Desktop: ${config.desktop ? "enabled" : "disabled"}`)
+        import_chalk8.default.gray(`  Desktop: ${config.desktop ? "enabled" : "disabled"}`)
       );
-      console.log(import_chalk7.default.gray(`  Sound: ${config.sound ? "enabled" : "disabled"}`));
+      console.log(import_chalk8.default.gray(`  Sound: ${config.sound ? "enabled" : "disabled"}`));
       console.log(
-        import_chalk7.default.gray(
+        import_chalk8.default.gray(
           `  Important only: ${config.filters.importantOnly ? "yes" : "no"}`
         )
       );
-      console.log(import_chalk7.default.gray(`  Sender filters: ${config.filters.senders.length}`));
-      console.log(import_chalk7.default.gray(`  Tag filters: ${config.filters.tags.length}`));
+      console.log(import_chalk8.default.gray(`  Sender filters: ${config.filters.senders.length}`));
+      console.log(import_chalk8.default.gray(`  Tag filters: ${config.filters.tags.length}`));
     }
     module2.exports = notifyCommand2;
   }
@@ -11135,28 +11549,28 @@ var require_notify = __commonJS({
 var require_read = __commonJS({
   "src/cli/commands/read.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
-    var import_ora2 = __toESM(require("ora"));
+    var import_chalk8 = __toESM(require("chalk"));
+    var import_ora3 = __toESM(require("ora"));
     init_config();
     init_client();
     init_attachment();
     init_email();
     init_logger();
-    init_formatter();
+    init_formatters();
     async function readCommand2(emailId, options) {
       try {
         if (!emailId) {
-          console.error(import_chalk7.default.red("Error: Email ID is required"));
+          console.error(import_chalk8.default.red("Error: Email ID is required"));
           console.log("Usage: mail-cli read <id>");
           process.exit(1);
         }
         const email = email_default.findById(emailId);
         if (!email) {
-          console.error(import_chalk7.default.red(`Email with ID ${emailId} not found`));
+          console.error(import_chalk8.default.red(`Email with ID ${emailId} not found`));
           process.exit(1);
         }
         if (!email.bodyText && !email.bodyHtml) {
-          const spinner = (0, import_ora2.default)("Fetching email body from server...").start();
+          const spinner = (0, import_ora3.default)("Fetching email body from server...").start();
           try {
             const cfg = config_default.load();
             if (!cfg.imap.host || !cfg.imap.user || !cfg.imap.password) {
@@ -11183,19 +11597,29 @@ var require_read = __commonJS({
               emailId,
               error: error2.message
             });
-            console.log(import_chalk7.default.yellow("Showing email without body content"));
+            console.log(import_chalk8.default.yellow("Showing email without body content"));
           }
         }
         const attachments = email.hasAttachments ? attachment_default.findByEmailId(emailId) : [];
-        console.log();
-        console.log(formatEmailDetails(email, attachments));
-        console.log();
+        const format = options.format || "markdown";
+        const formatter = getFormatter(format);
+        const emailWithAttachments = { ...email, attachments };
+        const output = formatter.formatDetail(emailWithAttachments, options);
+        if (format !== "ids-only") {
+          console.log();
+        }
+        console.log(output);
+        if (format === "markdown") {
+          console.log();
+        }
         if (!email.isRead) {
           email_default.markAsRead(emailId);
-          console.log(import_chalk7.default.gray("(Marked as read)"));
+          if (format === "markdown") {
+            console.log(import_chalk8.default.gray("(Marked as read)"));
+          }
         }
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Read command failed", { emailId, error: error2.message });
         process.exit(1);
       }
@@ -11208,9 +11632,9 @@ var require_read = __commonJS({
 var require_reply = __commonJS({
   "src/cli/commands/reply.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
+    var import_chalk8 = __toESM(require("chalk"));
     var import_inquirer = __toESM(require("inquirer"));
-    var import_ora2 = __toESM(require("ora"));
+    var import_ora3 = __toESM(require("ora"));
     init_config();
     init_client2();
     init_composer();
@@ -11221,19 +11645,19 @@ var require_reply = __commonJS({
         const cfg = config_default.load();
         if (!cfg.smtp.host || !cfg.smtp.user || !cfg.smtp.password) {
           console.error(
-            import_chalk7.default.red("SMTP configuration incomplete. Please run: mail-cli config")
+            import_chalk8.default.red("SMTP configuration incomplete. Please run: mail-cli config")
           );
           process.exit(1);
         }
         const originalEmail = email_default.findById(emailId);
         if (!originalEmail) {
-          console.error(import_chalk7.default.red(`Email with ID ${emailId} not found`));
+          console.error(import_chalk8.default.red(`Email with ID ${emailId} not found`));
           process.exit(1);
         }
-        console.log(import_chalk7.default.bold.cyan("Replying to:"));
-        console.log(import_chalk7.default.gray(`From: ${originalEmail.from}`));
-        console.log(import_chalk7.default.gray(`Subject: ${originalEmail.subject}`));
-        console.log(import_chalk7.default.gray(`Date: ${originalEmail.date}`));
+        console.log(import_chalk8.default.bold.cyan("Replying to:"));
+        console.log(import_chalk8.default.gray(`From: ${originalEmail.from}`));
+        console.log(import_chalk8.default.gray(`Subject: ${originalEmail.subject}`));
+        console.log(import_chalk8.default.gray(`Date: ${originalEmail.date}`));
         console.log();
         const composer = new composer_default();
         if (options.all) {
@@ -11242,14 +11666,14 @@ var require_reply = __commonJS({
             cfg.smtp.user
           );
           if (allRecipients.length === 0) {
-            console.error(import_chalk7.default.red("No recipients found for reply-all"));
+            console.error(import_chalk8.default.red("No recipients found for reply-all"));
             process.exit(1);
           }
           composer.setTo(allRecipients);
-          console.log(import_chalk7.default.gray(`Reply to all: ${allRecipients.join(", ")}`));
+          console.log(import_chalk8.default.gray(`Reply to all: ${allRecipients.join(", ")}`));
         } else {
           composer.setTo([originalEmail.from]);
-          console.log(import_chalk7.default.gray(`Reply to: ${originalEmail.from}`));
+          console.log(import_chalk8.default.gray(`Reply to: ${originalEmail.from}`));
         }
         let subject = originalEmail.subject;
         if (!subject.toLowerCase().startsWith("re:")) {
@@ -11297,19 +11721,19 @@ var require_reply = __commonJS({
             }
           ]);
           if (!confirm) {
-            console.log(import_chalk7.default.yellow("Reply cancelled."));
+            console.log(import_chalk8.default.yellow("Reply cancelled."));
             process.exit(0);
           }
         }
-        const spinner = (0, import_ora2.default)("Sending reply...").start();
+        const spinner = (0, import_ora3.default)("Sending reply...").start();
         const smtpClient = new client_default2(cfg.smtp);
         const emailData = composer.compose();
         const result = await smtpClient.sendEmail(emailData);
         spinner.succeed("Reply sent successfully!");
-        console.log(import_chalk7.default.gray(`Message ID: ${result.messageId}`));
+        console.log(import_chalk8.default.gray(`Message ID: ${result.messageId}`));
         smtpClient.disconnect();
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Reply command failed", { error: error2.message });
         process.exit(1);
       }
@@ -11495,11 +11919,12 @@ var init_saved_search = __esm({
 var require_search = __commonJS({
   "src/cli/commands/search.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
+    var import_chalk8 = __toESM(require("chalk"));
     init_email();
     init_saved_search();
     init_logger();
-    init_formatter();
+    init_formatters();
+    init_pagination();
     function searchCommand2(action, options) {
       try {
         if (action === "save") {
@@ -11514,7 +11939,7 @@ var require_search = __commonJS({
         const keyword = action;
         const query = buildSearchQuery(keyword, options);
         if (Object.keys(query).length === 0 || Object.keys(query).length === 1 && query.limit) {
-          console.error(import_chalk7.default.red("Error: Please provide search criteria"));
+          console.error(import_chalk8.default.red("Error: Please provide search criteria"));
           console.log("Usage: mail-cli search <keyword> [options]");
           console.log();
           console.log("Options:");
@@ -11540,22 +11965,56 @@ var require_search = __commonJS({
           console.log("  search delete-saved --name <name>  Delete saved search");
           process.exit(1);
         }
-        console.log(import_chalk7.default.bold.cyan("Search Criteria:"));
+        console.log(import_chalk8.default.bold.cyan("Search Criteria:"));
         displaySearchCriteria(query);
         console.log();
-        console.log(import_chalk7.default.bold.cyan("Search Results:"));
+        console.log(import_chalk8.default.bold.cyan("Search Results:"));
         console.log();
+        const { limit, offset, page } = parsePagination(options);
+        query.limit = limit;
+        query.offset = offset;
         const emails = email_default.search(query);
         if (emails.length === 0) {
-          console.log(import_chalk7.default.yellow("No emails found matching your criteria."));
+          const range2 = calculateRange(offset, limit, 0);
+          const format2 = options.idsOnly ? "ids-only" : options.format || "markdown";
+          const formatter2 = getFormatter(format2);
+          const meta2 = {
+            total: 0,
+            unread: 0,
+            page,
+            limit,
+            offset,
+            totalPages: 0,
+            showing: range2.showing
+          };
+          console.log(formatter2.formatList(emails, meta2, options));
           return;
         }
-        console.log(formatEmailList(emails));
-        console.log();
-        console.log(import_chalk7.default.gray(`Found ${emails.length} email(s)`));
+        const format = options.idsOnly ? "ids-only" : options.format || "markdown";
+        if (format !== "ids-only") {
+          console.log(import_chalk8.default.bold.cyan("Search Results:"));
+          console.log();
+        }
+        const range = calculateRange(offset, limit, emails.length);
+        const formatter = getFormatter(format);
+        const meta = {
+          total: emails.length,
+          unread: emails.filter((e) => !e.isRead).length,
+          page,
+          limit,
+          offset,
+          totalPages: page,
+          showing: range.showing
+        };
+        const output = formatter.formatList(emails, meta, options);
+        console.log(output);
+        if (format === "markdown") {
+          console.log();
+          console.log(import_chalk8.default.gray(`Found ${emails.length} email(s)`));
+        }
         global.lastSearchQuery = query;
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Search command failed", { error: error2.message });
         process.exit(1);
       }
@@ -11598,16 +12057,16 @@ var require_search = __commonJS({
       if (query.noAttachment) criteria.push("Has attachment: No");
       if (query.tag) criteria.push(`Tag: ${query.tag}`);
       if (query.limit) criteria.push(`Limit: ${query.limit}`);
-      criteria.forEach((c) => console.log(import_chalk7.default.gray(`  ${c}`)));
+      criteria.forEach((c) => console.log(import_chalk8.default.gray(`  ${c}`)));
     }
     function saveSearch(options) {
       if (!options.name) {
-        console.error(import_chalk7.default.red("Error: Search name is required"));
+        console.error(import_chalk8.default.red("Error: Search name is required"));
         console.log("Usage: search save --name <name>");
         process.exit(1);
       }
       if (!global.lastSearchQuery) {
-        console.error(import_chalk7.default.red("Error: No search to save. Run a search first."));
+        console.error(import_chalk8.default.red("Error: No search to save. Run a search first."));
         process.exit(1);
       }
       try {
@@ -11617,18 +12076,18 @@ var require_search = __commonJS({
           description: options.description || ""
         });
         console.log(
-          import_chalk7.default.green("\u2713"),
+          import_chalk8.default.green("\u2713"),
           `Search "${options.name}" saved successfully`
         );
-        console.log(import_chalk7.default.gray(`  ID: ${searchId}`));
+        console.log(import_chalk8.default.gray(`  ID: ${searchId}`));
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         process.exit(1);
       }
     }
     function loadSearch(options) {
       if (!options.name) {
-        console.error(import_chalk7.default.red("Error: Search name is required"));
+        console.error(import_chalk8.default.red("Error: Search name is required"));
         console.log("Usage: search load --name <name>");
         process.exit(1);
       }
@@ -11636,33 +12095,58 @@ var require_search = __commonJS({
         const savedSearch = saved_search_default.findByName(options.name);
         if (!savedSearch) {
           console.error(
-            import_chalk7.default.red("Error:"),
+            import_chalk8.default.red("Error:"),
             `Saved search "${options.name}" not found`
           );
           process.exit(1);
         }
-        console.log(import_chalk7.default.bold.cyan(`Loading saved search: "${savedSearch.name}"`));
+        console.log(import_chalk8.default.bold.cyan(`Loading saved search: "${savedSearch.name}"`));
         if (savedSearch.description) {
-          console.log(import_chalk7.default.gray(`  ${savedSearch.description}`));
+          console.log(import_chalk8.default.gray(`  ${savedSearch.description}`));
         }
         console.log();
         const query = JSON.parse(savedSearch.query);
-        console.log(import_chalk7.default.bold.cyan("Search Criteria:"));
+        console.log(import_chalk8.default.bold.cyan("Search Criteria:"));
         displaySearchCriteria(query);
         console.log();
-        console.log(import_chalk7.default.bold.cyan("Search Results:"));
+        console.log(import_chalk8.default.bold.cyan("Search Results:"));
         console.log();
+        const { limit, offset, page } = parsePagination(options);
+        query.limit = limit;
+        query.offset = offset;
         const emails = email_default.search(query);
         if (emails.length === 0) {
-          console.log(import_chalk7.default.yellow("No emails found matching your criteria."));
+          const range2 = calculateRange(offset, limit, 0);
+          const format2 = options.idsOnly ? "ids-only" : options.format || "markdown";
+          const formatter2 = getFormatter(format2);
+          const meta2 = {
+            total: 0,
+            unread: 0,
+            page,
+            limit,
+            offset,
+            totalPages: 0,
+            showing: range2.showing
+          };
+          console.log(formatter2.formatList(emails, meta2, options));
           return;
         }
-        console.log(formatEmailList(emails));
-        console.log();
-        console.log(import_chalk7.default.gray(`Found ${emails.length} email(s)`));
+        const format = options.idsOnly ? "ids-only" : options.format || "markdown";
+        const range = calculateRange(offset, limit, emails.length);
+        const formatter = getFormatter(format);
+        const meta = {
+          total: emails.length,
+          unread: emails.filter((e) => !e.isRead).length,
+          page,
+          limit,
+          offset,
+          totalPages: page,
+          showing: range.showing
+        };
+        console.log(formatter.formatList(emails, meta, options));
         global.lastSearchQuery = query;
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         process.exit(1);
       }
     }
@@ -11670,34 +12154,34 @@ var require_search = __commonJS({
       try {
         const searches = saved_search_default.findAll();
         if (searches.length === 0) {
-          console.log(import_chalk7.default.yellow("No saved searches found."));
+          console.log(import_chalk8.default.yellow("No saved searches found."));
           return;
         }
-        console.log(import_chalk7.default.bold.cyan("Saved Searches:"));
+        console.log(import_chalk8.default.bold.cyan("Saved Searches:"));
         console.log();
         searches.forEach((search) => {
-          console.log(import_chalk7.default.bold(search.name));
-          console.log(import_chalk7.default.gray(`  ID: ${search.id}`));
+          console.log(import_chalk8.default.bold(search.name));
+          console.log(import_chalk8.default.gray(`  ID: ${search.id}`));
           if (search.description) {
-            console.log(import_chalk7.default.gray(`  ${search.description}`));
+            console.log(import_chalk8.default.gray(`  ${search.description}`));
           }
           const query = JSON.parse(search.query);
           const criteriaCount = Object.keys(query).length;
-          console.log(import_chalk7.default.gray(`  Criteria: ${criteriaCount} condition(s)`));
+          console.log(import_chalk8.default.gray(`  Criteria: ${criteriaCount} condition(s)`));
           console.log(
-            import_chalk7.default.gray(`  Created: ${new Date(search.created_at).toLocaleString()}`)
+            import_chalk8.default.gray(`  Created: ${new Date(search.created_at).toLocaleString()}`)
           );
           console.log();
         });
-        console.log(import_chalk7.default.gray(`Total: ${searches.length} saved search(es)`));
+        console.log(import_chalk8.default.gray(`Total: ${searches.length} saved search(es)`));
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         process.exit(1);
       }
     }
     function deleteSavedSearch(options) {
       if (!options.name) {
-        console.error(import_chalk7.default.red("Error: Search name is required"));
+        console.error(import_chalk8.default.red("Error: Search name is required"));
         console.log("Usage: search delete-saved --name <name>");
         process.exit(1);
       }
@@ -11705,18 +12189,18 @@ var require_search = __commonJS({
         const savedSearch = saved_search_default.findByName(options.name);
         if (!savedSearch) {
           console.error(
-            import_chalk7.default.red("Error:"),
+            import_chalk8.default.red("Error:"),
             `Saved search "${options.name}" not found`
           );
           process.exit(1);
         }
         saved_search_default.delete(savedSearch.id);
         console.log(
-          import_chalk7.default.green("\u2713"),
+          import_chalk8.default.green("\u2713"),
           `Saved search "${options.name}" deleted successfully`
         );
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         process.exit(1);
       }
     }
@@ -12090,12 +12574,12 @@ var require_manager5 = __commonJS({
 var require_send = __commonJS({
   "src/cli/commands/send.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
+    var import_chalk8 = __toESM(require("chalk"));
     var import_inquirer = __toESM(require("inquirer"));
-    var import_ora2 = __toESM(require("ora"));
+    var import_ora3 = __toESM(require("ora"));
     init_config();
-    var import_manager5 = __toESM(require_manager2());
-    var import_manager6 = __toESM(require_manager5());
+    var import_manager6 = __toESM(require_manager2());
+    var import_manager7 = __toESM(require_manager5());
     init_client2();
     init_composer();
     init_logger();
@@ -12104,7 +12588,7 @@ var require_send = __commonJS({
         const cfg = config_default.load();
         if (!cfg.smtp.host || !cfg.smtp.user || !cfg.smtp.password) {
           console.error(
-            import_chalk7.default.red("SMTP configuration incomplete. Please run: mail-cli config")
+            import_chalk8.default.red("SMTP configuration incomplete. Please run: mail-cli config")
           );
           process.exit(1);
         }
@@ -12116,7 +12600,7 @@ var require_send = __commonJS({
             composer.setCc(options.cc.split(",").map((e) => e.trim()));
           }
           try {
-            const signature = await import_manager6.default.getForEmail(cfg.smtp.user, {
+            const signature = await import_manager7.default.getForEmail(cfg.smtp.user, {
               name: cfg.smtp.user.split("@")[0],
               email: cfg.smtp.user
             });
@@ -12130,11 +12614,11 @@ var require_send = __commonJS({
         } else {
           emailData = await interactiveSend();
         }
-        const spinner = (0, import_ora2.default)("Sending email...").start();
+        const spinner = (0, import_ora3.default)("Sending email...").start();
         const smtpClient = new client_default2(cfg.smtp);
         const result = await smtpClient.sendEmail(emailData);
         spinner.succeed("Email sent successfully!");
-        console.log(import_chalk7.default.gray(`Message ID: ${result.messageId}`));
+        console.log(import_chalk8.default.gray(`Message ID: ${result.messageId}`));
         try {
           const recipients = [
             ...emailData.to || [],
@@ -12142,20 +12626,20 @@ var require_send = __commonJS({
             ...emailData.bcc || []
           ];
           for (const recipient of recipients) {
-            await import_manager5.default.autoCollectContact(recipient);
+            await import_manager6.default.autoCollectContact(recipient);
           }
         } catch (error2) {
           logger_default.debug("Failed to auto-collect contacts", { error: error2.message });
         }
         smtpClient.disconnect();
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Send command failed", { error: error2.message });
         process.exit(1);
       }
     }
     async function interactiveSend() {
-      console.log(import_chalk7.default.bold.cyan("Compose Email"));
+      console.log(import_chalk8.default.bold.cyan("Compose Email"));
       console.log();
       const answers = await import_inquirer.default.prompt([
         {
@@ -12194,7 +12678,7 @@ var require_send = __commonJS({
         }
       ]);
       if (!answers.confirm) {
-        console.log(import_chalk7.default.yellow("Email cancelled."));
+        console.log(import_chalk8.default.yellow("Email cancelled."));
         process.exit(0);
       }
       const composer = new composer_default();
@@ -12209,7 +12693,7 @@ var require_send = __commonJS({
             composer.addAttachment(file);
           } catch (error2) {
             console.error(
-              import_chalk7.default.yellow(
+              import_chalk8.default.yellow(
                 `Warning: Could not add attachment ${file}: ${error2.message}`
               )
             );
@@ -12218,7 +12702,7 @@ var require_send = __commonJS({
       }
       try {
         const cfg = config_default.load();
-        const signature = await import_manager6.default.getForEmail(cfg.smtp.user, {
+        const signature = await import_manager7.default.getForEmail(cfg.smtp.user, {
           name: cfg.smtp.user.split("@")[0],
           email: cfg.smtp.user
         });
@@ -12234,12 +12718,170 @@ var require_send = __commonJS({
   }
 });
 
+// src/sync/account-manager.ts
+var require_account_manager = __commonJS({
+  "src/sync/account-manager.ts"(exports2, module2) {
+    "use strict";
+    init_database();
+    init_logger();
+    var AccountManager = class {
+      constructor() {
+        this.db = null;
+      }
+      _getDb() {
+        if (!this.db) {
+          this.db = database_default.getDb();
+        }
+        return this.db;
+      }
+      /**
+       * Get account by ID or email
+       */
+      getAccount(identifier) {
+        try {
+          const db = this._getDb();
+          let query;
+          if (typeof identifier === "number") {
+            query = db.prepare(
+              "SELECT * FROM accounts WHERE id = ? AND is_enabled = 1"
+            );
+          } else {
+            query = db.prepare(
+              "SELECT * FROM accounts WHERE email = ? AND is_enabled = 1"
+            );
+          }
+          const account = query.get(identifier);
+          return account || null;
+        } catch (error2) {
+          logger_default.error("Failed to get account", {
+            identifier,
+            error: error2.message
+          });
+          return null;
+        }
+      }
+      /**
+       * Get all enabled accounts
+       */
+      getAllAccounts() {
+        try {
+          const db = this._getDb();
+          const query = db.prepare(
+            "SELECT * FROM accounts WHERE is_enabled = 1 ORDER BY is_default DESC, email ASC"
+          );
+          return query.all();
+        } catch (error2) {
+          logger_default.error("Failed to get all accounts", { error: error2.message });
+          return [];
+        }
+      }
+      /**
+       * Get default account
+       */
+      getDefaultAccount() {
+        try {
+          const db = this._getDb();
+          const query = db.prepare(
+            "SELECT * FROM accounts WHERE is_default = 1 AND is_enabled = 1 LIMIT 1"
+          );
+          return query.get() || null;
+        } catch (error2) {
+          logger_default.error("Failed to get default account", { error: error2.message });
+          return null;
+        }
+      }
+      /**
+       * Get IMAP config for account
+       */
+      getImapConfig(accountId) {
+        const account = this.getAccount(accountId);
+        if (!account) {
+          return null;
+        }
+        return {
+          host: account.imap_host,
+          port: account.imap_port,
+          secure: account.imap_secure === 1,
+          user: account.username,
+          password: account.password,
+          accountId: account.id,
+          accountEmail: account.email
+        };
+      }
+      /**
+       * Get sync interval for account
+       */
+      getSyncInterval(accountId) {
+        const account = this.getAccount(accountId);
+        if (!account || !account.sync_interval) {
+          return 3e5;
+        }
+        return account.sync_interval * 1e3;
+      }
+      /**
+       * Update last sync time for account
+       */
+      updateLastSync(accountId) {
+        try {
+          const db = this._getDb();
+          const query = db.prepare(
+            "UPDATE accounts SET last_sync = CURRENT_TIMESTAMP WHERE id = ?"
+          );
+          query.run(accountId);
+          logger_default.debug("Updated last sync time", { accountId });
+        } catch (error2) {
+          logger_default.error("Failed to update last sync time", {
+            accountId,
+            error: error2.message
+          });
+        }
+      }
+      /**
+       * Check if accounts table exists
+       */
+      accountsTableExists() {
+        try {
+          const db = this._getDb();
+          const query = db.prepare(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='accounts'"
+          );
+          const result = query.get();
+          return !!result;
+        } catch (error2) {
+          logger_default.error("Failed to check accounts table", { error: error2.message });
+          return false;
+        }
+      }
+      /**
+       * Get account-specific folders
+       */
+      getAccountFolders(accountId) {
+        try {
+          const db = this._getDb();
+          const query = db.prepare(
+            "SELECT name FROM folders WHERE account_id = ? OR account_id IS NULL ORDER BY name"
+          );
+          const folders = query.all(accountId);
+          return folders.map((f) => f.name);
+        } catch (error2) {
+          logger_default.error("Failed to get account folders", {
+            accountId,
+            error: error2.message
+          });
+          return ["INBOX"];
+        }
+      }
+    };
+    module2.exports = new AccountManager();
+  }
+});
+
 // src/cli/commands/signature.ts
 var require_signature = __commonJS({
   "src/cli/commands/signature.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
-    var import_manager5 = __toESM(require_manager5());
+    var import_chalk8 = __toESM(require("chalk"));
+    var import_manager6 = __toESM(require_manager5());
     init_logger();
     async function signatureCommand2(action, options = {}) {
       try {
@@ -12260,7 +12902,7 @@ var require_signature = __commonJS({
             await setDefaultSignature(options);
             break;
           default:
-            console.error(import_chalk7.default.red(`Unknown action: ${action}`));
+            console.error(import_chalk8.default.red(`Unknown action: ${action}`));
             console.log(
               "Available actions: create, list, edit, delete, set-default"
             );
@@ -12268,7 +12910,7 @@ var require_signature = __commonJS({
         }
       } catch (error2) {
         logger_default.error("Signature command failed", { action, error: error2.message });
-        console.error(import_chalk7.default.red(`Error: ${error2.message}`));
+        console.error(import_chalk8.default.red(`Error: ${error2.message}`));
         process.exit(1);
       }
     }
@@ -12280,49 +12922,49 @@ var require_signature = __commonJS({
       if (!text && !html) {
         throw new Error("Signature content is required (--text or --html)");
       }
-      const id = await import_manager5.default.create({
+      const id = await import_manager6.default.create({
         name,
         text,
         html,
         isDefault: isDefault || false,
         accountEmail: account
       });
-      console.log(import_chalk7.default.green(`\u2713 Signature created successfully`));
+      console.log(import_chalk8.default.green(`\u2713 Signature created successfully`));
       console.log(`  ID: ${id}`);
       console.log(`  Name: ${name}`);
       if (isDefault) {
-        console.log(import_chalk7.default.yellow("  Set as default"));
+        console.log(import_chalk8.default.yellow("  Set as default"));
       }
     }
     async function listSignatures(options) {
       const { account } = options;
-      const signatures = await import_manager5.default.getAll(account);
+      const signatures = await import_manager6.default.getAll(account);
       if (signatures.length === 0) {
-        console.log(import_chalk7.default.yellow("No signatures found"));
+        console.log(import_chalk8.default.yellow("No signatures found"));
         return;
       }
-      console.log(import_chalk7.default.bold(`
+      console.log(import_chalk8.default.bold(`
 Signatures (${signatures.length}):
 `));
       signatures.forEach((sig) => {
-        const defaultBadge = sig.isDefault ? import_chalk7.default.yellow(" [DEFAULT]") : "";
-        const accountInfo = sig.accountEmail ? import_chalk7.default.gray(` (${sig.accountEmail})`) : "";
+        const defaultBadge = sig.isDefault ? import_chalk8.default.yellow(" [DEFAULT]") : "";
+        const accountInfo = sig.accountEmail ? import_chalk8.default.gray(` (${sig.accountEmail})`) : "";
         console.log(
-          `${import_chalk7.default.cyan(`#${sig.id}`)} ${import_chalk7.default.bold(sig.name)}${defaultBadge}${accountInfo}`
+          `${import_chalk8.default.cyan(`#${sig.id}`)} ${import_chalk8.default.bold(sig.name)}${defaultBadge}${accountInfo}`
         );
         if (sig.contentText) {
           const preview = sig.contentText.substring(0, 60);
           console.log(
-            import_chalk7.default.gray(
+            import_chalk8.default.gray(
               `  Text: ${preview}${sig.contentText.length > 60 ? "..." : ""}`
             )
           );
         }
         if (sig.contentHtml) {
-          console.log(import_chalk7.default.gray(`  HTML: Yes`));
+          console.log(import_chalk8.default.gray(`  HTML: Yes`));
         }
         console.log(
-          import_chalk7.default.gray(`  Created: ${new Date(sig.createdAt).toLocaleString()}`)
+          import_chalk8.default.gray(`  Created: ${new Date(sig.createdAt).toLocaleString()}`)
         );
         console.log();
       });
@@ -12341,11 +12983,11 @@ Signatures (${signatures.length}):
       if (Object.keys(updateData).length === 0) {
         throw new Error("No update data provided");
       }
-      const updated = await import_manager5.default.update(id, updateData);
+      const updated = await import_manager6.default.update(id, updateData);
       if (updated) {
-        console.log(import_chalk7.default.green(`\u2713 Signature #${id} updated successfully`));
+        console.log(import_chalk8.default.green(`\u2713 Signature #${id} updated successfully`));
       } else {
-        console.log(import_chalk7.default.yellow(`No changes made to signature #${id}`));
+        console.log(import_chalk8.default.yellow(`No changes made to signature #${id}`));
       }
     }
     async function deleteSignature(options) {
@@ -12353,11 +12995,11 @@ Signatures (${signatures.length}):
       if (!id) {
         throw new Error("Signature ID is required (--id)");
       }
-      const deleted = await import_manager5.default.delete(id);
+      const deleted = await import_manager6.default.delete(id);
       if (deleted) {
-        console.log(import_chalk7.default.green(`\u2713 Signature #${id} deleted successfully`));
+        console.log(import_chalk8.default.green(`\u2713 Signature #${id} deleted successfully`));
       } else {
-        console.log(import_chalk7.default.yellow(`Signature #${id} not found`));
+        console.log(import_chalk8.default.yellow(`Signature #${id} not found`));
       }
     }
     async function setDefaultSignature(options) {
@@ -12365,8 +13007,8 @@ Signatures (${signatures.length}):
       if (!id) {
         throw new Error("Signature ID is required (--id)");
       }
-      await import_manager5.default.setDefault(id);
-      console.log(import_chalk7.default.green(`\u2713 Signature #${id} set as default`));
+      await import_manager6.default.setDefault(id);
+      console.log(import_chalk8.default.green(`\u2713 Signature #${id} set as default`));
     }
     module2.exports = signatureCommand2;
   }
@@ -12705,164 +13347,6 @@ Scan complete: ${spamCount} spam emails detected`);
   }
 });
 
-// src/sync/account-manager.ts
-var require_account_manager = __commonJS({
-  "src/sync/account-manager.ts"(exports2, module2) {
-    "use strict";
-    init_database();
-    init_logger();
-    var AccountManager = class {
-      constructor() {
-        this.db = null;
-      }
-      _getDb() {
-        if (!this.db) {
-          this.db = database_default.getDb();
-        }
-        return this.db;
-      }
-      /**
-       * Get account by ID or email
-       */
-      getAccount(identifier) {
-        try {
-          const db = this._getDb();
-          let query;
-          if (typeof identifier === "number") {
-            query = db.prepare(
-              "SELECT * FROM accounts WHERE id = ? AND is_enabled = 1"
-            );
-          } else {
-            query = db.prepare(
-              "SELECT * FROM accounts WHERE email = ? AND is_enabled = 1"
-            );
-          }
-          const account = query.get(identifier);
-          return account || null;
-        } catch (error2) {
-          logger_default.error("Failed to get account", {
-            identifier,
-            error: error2.message
-          });
-          return null;
-        }
-      }
-      /**
-       * Get all enabled accounts
-       */
-      getAllAccounts() {
-        try {
-          const db = this._getDb();
-          const query = db.prepare(
-            "SELECT * FROM accounts WHERE is_enabled = 1 ORDER BY is_default DESC, email ASC"
-          );
-          return query.all();
-        } catch (error2) {
-          logger_default.error("Failed to get all accounts", { error: error2.message });
-          return [];
-        }
-      }
-      /**
-       * Get default account
-       */
-      getDefaultAccount() {
-        try {
-          const db = this._getDb();
-          const query = db.prepare(
-            "SELECT * FROM accounts WHERE is_default = 1 AND is_enabled = 1 LIMIT 1"
-          );
-          return query.get() || null;
-        } catch (error2) {
-          logger_default.error("Failed to get default account", { error: error2.message });
-          return null;
-        }
-      }
-      /**
-       * Get IMAP config for account
-       */
-      getImapConfig(accountId) {
-        const account = this.getAccount(accountId);
-        if (!account) {
-          return null;
-        }
-        return {
-          host: account.imap_host,
-          port: account.imap_port,
-          secure: account.imap_secure === 1,
-          user: account.username,
-          password: account.password,
-          accountId: account.id,
-          accountEmail: account.email
-        };
-      }
-      /**
-       * Get sync interval for account
-       */
-      getSyncInterval(accountId) {
-        const account = this.getAccount(accountId);
-        if (!account || !account.sync_interval) {
-          return 3e5;
-        }
-        return account.sync_interval * 1e3;
-      }
-      /**
-       * Update last sync time for account
-       */
-      updateLastSync(accountId) {
-        try {
-          const db = this._getDb();
-          const query = db.prepare(
-            "UPDATE accounts SET last_sync = CURRENT_TIMESTAMP WHERE id = ?"
-          );
-          query.run(accountId);
-          logger_default.debug("Updated last sync time", { accountId });
-        } catch (error2) {
-          logger_default.error("Failed to update last sync time", {
-            accountId,
-            error: error2.message
-          });
-        }
-      }
-      /**
-       * Check if accounts table exists
-       */
-      accountsTableExists() {
-        try {
-          const db = this._getDb();
-          const query = db.prepare(
-            "SELECT name FROM sqlite_master WHERE type='table' AND name='accounts'"
-          );
-          const result = query.get();
-          return !!result;
-        } catch (error2) {
-          logger_default.error("Failed to check accounts table", { error: error2.message });
-          return false;
-        }
-      }
-      /**
-       * Get account-specific folders
-       */
-      getAccountFolders(accountId) {
-        try {
-          const db = this._getDb();
-          const query = db.prepare(
-            "SELECT name FROM folders WHERE account_id = ? OR account_id IS NULL ORDER BY name"
-          );
-          const folders = query.all(accountId);
-          return folders.map((f) => f.name);
-        } catch (error2) {
-          logger_default.error("Failed to get account folders", {
-            accountId,
-            error: error2.message
-          });
-          return ["INBOX"];
-        }
-      }
-    };
-    module2.exports = new AccountManager();
-  }
-});
-
 // src/sync/daemon.ts
 var require_daemon = __commonJS({
   "src/sync/daemon.ts"(exports2, module2) {
@@ -13066,7 +13550,7 @@ var require_scheduler = __commonJS({
     "use strict";
     var import_events = __toESM(require("events"));
     init_config();
-    var import_account_manager = __toESM(require_account_manager());
+    var import_account_manager2 = __toESM(require_account_manager());
     init_sync();
     init_logger();
     var SyncScheduler = class extends import_events.default {
@@ -13242,8 +13726,8 @@ var require_scheduler = __commonJS({
        * @private
        */
       _getAccountConfig(accountId) {
-        if (import_account_manager.default.accountsTableExists()) {
-          const imapConfig = import_account_manager.default.getImapConfig(accountId);
+        if (import_account_manager2.default.accountsTableExists()) {
+          const imapConfig = import_account_manager2.default.getImapConfig(accountId);
           if (imapConfig) {
             logger_default.info("Using account-specific IMAP config", { accountId });
             return imapConfig;
@@ -13264,11 +13748,11 @@ var require_scheduler = __commonJS({
 var require_sync = __commonJS({
   "src/cli/commands/sync.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
-    var import_ora2 = __toESM(require("ora"));
+    var import_chalk8 = __toESM(require("chalk"));
+    var import_ora3 = __toESM(require("ora"));
     init_config();
     init_sync();
-    var import_account_manager = __toESM(require_account_manager());
+    var import_account_manager2 = __toESM(require_account_manager());
     var import_daemon = __toESM(require_daemon());
     var import_scheduler = __toESM(require_scheduler());
     init_logger();
@@ -13283,7 +13767,7 @@ var require_sync = __commonJS({
       return handleRegularSync(action, options);
     }
     async function handleRegularSync(action, options) {
-      const spinner = (0, import_ora2.default)("Initializing sync...").start();
+      const spinner = (0, import_ora3.default)("Initializing sync...").start();
       try {
         const cfg = config_default.load();
         if (!cfg.imap.host || !cfg.imap.user || !cfg.imap.password) {
@@ -13312,13 +13796,13 @@ var require_sync = __commonJS({
         displaySyncStats(results);
       } catch (error2) {
         spinner.fail("Sync failed");
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Sync command failed", { error: error2.message });
         process.exit(1);
       }
     }
     async function handleAutoSync(options) {
-      console.log(import_chalk7.default.blue("Starting automatic sync mode..."));
+      console.log(import_chalk8.default.blue("Starting automatic sync mode..."));
       try {
         const cfg = config_default.load();
         const interval = options.interval ? parseInt(options.interval) * 6e4 : cfg.sync.syncInterval || 3e5;
@@ -13331,31 +13815,31 @@ var require_sync = __commonJS({
           account
         });
         scheduler.on("started", (info2) => {
-          console.log(import_chalk7.default.green("\u2713 Auto sync started"));
-          console.log(import_chalk7.default.gray(`  Interval: ${info2.interval / 1e3}s`));
-          console.log(import_chalk7.default.gray(`  Folders: ${info2.folders.join(", ")}`));
+          console.log(import_chalk8.default.green("\u2713 Auto sync started"));
+          console.log(import_chalk8.default.gray(`  Interval: ${info2.interval / 1e3}s`));
+          console.log(import_chalk8.default.gray(`  Folders: ${info2.folders.join(", ")}`));
           console.log();
-          console.log(import_chalk7.default.yellow("Press Ctrl+C to stop"));
+          console.log(import_chalk8.default.yellow("Press Ctrl+C to stop"));
         });
         scheduler.on("sync-start", (info2) => {
           console.log(
-            import_chalk7.default.blue(`[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] Syncing...`)
+            import_chalk8.default.blue(`[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] Syncing...`)
           );
         });
         scheduler.on("sync-complete", (result) => {
           console.log(
-            import_chalk7.default.green(`[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] \u2713 Sync completed`)
+            import_chalk8.default.green(`[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] \u2713 Sync completed`)
           );
-          console.log(import_chalk7.default.gray(`  New emails: ${result.totalNew}`));
-          console.log(import_chalk7.default.gray(`  Duration: ${result.duration}ms`));
+          console.log(import_chalk8.default.gray(`  New emails: ${result.totalNew}`));
+          console.log(import_chalk8.default.gray(`  Duration: ${result.duration}ms`));
           if (result.spamDetected > 0) {
-            console.log(import_chalk7.default.yellow(`  Spam detected: ${result.spamDetected}`));
+            console.log(import_chalk8.default.yellow(`  Spam detected: ${result.spamDetected}`));
           }
           console.log();
         });
         scheduler.on("sync-error", (error2) => {
           console.error(
-            import_chalk7.default.red(
+            import_chalk8.default.red(
               `[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] \u2717 Sync failed: ${error2.error}`
             )
           );
@@ -13363,20 +13847,20 @@ var require_sync = __commonJS({
         });
         process.on("SIGINT", () => {
           console.log();
-          console.log(import_chalk7.default.yellow("Stopping auto sync..."));
+          console.log(import_chalk8.default.yellow("Stopping auto sync..."));
           scheduler.stop();
           const stats = scheduler.getStatus().stats;
           console.log();
-          console.log(import_chalk7.default.blue("Auto Sync Statistics:"));
-          console.log(import_chalk7.default.gray(`  Total syncs: ${stats.totalSyncs}`));
-          console.log(import_chalk7.default.gray(`  Successful: ${stats.successfulSyncs}`));
-          console.log(import_chalk7.default.gray(`  Failed: ${stats.failedSyncs}`));
-          console.log(import_chalk7.default.gray(`  Total new emails: ${stats.totalNewEmails}`));
+          console.log(import_chalk8.default.blue("Auto Sync Statistics:"));
+          console.log(import_chalk8.default.gray(`  Total syncs: ${stats.totalSyncs}`));
+          console.log(import_chalk8.default.gray(`  Successful: ${stats.successfulSyncs}`));
+          console.log(import_chalk8.default.gray(`  Failed: ${stats.failedSyncs}`));
+          console.log(import_chalk8.default.gray(`  Total new emails: ${stats.totalNewEmails}`));
           process.exit(0);
         });
         await scheduler.start();
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Auto sync failed", { error: error2.message });
         process.exit(1);
       }
@@ -13399,18 +13883,18 @@ var require_sync = __commonJS({
             handleDaemonLogs(daemon, options);
             break;
           default:
-            console.error(import_chalk7.default.red(`Unknown daemon command: ${subcommand}`));
+            console.error(import_chalk8.default.red(`Unknown daemon command: ${subcommand}`));
             console.log("Available commands: start, stop, status, logs");
             process.exit(1);
         }
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Daemon command failed", { subcommand, error: error2.message });
         process.exit(1);
       }
     }
     async function handleDaemonStart(daemon, options) {
-      const spinner = (0, import_ora2.default)("Starting sync daemon...").start();
+      const spinner = (0, import_ora3.default)("Starting sync daemon...").start();
       try {
         const cfg = config_default.load();
         const daemonOptions = {
@@ -13421,28 +13905,28 @@ var require_sync = __commonJS({
         const result = await daemon.start(daemonOptions);
         spinner.succeed("Sync daemon started");
         console.log();
-        console.log(import_chalk7.default.blue("Daemon Information:"));
-        console.log(import_chalk7.default.gray(`  PID: ${result.pid}`));
-        console.log(import_chalk7.default.gray(`  Log file: ${result.logFile}`));
-        console.log(import_chalk7.default.gray(`  Interval: ${result.options.interval / 1e3}s`));
-        console.log(import_chalk7.default.gray(`  Folders: ${result.options.folders.join(", ")}`));
+        console.log(import_chalk8.default.blue("Daemon Information:"));
+        console.log(import_chalk8.default.gray(`  PID: ${result.pid}`));
+        console.log(import_chalk8.default.gray(`  Log file: ${result.logFile}`));
+        console.log(import_chalk8.default.gray(`  Interval: ${result.options.interval / 1e3}s`));
+        console.log(import_chalk8.default.gray(`  Folders: ${result.options.folders.join(", ")}`));
         console.log();
-        console.log(import_chalk7.default.yellow('Use "sync daemon logs" to view logs'));
-        console.log(import_chalk7.default.yellow('Use "sync daemon stop" to stop the daemon'));
+        console.log(import_chalk8.default.yellow('Use "sync daemon logs" to view logs'));
+        console.log(import_chalk8.default.yellow('Use "sync daemon stop" to stop the daemon'));
       } catch (error2) {
         spinner.fail("Failed to start daemon");
         throw error2;
       }
     }
     async function handleDaemonStop(daemon) {
-      const spinner = (0, import_ora2.default)("Stopping sync daemon...").start();
+      const spinner = (0, import_ora3.default)("Stopping sync daemon...").start();
       try {
         const result = await daemon.stop();
         spinner.succeed("Sync daemon stopped");
         console.log();
-        console.log(import_chalk7.default.gray(`  PID: ${result.pid}`));
+        console.log(import_chalk8.default.gray(`  PID: ${result.pid}`));
         if (result.forcedKill) {
-          console.log(import_chalk7.default.yellow("  (Force killed)"));
+          console.log(import_chalk8.default.yellow("  (Force killed)"));
         }
       } catch (error2) {
         spinner.fail("Failed to stop daemon");
@@ -13451,58 +13935,58 @@ var require_sync = __commonJS({
     }
     function handleDaemonStatus(daemon) {
       const status = daemon.getStatus();
-      console.log(import_chalk7.default.blue("Sync Daemon Status:"));
+      console.log(import_chalk8.default.blue("Sync Daemon Status:"));
       console.log();
       if (status.isRunning) {
-        console.log(import_chalk7.default.green("\u2713 Running"));
-        console.log(import_chalk7.default.gray(`  PID: ${status.pid}`));
-        console.log(import_chalk7.default.gray(`  Log file: ${status.logFile}`));
+        console.log(import_chalk8.default.green("\u2713 Running"));
+        console.log(import_chalk8.default.gray(`  PID: ${status.pid}`));
+        console.log(import_chalk8.default.gray(`  Log file: ${status.logFile}`));
         if (status.logSize !== void 0) {
-          console.log(import_chalk7.default.gray(`  Log size: ${formatBytes(status.logSize)}`));
+          console.log(import_chalk8.default.gray(`  Log size: ${formatBytes(status.logSize)}`));
           console.log(
-            import_chalk7.default.gray(`  Last activity: ${status.lastModified.toLocaleString()}`)
+            import_chalk8.default.gray(`  Last activity: ${status.lastModified.toLocaleString()}`)
           );
         }
       } else {
-        console.log(import_chalk7.default.yellow("\u2717 Not running"));
+        console.log(import_chalk8.default.yellow("\u2717 Not running"));
       }
       console.log();
-      console.log(import_chalk7.default.gray(`PID file: ${status.pidFile}`));
+      console.log(import_chalk8.default.gray(`PID file: ${status.pidFile}`));
     }
     function handleDaemonLogs(daemon, options) {
       const lines = options.lines ? parseInt(options.lines) : 50;
       const logs = daemon.getLogs(lines);
       if (!logs) {
-        console.log(import_chalk7.default.yellow("No logs available"));
+        console.log(import_chalk8.default.yellow("No logs available"));
         return;
       }
-      console.log(import_chalk7.default.blue(`Last ${lines} log entries:`));
+      console.log(import_chalk8.default.blue(`Last ${lines} log entries:`));
       console.log();
       console.log(logs);
     }
     function displaySyncStats(results) {
-      console.log(import_chalk7.default.blue("Sync Statistics:"));
-      console.log(import_chalk7.default.gray(`  Total new emails: ${results.totalNew}`));
-      console.log(import_chalk7.default.gray(`  Total errors: ${results.totalErrors}`));
+      console.log(import_chalk8.default.blue("Sync Statistics:"));
+      console.log(import_chalk8.default.gray(`  Total new emails: ${results.totalNew}`));
+      console.log(import_chalk8.default.gray(`  Total errors: ${results.totalErrors}`));
       if (results.spamDetected > 0) {
-        console.log(import_chalk7.default.yellow(`  Spam detected: ${results.spamDetected}`));
+        console.log(import_chalk8.default.yellow(`  Spam detected: ${results.spamDetected}`));
       }
       if (results.filtersApplied > 0) {
-        console.log(import_chalk7.default.green(`  Filters applied: ${results.filtersApplied}`));
+        console.log(import_chalk8.default.green(`  Filters applied: ${results.filtersApplied}`));
       }
       console.log();
-      console.log(import_chalk7.default.blue("Folders:"));
+      console.log(import_chalk8.default.blue("Folders:"));
       for (const [folder, result] of Object.entries(results.folders)) {
         if (result.error) {
-          console.log(import_chalk7.default.red(`  \u2717 ${folder}: ${result.error}`));
+          console.log(import_chalk8.default.red(`  \u2717 ${folder}: ${result.error}`));
         } else {
-          console.log(import_chalk7.default.green(`  \u2713 ${folder}: ${result.newEmails} new emails`));
+          console.log(import_chalk8.default.green(`  \u2713 ${folder}: ${result.newEmails} new emails`));
         }
       }
     }
     function getAccountConfig(cfg, accountId) {
-      if (import_account_manager.default.accountsTableExists()) {
-        const imapConfig = import_account_manager.default.getImapConfig(accountId);
+      if (import_account_manager2.default.accountsTableExists()) {
+        const imapConfig = import_account_manager2.default.getImapConfig(accountId);
         if (imapConfig) {
           logger_default.info("Using account-specific IMAP config", { accountId });
           return imapConfig;
@@ -13529,7 +14013,7 @@ var require_sync = __commonJS({
 var require_tag = __commonJS({
   "src/cli/commands/tag.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
+    var import_chalk8 = __toESM(require("chalk"));
     init_email();
     init_tag();
     init_logger();
@@ -13550,25 +14034,25 @@ var require_tag = __commonJS({
           case "filter":
             return filterByTag(args, options);
           default:
-            console.error(import_chalk7.default.red("Error:"), `Unknown action: ${action}`);
+            console.error(import_chalk8.default.red("Error:"), `Unknown action: ${action}`);
             console.log(
-              import_chalk7.default.gray(
+              import_chalk8.default.gray(
                 "Available actions: create, list, delete, add, remove, filter"
               )
             );
             process.exit(1);
         }
       } catch (error2) {
-        console.error(import_chalk7.default.red("Error:"), error2.message);
+        console.error(import_chalk8.default.red("Error:"), error2.message);
         logger_default.error("Tag command failed", { action, error: error2.message });
         process.exit(1);
       }
     }
     function createTag(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Tag name is required");
+        console.error(import_chalk8.default.red("Error:"), "Tag name is required");
         console.log(
-          import_chalk7.default.gray(
+          import_chalk8.default.gray(
             "Usage: tag create <name> [--color <color>] [--description <text>]"
           )
         );
@@ -13578,39 +14062,39 @@ var require_tag = __commonJS({
       const color = options.color || "#808080";
       const description = options.description || "";
       const tagId = tag_default.create({ name, color, description });
-      console.log(import_chalk7.default.green("\u2713"), `Tag "${name}" created successfully`);
-      console.log(import_chalk7.default.gray(`  ID: ${tagId}`));
-      console.log(import_chalk7.default.gray(`  Color: ${color}`));
+      console.log(import_chalk8.default.green("\u2713"), `Tag "${name}" created successfully`);
+      console.log(import_chalk8.default.gray(`  ID: ${tagId}`));
+      console.log(import_chalk8.default.gray(`  Color: ${color}`));
       if (description) {
-        console.log(import_chalk7.default.gray(`  Description: ${description}`));
+        console.log(import_chalk8.default.gray(`  Description: ${description}`));
       }
     }
     function listTags(options) {
       const tags = tag_default.findAll();
       if (tags.length === 0) {
-        console.log(import_chalk7.default.yellow("No tags found."));
+        console.log(import_chalk8.default.yellow("No tags found."));
         return;
       }
-      console.log(import_chalk7.default.bold.cyan("Tags:"));
+      console.log(import_chalk8.default.bold.cyan("Tags:"));
       console.log();
       tags.forEach((tag) => {
         const emailCount = tag_default.countEmailsByTag(tag.id);
-        const colorBox = import_chalk7.default.hex(tag.color)("\u25A0");
+        const colorBox = import_chalk8.default.hex(tag.color)("\u25A0");
         console.log(
-          `${colorBox} ${import_chalk7.default.bold(tag.name)} ${import_chalk7.default.gray(`(${emailCount} emails)`)}`
+          `${colorBox} ${import_chalk8.default.bold(tag.name)} ${import_chalk8.default.gray(`(${emailCount} emails)`)}`
         );
-        console.log(import_chalk7.default.gray(`  ID: ${tag.id}`));
+        console.log(import_chalk8.default.gray(`  ID: ${tag.id}`));
         if (tag.description) {
-          console.log(import_chalk7.default.gray(`  ${tag.description}`));
+          console.log(import_chalk8.default.gray(`  ${tag.description}`));
         }
         console.log();
       });
-      console.log(import_chalk7.default.gray(`Total: ${tags.length} tags`));
+      console.log(import_chalk8.default.gray(`Total: ${tags.length} tags`));
     }
     function deleteTag(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Tag name or ID is required");
-        console.log(import_chalk7.default.gray("Usage: tag delete <name|id>"));
+        console.error(import_chalk8.default.red("Error:"), "Tag name or ID is required");
+        console.log(import_chalk8.default.gray("Usage: tag delete <name|id>"));
         process.exit(1);
       }
       const identifier = args[0];
@@ -13621,77 +14105,77 @@ var require_tag = __commonJS({
         tag = tag_default.findByName(identifier);
       }
       if (!tag) {
-        console.error(import_chalk7.default.red("Error:"), `Tag "${identifier}" not found`);
+        console.error(import_chalk8.default.red("Error:"), `Tag "${identifier}" not found`);
         process.exit(1);
       }
       const emailCount = tag_default.countEmailsByTag(tag.id);
       if (emailCount > 0 && !options.yes) {
         console.log(
-          import_chalk7.default.yellow("Warning:"),
+          import_chalk8.default.yellow("Warning:"),
           `This tag is used by ${emailCount} email(s)`
         );
-        console.log(import_chalk7.default.gray("Use --yes to confirm deletion"));
+        console.log(import_chalk8.default.gray("Use --yes to confirm deletion"));
         process.exit(1);
       }
       tag_default.delete(tag.id);
-      console.log(import_chalk7.default.green("\u2713"), `Tag "${tag.name}" deleted successfully`);
+      console.log(import_chalk8.default.green("\u2713"), `Tag "${tag.name}" deleted successfully`);
     }
     function addTagToEmail(args, options) {
       if (!args || args.length < 2) {
-        console.error(import_chalk7.default.red("Error:"), "Email ID and tag name are required");
-        console.log(import_chalk7.default.gray("Usage: tag add <email-id> <tag-name>"));
+        console.error(import_chalk8.default.red("Error:"), "Email ID and tag name are required");
+        console.log(import_chalk8.default.gray("Usage: tag add <email-id> <tag-name>"));
         process.exit(1);
       }
       const emailId = parseInt(args[0]);
       const tagName = args[1];
       const email = email_default.findById(emailId);
       if (!email) {
-        console.error(import_chalk7.default.red("Error:"), `Email with ID ${emailId} not found`);
+        console.error(import_chalk8.default.red("Error:"), `Email with ID ${emailId} not found`);
         process.exit(1);
       }
       let tag = tag_default.findByName(tagName);
       if (!tag) {
-        console.log(import_chalk7.default.yellow("Tag not found, creating new tag..."));
+        console.log(import_chalk8.default.yellow("Tag not found, creating new tag..."));
         const tagId = tag_default.create({ name: tagName });
         tag = tag_default.findById(tagId);
       }
       tag_default.addToEmail(emailId, tag.id);
-      console.log(import_chalk7.default.green("\u2713"), `Tag "${tag.name}" added to email #${emailId}`);
-      console.log(import_chalk7.default.gray(`  Subject: ${email.subject}`));
+      console.log(import_chalk8.default.green("\u2713"), `Tag "${tag.name}" added to email #${emailId}`);
+      console.log(import_chalk8.default.gray(`  Subject: ${email.subject}`));
     }
     function removeTagFromEmail(args, options) {
       if (!args || args.length < 2) {
-        console.error(import_chalk7.default.red("Error:"), "Email ID and tag name are required");
-        console.log(import_chalk7.default.gray("Usage: tag remove <email-id> <tag-name>"));
+        console.error(import_chalk8.default.red("Error:"), "Email ID and tag name are required");
+        console.log(import_chalk8.default.gray("Usage: tag remove <email-id> <tag-name>"));
         process.exit(1);
       }
       const emailId = parseInt(args[0]);
       const tagName = args[1];
       const email = email_default.findById(emailId);
       if (!email) {
-        console.error(import_chalk7.default.red("Error:"), `Email with ID ${emailId} not found`);
+        console.error(import_chalk8.default.red("Error:"), `Email with ID ${emailId} not found`);
         process.exit(1);
       }
       const tag = tag_default.findByName(tagName);
       if (!tag) {
-        console.error(import_chalk7.default.red("Error:"), `Tag "${tagName}" not found`);
+        console.error(import_chalk8.default.red("Error:"), `Tag "${tagName}" not found`);
         process.exit(1);
       }
       const removed = tag_default.removeFromEmail(emailId, tag.id);
       if (removed) {
         console.log(
-          import_chalk7.default.green("\u2713"),
+          import_chalk8.default.green("\u2713"),
           `Tag "${tag.name}" removed from email #${emailId}`
         );
       } else {
-        console.log(import_chalk7.default.yellow("Email does not have this tag"));
+        console.log(import_chalk8.default.yellow("Email does not have this tag"));
       }
     }
     function filterByTag(args, options) {
       if (!args || args.length === 0) {
-        console.error(import_chalk7.default.red("Error:"), "Tag name is required");
+        console.error(import_chalk8.default.red("Error:"), "Tag name is required");
         console.log(
-          import_chalk7.default.gray(
+          import_chalk8.default.gray(
             "Usage: tag filter <tag-name> [--limit <number>] [--page <number>]"
           )
         );
@@ -13703,14 +14187,14 @@ var require_tag = __commonJS({
       const offset = (page - 1) * limit;
       const tag = tag_default.findByName(tagName);
       if (!tag) {
-        console.error(import_chalk7.default.red("Error:"), `Tag "${tagName}" not found`);
+        console.error(import_chalk8.default.red("Error:"), `Tag "${tagName}" not found`);
         process.exit(1);
       }
-      console.log(import_chalk7.default.bold.cyan(`Emails tagged with "${tag.name}":`));
+      console.log(import_chalk8.default.bold.cyan(`Emails tagged with "${tag.name}":`));
       console.log();
       const emails = tag_default.findEmailsByTag(tag.id, { limit, offset });
       if (emails.length === 0) {
-        console.log(import_chalk7.default.yellow("No emails found with this tag."));
+        console.log(import_chalk8.default.yellow("No emails found with this tag."));
         return;
       }
       const formattedEmails = emails.map((email) => email_default._formatEmail(email));
@@ -13719,7 +14203,7 @@ var require_tag = __commonJS({
       const total = tag_default.countEmailsByTag(tag.id);
       const totalPages = Math.ceil(total / limit);
       console.log(
-        import_chalk7.default.gray(`Page ${page} of ${totalPages} (${total} total emails)`)
+        import_chalk8.default.gray(`Page ${page} of ${totalPages} (${total} total emails)`)
       );
     }
     module2.exports = tagCommand2;
@@ -14105,8 +14589,8 @@ var require_manager6 = __commonJS({
 var require_template = __commonJS({
   "src/cli/commands/template.ts"(exports2, module2) {
     "use strict";
-    var import_chalk7 = __toESM(require("chalk"));
-    var import_manager5 = __toESM(require_manager6());
+    var import_chalk8 = __toESM(require("chalk"));
+    var import_manager6 = __toESM(require_manager6());
     init_logger();
     async function templateCommand2(action, options = {}) {
       try {
@@ -14130,13 +14614,13 @@ var require_template = __commonJS({
             await useTemplate(options);
             break;
           default:
-            console.error(import_chalk7.default.red(`Unknown action: ${action}`));
+            console.error(import_chalk8.default.red(`Unknown action: ${action}`));
             console.log("Available actions: create, list, show, edit, delete, use");
             process.exit(1);
         }
       } catch (error2) {
         logger_default.error("Template command failed", { action, error: error2.message });
-        console.error(import_chalk7.default.red(`Error: ${error2.message}`));
+        console.error(import_chalk8.default.red(`Error: ${error2.message}`));
         process.exit(1);
       }
     }
@@ -14151,49 +14635,49 @@ var require_template = __commonJS({
       if (!text && !html) {
         throw new Error("Template content is required (--text or --html)");
       }
-      const id = await import_manager5.default.create({
+      const id = await import_manager6.default.create({
         name,
         subject,
         text,
         html,
         accountId: account
       });
-      console.log(import_chalk7.default.green(`\u2713 Template created successfully`));
+      console.log(import_chalk8.default.green(`\u2713 Template created successfully`));
       console.log(`  ID: ${id}`);
       console.log(`  Name: ${name}`);
       console.log(`  Subject: ${subject}`);
     }
     async function listTemplates(options) {
       const { account } = options;
-      const templates = await import_manager5.default.getAll(account);
+      const templates = await import_manager6.default.getAll(account);
       if (templates.length === 0) {
-        console.log(import_chalk7.default.yellow("No templates found"));
+        console.log(import_chalk8.default.yellow("No templates found"));
         return;
       }
-      console.log(import_chalk7.default.bold(`
+      console.log(import_chalk8.default.bold(`
 Templates (${templates.length}):
 `));
       templates.forEach((tpl) => {
-        const enabledBadge = tpl.isEnabled ? import_chalk7.default.green(" [ENABLED]") : import_chalk7.default.gray(" [DISABLED]");
-        const accountInfo = tpl.accountId ? import_chalk7.default.gray(` (Account: ${tpl.accountId})`) : "";
+        const enabledBadge = tpl.isEnabled ? import_chalk8.default.green(" [ENABLED]") : import_chalk8.default.gray(" [DISABLED]");
+        const accountInfo = tpl.accountId ? import_chalk8.default.gray(` (Account: ${tpl.accountId})`) : "";
         console.log(
-          `${import_chalk7.default.cyan(`#${tpl.id}`)} ${import_chalk7.default.bold(tpl.name)}${enabledBadge}${accountInfo}`
+          `${import_chalk8.default.cyan(`#${tpl.id}`)} ${import_chalk8.default.bold(tpl.name)}${enabledBadge}${accountInfo}`
         );
-        console.log(import_chalk7.default.gray(`  Subject: ${tpl.subject}`));
+        console.log(import_chalk8.default.gray(`  Subject: ${tpl.subject}`));
         if (tpl.variables && tpl.variables.length > 0) {
-          console.log(import_chalk7.default.gray(`  Variables: ${tpl.variables.join(", ")}`));
+          console.log(import_chalk8.default.gray(`  Variables: ${tpl.variables.join(", ")}`));
         }
         if (tpl.bodyText) {
           const preview = tpl.bodyText.substring(0, 60).replace(/\n/g, " ");
           console.log(
-            import_chalk7.default.gray(`  Text: ${preview}${tpl.bodyText.length > 60 ? "..." : ""}`)
+            import_chalk8.default.gray(`  Text: ${preview}${tpl.bodyText.length > 60 ? "..." : ""}`)
           );
         }
         if (tpl.bodyHtml) {
-          console.log(import_chalk7.default.gray(`  HTML: Yes`));
+          console.log(import_chalk8.default.gray(`  HTML: Yes`));
         }
         console.log(
-          import_chalk7.default.gray(`  Created: ${new Date(tpl.createdAt).toLocaleString()}`)
+          import_chalk8.default.gray(`  Created: ${new Date(tpl.createdAt).toLocaleString()}`)
         );
         console.log();
       });
@@ -14205,43 +14689,43 @@ Templates (${templates.length}):
       }
       let template;
       if (id) {
-        template = await import_manager5.default.getById(id);
+        template = await import_manager6.default.getById(id);
       } else {
-        template = await import_manager5.default.getByName(name);
+        template = await import_manager6.default.getByName(name);
       }
       if (!template) {
-        console.log(import_chalk7.default.yellow(`Template not found`));
+        console.log(import_chalk8.default.yellow(`Template not found`));
         return;
       }
-      console.log(import_chalk7.default.bold(`
+      console.log(import_chalk8.default.bold(`
 Template #${template.id}: ${template.name}
 `));
-      console.log(`${import_chalk7.default.bold("Subject:")} ${template.subject}`);
+      console.log(`${import_chalk8.default.bold("Subject:")} ${template.subject}`);
       console.log(
-        `${import_chalk7.default.bold("Status:")} ${template.isEnabled ? import_chalk7.default.green("Enabled") : import_chalk7.default.gray("Disabled")}`
+        `${import_chalk8.default.bold("Status:")} ${template.isEnabled ? import_chalk8.default.green("Enabled") : import_chalk8.default.gray("Disabled")}`
       );
       if (template.accountId) {
-        console.log(`${import_chalk7.default.bold("Account ID:")} ${template.accountId}`);
+        console.log(`${import_chalk8.default.bold("Account ID:")} ${template.accountId}`);
       }
       if (template.variables && template.variables.length > 0) {
-        console.log(`${import_chalk7.default.bold("Variables:")} ${template.variables.join(", ")}`);
+        console.log(`${import_chalk8.default.bold("Variables:")} ${template.variables.join(", ")}`);
       }
       if (template.bodyText) {
         console.log(`
-${import_chalk7.default.bold("Text Content:")}`);
-        console.log(import_chalk7.default.gray(template.bodyText));
+${import_chalk8.default.bold("Text Content:")}`);
+        console.log(import_chalk8.default.gray(template.bodyText));
       }
       if (template.bodyHtml) {
         console.log(`
-${import_chalk7.default.bold("HTML Content:")}`);
-        console.log(import_chalk7.default.gray(template.bodyHtml));
+${import_chalk8.default.bold("HTML Content:")}`);
+        console.log(import_chalk8.default.gray(template.bodyHtml));
       }
       console.log(
         `
-${import_chalk7.default.gray("Created:")} ${new Date(template.createdAt).toLocaleString()}`
+${import_chalk8.default.gray("Created:")} ${new Date(template.createdAt).toLocaleString()}`
       );
       console.log(
-        `${import_chalk7.default.gray("Updated:")} ${new Date(template.updatedAt).toLocaleString()}`
+        `${import_chalk8.default.gray("Updated:")} ${new Date(template.updatedAt).toLocaleString()}`
       );
     }
     async function editTemplate(options) {
@@ -14259,11 +14743,11 @@ ${import_chalk7.default.gray("Created:")} ${new Date(template.createdAt).toLocal
       if (Object.keys(updateData).length === 0) {
         throw new Error("No update data provided");
       }
-      const updated = await import_manager5.default.update(id, updateData);
+      const updated = await import_manager6.default.update(id, updateData);
       if (updated) {
-        console.log(import_chalk7.default.green(`\u2713 Template #${id} updated successfully`));
+        console.log(import_chalk8.default.green(`\u2713 Template #${id} updated successfully`));
       } else {
-        console.log(import_chalk7.default.yellow(`No changes made to template #${id}`));
+        console.log(import_chalk8.default.yellow(`No changes made to template #${id}`));
       }
     }
     async function deleteTemplate(options) {
@@ -14271,11 +14755,11 @@ ${import_chalk7.default.gray("Created:")} ${new Date(template.createdAt).toLocal
       if (!id) {
         throw new Error("Template ID is required (--id)");
       }
-      const deleted = await import_manager5.default.delete(id);
+      const deleted = await import_manager6.default.delete(id);
       if (deleted) {
-        console.log(import_chalk7.default.green(`\u2713 Template #${id} deleted successfully`));
+        console.log(import_chalk8.default.green(`\u2713 Template #${id} deleted successfully`));
       } else {
-        console.log(import_chalk7.default.yellow(`Template #${id} not found`));
+        console.log(import_chalk8.default.yellow(`Template #${id} not found`));
       }
     }
     async function useTemplate(options) {
@@ -14285,12 +14769,12 @@ ${import_chalk7.default.gray("Created:")} ${new Date(template.createdAt).toLocal
       }
       let template;
       if (id) {
-        template = await import_manager5.default.getById(id);
+        template = await import_manager6.default.getById(id);
       } else {
-        template = await import_manager5.default.getByName(name);
+        template = await import_manager6.default.getByName(name);
       }
       if (!template) {
-        console.log(import_chalk7.default.yellow(`Template not found`));
+        console.log(import_chalk8.default.yellow(`Template not found`));
         return;
       }
       const variables = {};
@@ -14302,20 +14786,20 @@ ${import_chalk7.default.gray("Created:")} ${new Date(template.createdAt).toLocal
           }
         });
       }
-      const rendered = import_manager5.default.renderTemplate(template, variables);
-      console.log(import_chalk7.default.bold(`
+      const rendered = import_manager6.default.renderTemplate(template, variables);
+      console.log(import_chalk8.default.bold(`
 Rendered Email:
 `));
-      console.log(`${import_chalk7.default.bold("Subject:")} ${rendered.subject}`);
+      console.log(`${import_chalk8.default.bold("Subject:")} ${rendered.subject}`);
       if (rendered.text) {
         console.log(`
-${import_chalk7.default.bold("Text Content:")}`);
+${import_chalk8.default.bold("Text Content:")}`);
         console.log(rendered.text);
       }
       if (rendered.html) {
         console.log(`
-${import_chalk7.default.bold("HTML Content:")}`);
-        console.log(import_chalk7.default.gray(rendered.html));
+${import_chalk8.default.bold("HTML Content:")}`);
+        console.log(import_chalk8.default.gray(rendered.html));
       }
       if (template.variables && template.variables.length > 0) {
         const missingVars = template.variables.filter(
@@ -14323,7 +14807,7 @@ ${import_chalk7.default.bold("HTML Content:")}`);
         );
         if (missingVars.length > 0) {
           console.log(
-            import_chalk7.default.yellow(`
+            import_chalk8.default.yellow(`
 Note: Missing variables: ${missingVars.join(", ")}`)
           );
         }
@@ -14334,7 +14818,7 @@ Note: Missing variables: ${missingVars.join(", ")}`)
 });
 
 // src/cli/index.ts
-var import_chalk6 = __toESM(require("chalk"));
+var import_chalk7 = __toESM(require("chalk"));
 var import_commander2 = require("commander");
 
 // package.json
@@ -14388,18 +14872,24 @@ var package_default = {
     node: ">=18.0.0"
   },
   dependencies: {
+    "@hono/node-server": "^1.19.9",
+    "@hono/swagger-ui": "^0.5.3",
+    "@hono/zod-openapi": "^1.2.1",
+    "@hono/zod-validator": "^0.7.6",
     "better-sqlite3": "^9.0.0",
     chalk: "^4.1.2",
     "cli-table3": "^0.6.3",
     commander: "^11.1.0",
     dotenv: "^16.3.1",
+    hono: "^4.11.9",
     inquirer: "^8.2.6",
     mailparser: "^3.6.5",
     "node-imap": "^0.9.6",
     "node-notifier": "^10.0.1",
     nodemailer: "^6.9.7",
     ora: "^5.4.1",
-    prompts: "^2.4.2"
+    prompts: "^2.4.2",
+    zod: "^4.3.6"
   },
   devDependencies: {
     "@types/better-sqlite3": "^7.6.13",
@@ -14432,8 +14922,8 @@ var package_default = {
 };
 
 // src/cli/index.ts
-var import_account = __toESM(require_account());
-var import_config2 = __toESM(require_config());
+var import_account2 = __toESM(require_account());
+var import_config3 = __toESM(require_config());
 var import_contact = __toESM(require_contact());
 
 // src/cli/commands/delete.ts
@@ -14764,15 +15254,526 @@ var import_read = __toESM(require_read());
 var import_reply = __toESM(require_reply());
 var import_search = __toESM(require_search());
 var import_send = __toESM(require_send());
+
+// src/cli/commands/serve.ts
+var import_chalk5 = __toESM(require("chalk"));
+var import_ora2 = __toESM(require("ora"));
+init_database();
+
+// src/api/server.ts
+var import_node_server = require("@hono/node-server");
+var import_zod_openapi = require("@hono/zod-openapi");
+var import_logger27 = require("hono/logger");
+var import_pretty_json = require("hono/pretty-json");
+var import_swagger_ui = require("@hono/swagger-ui");
+
+// src/api/routes/index.ts
+var import_hono4 = require("hono");
+
+// src/api/routes/emails.ts
+var import_hono = require("hono");
+var import_zod_validator = require("@hono/zod-validator");
+
+// src/api/controllers/email.ts
+init_email();
+init_client2();
+init_composer();
+init_config();
+init_logger();
+async function list(c) {
+  try {
+    const folder = c.req.query("folder") || "INBOX";
+    const limit = parseInt(c.req.query("limit") || "20", 10);
+    const offset = parseInt(c.req.query("offset") || "0", 10);
+    const emails = email_default.findByFolder(folder, { limit, offset });
+    const total = email_default.countByFolder(folder);
+    return c.json({
+      data: emails,
+      meta: { total, limit, offset }
+    });
+  } catch (error2) {
+    logger_default.error("Failed to list emails", { error: error2.message });
+    throw new Error("Failed to list emails");
+  }
+}
+async function get(c) {
+  try {
+    const id = parseInt(c.req.param("id"), 10);
+    if (isNaN(id)) {
+      return c.json(
+        { error: { code: "INVALID_ID", message: "Invalid email ID" } },
+        400
+      );
+    }
+    const email = email_default.findById(id);
+    if (!email) {
+      const error2 = new Error("Email not found");
+      error2.name = "NotFoundError";
+      throw error2;
+    }
+    return c.json({ data: email });
+  } catch (error2) {
+    logger_default.error("Failed to get email", { error: error2.message });
+    throw error2;
+  }
+}
+async function send(c) {
+  try {
+    const data = c.req.valid("json");
+    const cfg = config_default.load();
+    if (!cfg.smtp.host || !cfg.smtp.user || !cfg.smtp.password) {
+      return c.json(
+        {
+          error: {
+            code: "SMTP_NOT_CONFIGURED",
+            message: "SMTP configuration incomplete"
+          }
+        },
+        400
+      );
+    }
+    const composer = new composer_default();
+    composer.setTo([data.to]).setSubject(data.subject).setBody(data.body);
+    if (data.cc) {
+      composer.setCc(data.cc);
+    }
+    if (data.bcc) {
+      composer.setBcc(data.bcc);
+    }
+    if (data.reply_to) {
+      composer.setReplyTo(data.reply_to);
+    }
+    const emailData = composer.compose();
+    const smtpClient = new client_default2(cfg.smtp);
+    const result = await smtpClient.sendEmail(emailData);
+    smtpClient.disconnect();
+    return c.json(
+      {
+        data: {
+          id: result.messageId,
+          status: "sent",
+          message_id: result.messageId,
+          response: result.response
+        }
+      },
+      201
+    );
+  } catch (error2) {
+    logger_default.error("Failed to send email", { error: error2.message });
+    throw new Error("Failed to send email");
+  }
+}
+async function markRead(c) {
+  try {
+    const id = parseInt(c.req.param("id"), 10);
+    if (isNaN(id)) {
+      return c.json(
+        { error: { code: "INVALID_ID", message: "Invalid email ID" } },
+        400
+      );
+    }
+    const isRead = c.req.query("read") === "true";
+    email_default.markAsRead(id);
+    return c.json({
+      data: {
+        id,
+        is_read: isRead
+      }
+    });
+  } catch (error2) {
+    logger_default.error("Failed to mark email as read", {
+      error: error2.message
+    });
+    throw new Error("Failed to mark email as read");
+  }
+}
+async function star(c) {
+  try {
+    const id = parseInt(c.req.param("id"), 10);
+    if (isNaN(id)) {
+      return c.json(
+        { error: { code: "INVALID_ID", message: "Invalid email ID" } },
+        400
+      );
+    }
+    const isStarred = c.req.query("starred") === "true";
+    email_default.markAsStarred(id);
+    return c.json({
+      data: {
+        id,
+        is_starred: isStarred
+      }
+    });
+  } catch (error2) {
+    logger_default.error("Failed to star email", { error: error2.message });
+    throw new Error("Failed to star email");
+  }
+}
+
+// src/api/schemas/email.ts
+var import_zod = require("zod");
+var SendEmailSchema = import_zod.z.object({
+  to: import_zod.z.string().email("Invalid email address"),
+  subject: import_zod.z.string().min(1, "Subject is required"),
+  body: import_zod.z.string().min(1, "Body is required"),
+  cc: import_zod.z.array(import_zod.z.string().email()).optional(),
+  bcc: import_zod.z.array(import_zod.z.string().email()).optional(),
+  reply_to: import_zod.z.string().optional()
+});
+
+// src/api/routes/emails.ts
+var app = new import_hono.Hono();
+app.get("/", list);
+app.get("/:id", get);
+app.post("/", (0, import_zod_validator.zValidator)("json", SendEmailSchema), send);
+app.post("/:id/mark-read", markRead);
+app.post("/:id/star", star);
+var emails_default = app;
+
+// src/api/routes/accounts.ts
+var import_hono2 = require("hono");
+var import_zod_validator2 = require("@hono/zod-validator");
+
+// src/api/controllers/account.ts
+var import_manager5 = __toESM(require_manager());
+init_logger();
+async function list2(c) {
+  try {
+    const accounts = import_manager5.default.getAllAccounts();
+    return c.json({
+      data: (accounts || []).map(
+        (acc) => ({
+          id: acc.id,
+          email: acc.email,
+          name: acc.name,
+          enabled: acc.enabled
+        })
+      )
+    });
+  } catch (error2) {
+    logger_default.error("Failed to list accounts", {
+      error: error2.message
+    });
+    throw new Error("Failed to list accounts");
+  }
+}
+async function get2(c) {
+  try {
+    const id = parseInt(c.req.param("id"), 10);
+    if (isNaN(id)) {
+      return c.json(
+        { error: { code: "INVALID_ID", message: "Invalid account ID" } },
+        400
+      );
+    }
+    const account = import_manager5.default.getAccount(id);
+    if (!account) {
+      const error2 = new Error("Account not found");
+      error2.name = "NotFoundError";
+      throw error2;
+    }
+    return c.json({
+      data: {
+        id: account.id,
+        email: account.email,
+        name: account.name,
+        enabled: account.enabled
+      }
+    });
+  } catch (error2) {
+    logger_default.error("Failed to get account", { error: error2.message });
+    throw error2;
+  }
+}
+async function add(c) {
+  try {
+    const data = await c.req.json();
+    const accountId = await import_manager5.default.addAccount(data);
+    const account = import_manager5.default.getAccount(accountId);
+    if (!account) {
+      return c.json(
+        {
+          error: {
+            code: "ACCOUNT_NOT_CREATED",
+            message: "Failed to create account"
+          }
+        },
+        500
+      );
+    }
+    return c.json(
+      {
+        data: {
+          id: account.id,
+          email: data.email
+        }
+      },
+      201
+    );
+  } catch (error2) {
+    logger_default.error("Failed to add account", { error: error2.message });
+    throw new Error("Failed to add account");
+  }
+}
+
+// src/api/schemas/account.ts
+var import_zod2 = require("zod");
+var AddAccountSchema = import_zod2.z.object({
+  email: import_zod2.z.string().email("Invalid email address"),
+  name: import_zod2.z.string().min(1, "Name is required"),
+  imap_host: import_zod2.z.string().min(1, "IMAP host is required"),
+  imap_port: import_zod2.z.number().int().min(1).max(65535),
+  imap_secure: import_zod2.z.boolean().default(true),
+  smtp_host: import_zod2.z.string().min(1, "SMTP host is required"),
+  smtp_port: import_zod2.z.number().int().min(1).max(65535),
+  smtp_secure: import_zod2.z.boolean().default(true),
+  username: import_zod2.z.string().min(1, "Username is required"),
+  password: import_zod2.z.string().min(1, "Password is required")
+});
+
+// src/api/routes/accounts.ts
+var app2 = new import_hono2.Hono();
+app2.get("/", list2);
+app2.get("/:id", get2);
+app2.post("/", (0, import_zod_validator2.zValidator)("json", AddAccountSchema), add);
+var accounts_default = app2;
+
+// src/api/routes/sync.ts
+var import_hono3 = require("hono");
+
+// src/api/controllers/sync.ts
+var import_account_manager = __toESM(require_account_manager());
+init_logger();
+var syncJobs = /* @__PURE__ */ new Map();
+async function trigger(c) {
+  try {
+    const accountIdStr = c.req.query("account_id");
+    const folder = c.req.query("folder");
+    const jobId = `sync-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    syncJobs.set(jobId, { status: "started" });
+    const accountId = accountIdStr ? parseInt(accountIdStr, 10) : void 0;
+    import_account_manager.default.syncAccount(accountId, folder).then(() => {
+      syncJobs.set(jobId, { status: "completed" });
+    }).catch((error2) => {
+      syncJobs.set(jobId, { status: "failed", error: error2.message });
+    });
+    return c.json({
+      data: {
+        job_id: jobId,
+        status: "started"
+      }
+    });
+  } catch (error2) {
+    logger_default.error("Failed to trigger sync", { error: error2.message });
+    throw new Error("Failed to trigger sync");
+  }
+}
+async function getStatus(c) {
+  try {
+    const jobId = c.req.query("job_id");
+    if (!jobId) {
+      return c.json(
+        { error: { code: "MISSING_JOB_ID", message: "Job ID is required" } },
+        400
+      );
+    }
+    const job = syncJobs.get(jobId);
+    if (!job) {
+      return c.json(
+        { error: { code: "JOB_NOT_FOUND", message: "Sync job not found" } },
+        404
+      );
+    }
+    return c.json({
+      data: {
+        job_id: jobId,
+        ...job
+      }
+    });
+  } catch (error2) {
+    logger_default.error("Failed to get sync status", {
+      error: error2.message
+    });
+    throw new Error("Failed to get sync status");
+  }
+}
+
+// src/api/routes/sync.ts
+var app3 = new import_hono3.Hono();
+app3.post("/", trigger);
+app3.get("/status", getStatus);
+var sync_default2 = app3;
+
+// src/api/routes/index.ts
+var app4 = new import_hono4.Hono();
+app4.route("/emails", emails_default);
+app4.route("/accounts", accounts_default);
+app4.route("/sync", sync_default2);
+var routes_default = app4;
+
+// src/api/middlewares/error.ts
+var errorHandler = (err, c) => {
+  console.error("API Error:", err);
+  if (err.name === "NotFoundError") {
+    return c.json(
+      {
+        error: {
+          code: "NOT_FOUND",
+          message: err.message
+        }
+      },
+      404
+    );
+  }
+  if (err.name === "ValidationError") {
+    return c.json(
+      {
+        error: {
+          code: "VALIDATION_ERROR",
+          message: err.message
+        }
+      },
+      400
+    );
+  }
+  return c.json(
+    {
+      error: {
+        code: "INTERNAL_SERVER_ERROR",
+        message: "An unexpected error occurred"
+      }
+    },
+    500
+  );
+};
+
+// src/api/middlewares/localhost.ts
+init_logger();
+var localhostOnly = async (c, next) => {
+  const clientIP = c.req.header("x-forwarded-for") || c.req.header("x-real-ip") || "127.0.0.1";
+  if (clientIP !== "127.0.0.1" && clientIP !== "::1" && clientIP !== "localhost") {
+    logger_default.warn("Access denied from non-localhost IP", { ip: clientIP });
+    return c.json(
+      {
+        error: {
+          code: "ACCESS_DENIED",
+          message: "Access is only allowed from localhost"
+        }
+      },
+      403
+    );
+  }
+  await next();
+  return;
+};
+
+// src/api/server.ts
+init_logger();
+var app5 = new import_zod_openapi.OpenAPIHono();
+app5.use("*", (0, import_logger27.logger)());
+app5.use("*", (0, import_pretty_json.prettyJSON)());
+app5.use("*", localhostOnly());
+app5.route("/api", routes_default);
+app5.onError(errorHandler);
+app5.doc("/api/openapi.json", {
+  openapi: "3.0.0",
+  info: {
+    title: "Open Mail CLI API",
+    version: "1.0.0",
+    description: "HTTP API for Open Mail CLI - Local email management via RESTful interface"
+  }
+});
+app5.get("/api/docs", (0, import_swagger_ui.swaggerUI)({ url: "/api/openapi.json" }));
+app5.get(
+  "/health",
+  (c) => c.json({ status: "ok", timestamp: (/* @__PURE__ */ new Date()).toISOString() })
+);
+function startServer(port = 3e3, hostname = "127.0.0.1") {
+  try {
+    const server = (0, import_node_server.serve)({
+      fetch: app5.fetch,
+      port,
+      hostname
+    });
+    logger_default.info(`API Server running at http://${hostname}:${port}`);
+    logger_default.info(
+      `API Documentation available at http://${hostname}:${port}/api/docs`
+    );
+    return server;
+  } catch (error2) {
+    logger_default.error("Failed to start API server", {
+      error: error2.message
+    });
+    throw error2;
+  }
+}
+
+// src/cli/commands/serve.ts
+init_logger();
+var DEFAULT_PORT = 3e3;
+var DEFAULT_HOSTNAME = "127.0.0.1";
+async function serveCommand(options) {
+  const spinner = (0, import_ora2.default)();
+  const port = options.port || DEFAULT_PORT;
+  const hostname = options["allow-remote"] ? "0.0.0.0" : options.host || DEFAULT_HOSTNAME;
+  try {
+    spinner.start("Initializing database...");
+    database_default.getDb();
+    spinner.succeed("Database initialized");
+    spinner.start(`Starting API server at http://${hostname}:${port}...`);
+    startServer(port, hostname);
+    spinner.succeed(
+      import_chalk5.default.green(
+        `API server is running at ${import_chalk5.default.cyan(`http://${hostname}:${port}`)}`
+      )
+    );
+    console.log("");
+    console.log(import_chalk5.default.bold("Available endpoints:"));
+    console.log(
+      import_chalk5.default.cyan(`  \u2022 Health check:     http://${hostname}:${port}/health`)
+    );
+    console.log(
+      import_chalk5.default.cyan(`  \u2022 API docs:         http://${hostname}:${port}/api/docs`)
+    );
+    console.log(
+      import_chalk5.default.cyan(
+        `  \u2022 OpenAPI spec:     http://${hostname}:${port}/api/openapi.json`
+      )
+    );
+    console.log("");
+    console.log(import_chalk5.default.bold("API endpoints:"));
+    console.log(import_chalk5.default.cyan(`  \u2022 GET  /api/emails           List emails`));
+    console.log(import_chalk5.default.cyan(`  \u2022 GET  /api/emails/:id       Get email details`));
+    console.log(import_chalk5.default.cyan(`  \u2022 POST /api/emails           Send email`));
+    console.log(
+      import_chalk5.default.cyan(`  \u2022 POST /api/emails/:id/mark-read   Mark as read`)
+    );
+    console.log(import_chalk5.default.cyan(`  \u2022 POST /api/emails/:id/star         Star email`));
+    console.log(import_chalk5.default.cyan(`  \u2022 GET  /api/accounts         List accounts`));
+    console.log(import_chalk5.default.cyan(`  \u2022 POST /api/accounts         Add account`));
+    console.log(import_chalk5.default.cyan(`  \u2022 POST /api/sync             Trigger sync`));
+    console.log(import_chalk5.default.cyan(`  \u2022 GET  /api/sync/status      Get sync status`));
+    console.log("");
+    logger_default.info("API Server started", { port, hostname });
+  } catch (error2) {
+    spinner.fail(import_chalk5.default.red("Failed to start API server"));
+    logger_default.error("Serve command failed", { error: error2.message });
+    console.error(import_chalk5.default.red("Error:"), error2.message);
+    process.exit(1);
+  }
+}
+var serve_default = serveCommand;
+
+// src/cli/index.ts
 var import_signature = __toESM(require_signature());
 var import_spam = __toESM(require_spam());
-var import_sync = __toESM(require_sync());
+var import_sync2 = __toESM(require_sync());
 var import_tag = __toESM(require_tag());
 var import_template = __toESM(require_template());
 init_thread();
 
 // src/cli/commands/trash.ts
-var import_chalk5 = __toESM(require("chalk"));
+var import_chalk6 = __toESM(require("chalk"));
 var import_cli_table3 = __toESM(require("cli-table3"));
 init_email();
 init_logger();
@@ -14783,16 +15784,16 @@ function listTrashCommand(options) {
     const deletedEmails = email_default.findDeleted({ limit, offset });
     const totalCount = email_default.countDeleted();
     if (deletedEmails.length === 0) {
-      console.log(import_chalk5.default.yellow("Trash is empty"));
+      console.log(import_chalk6.default.yellow("Trash is empty"));
       return;
     }
     const table = new import_cli_table3.default({
       head: [
-        import_chalk5.default.cyan("ID"),
-        import_chalk5.default.cyan("From"),
-        import_chalk5.default.cyan("Subject"),
-        import_chalk5.default.cyan("Deleted At"),
-        import_chalk5.default.cyan("Folder")
+        import_chalk6.default.cyan("ID"),
+        import_chalk6.default.cyan("From"),
+        import_chalk6.default.cyan("Subject"),
+        import_chalk6.default.cyan("Deleted At"),
+        import_chalk6.default.cyan("Folder")
       ],
       colWidths: [8, 30, 40, 20, 15]
     });
@@ -14805,23 +15806,23 @@ function listTrashCommand(options) {
         email.folder
       ]);
     });
-    console.log(import_chalk5.default.bold("\nTrash:"));
+    console.log(import_chalk6.default.bold("\nTrash:"));
     console.log(table.toString());
     console.log(
-      import_chalk5.default.gray(
+      import_chalk6.default.gray(
         `
 Showing ${deletedEmails.length} of ${totalCount} deleted emails`
       )
     );
     if (totalCount > limit) {
-      console.log(import_chalk5.default.gray(`Use --limit and --offset to see more`));
+      console.log(import_chalk6.default.gray(`Use --limit and --offset to see more`));
     }
     logger_default.info("Trash listed", {
       count: deletedEmails.length,
       total: totalCount
     });
   } catch (error2) {
-    console.error(import_chalk5.default.red(`Error listing trash: ${error2.message}`));
+    console.error(import_chalk6.default.red(`Error listing trash: ${error2.message}`));
     logger_default.error("List trash command failed", { error: error2.message });
     process.exit(1);
   }
@@ -14830,23 +15831,23 @@ async function emptyTrashCommand(options) {
   try {
     const count = email_default.countDeleted();
     if (count === 0) {
-      console.log(import_chalk5.default.yellow("Trash is already empty"));
+      console.log(import_chalk6.default.yellow("Trash is already empty"));
       return;
     }
     const confirmMsg = options.yes ? "y" : await promptConfirm2(
       `Are you sure you want to permanently delete ${count} emails from trash? This cannot be undone. (y/n): `
     );
     if (confirmMsg.toLowerCase() !== "y") {
-      console.log(import_chalk5.default.yellow("Empty trash cancelled"));
+      console.log(import_chalk6.default.yellow("Empty trash cancelled"));
       return;
     }
     const deletedCount = email_default.emptyTrash();
     console.log(
-      import_chalk5.default.green(`Trash emptied: ${deletedCount} emails permanently deleted`)
+      import_chalk6.default.green(`Trash emptied: ${deletedCount} emails permanently deleted`)
     );
     logger_default.info("Trash emptied", { deletedCount });
   } catch (error2) {
-    console.error(import_chalk5.default.red(`Error emptying trash: ${error2.message}`));
+    console.error(import_chalk6.default.red(`Error emptying trash: ${error2.message}`));
     logger_default.error("Empty trash command failed", { error: error2.message });
     process.exit(1);
   }
@@ -14855,18 +15856,18 @@ function restoreCommand(emailId, options) {
   try {
     const email = email_default.findById(emailId);
     if (!email) {
-      console.error(import_chalk5.default.red(`Error: Email with ID ${emailId} not found`));
+      console.error(import_chalk6.default.red(`Error: Email with ID ${emailId} not found`));
       process.exit(1);
     }
     if (!email.isDeleted) {
-      console.log(import_chalk5.default.yellow("Email is not in trash"));
+      console.log(import_chalk6.default.yellow("Email is not in trash"));
       return;
     }
     email_default.restoreDeleted(emailId);
-    console.log(import_chalk5.default.green(`Email ${emailId} restored from trash`));
+    console.log(import_chalk6.default.green(`Email ${emailId} restored from trash`));
     logger_default.info("Email restored", { emailId });
   } catch (error2) {
-    console.error(import_chalk5.default.red(`Error restoring email: ${error2.message}`));
+    console.error(import_chalk6.default.red(`Error restoring email: ${error2.message}`));
     logger_default.error("Restore command failed", { error: error2.message });
     process.exit(1);
   }
@@ -14875,7 +15876,7 @@ function batchRestoreCommand(emailIds, options) {
   try {
     const ids = emailIds.split(",").map((id) => parseInt(id.trim())).filter((id) => !isNaN(id));
     if (ids.length === 0) {
-      console.error(import_chalk5.default.red("Error: No valid email IDs provided"));
+      console.error(import_chalk6.default.red("Error: No valid email IDs provided"));
       process.exit(1);
     }
     let successCount = 0;
@@ -14884,12 +15885,12 @@ function batchRestoreCommand(emailIds, options) {
       try {
         const email = email_default.findById(id);
         if (!email) {
-          console.log(import_chalk5.default.yellow(`Email ${id} not found, skipping`));
+          console.log(import_chalk6.default.yellow(`Email ${id} not found, skipping`));
           failCount++;
           continue;
         }
         if (!email.isDeleted) {
-          console.log(import_chalk5.default.yellow(`Email ${id} is not in trash, skipping`));
+          console.log(import_chalk6.default.yellow(`Email ${id} is not in trash, skipping`));
           failCount++;
           continue;
         }
@@ -14897,20 +15898,20 @@ function batchRestoreCommand(emailIds, options) {
         successCount++;
       } catch (error2) {
         console.log(
-          import_chalk5.default.yellow(`Failed to restore email ${id}: ${error2.message}`)
+          import_chalk6.default.yellow(`Failed to restore email ${id}: ${error2.message}`)
         );
         failCount++;
       }
     }
-    console.log(import_chalk5.default.green(`
+    console.log(import_chalk6.default.green(`
 Batch restore completed:`));
-    console.log(import_chalk5.default.green(`  Success: ${successCount}`));
+    console.log(import_chalk6.default.green(`  Success: ${successCount}`));
     if (failCount > 0) {
-      console.log(import_chalk5.default.yellow(`  Failed: ${failCount}`));
+      console.log(import_chalk6.default.yellow(`  Failed: ${failCount}`));
     }
     logger_default.info("Batch restore completed", { successCount, failCount });
   } catch (error2) {
-    console.error(import_chalk5.default.red(`Error in batch restore: ${error2.message}`));
+    console.error(import_chalk6.default.red(`Error in batch restore: ${error2.message}`));
     logger_default.error("Batch restore command failed", { error: error2.message });
     process.exit(1);
   }
@@ -14925,7 +15926,7 @@ async function trashCommand(action, args, options) {
       break;
     case "restore":
       if (!args) {
-        console.error(import_chalk5.default.red("Error: Email ID required for restore"));
+        console.error(import_chalk6.default.red("Error: Email ID required for restore"));
         process.exit(1);
       }
       if (args.includes(",")) {
@@ -14935,8 +15936,8 @@ async function trashCommand(action, args, options) {
       }
       break;
     default:
-      console.error(import_chalk5.default.red(`Error: Unknown trash action: ${action}`));
-      console.log(import_chalk5.default.yellow("Available actions: list, empty, restore"));
+      console.error(import_chalk6.default.red(`Error: Unknown trash action: ${action}`));
+      console.log(import_chalk6.default.yellow("Available actions: list, empty, restore"));
       process.exit(1);
   }
 }
@@ -14970,10 +15971,19 @@ function promptConfirm2(message) {
 }
 
 // src/cli/index.ts
+var VALID_FORMATS = ["markdown", "json", "ids-only"];
+function validateFormat(value) {
+  if (!VALID_FORMATS.includes(value)) {
+    throw new Error(
+      `Invalid format '${value}'. Valid formats: ${VALID_FORMATS.join(", ")}`
+    );
+  }
+  return value;
+}
 function createCLI() {
   const program = new import_commander2.Command();
   program.name("mail-cli").description("A command-line email client with IMAP/SMTP support").version(package_default.version);
-  program.command("config").description("Configure IMAP and SMTP settings").option("--show", "Show current configuration").option("--set <key=value>", "Set a configuration value").action(import_config2.default);
+  program.command("config").description("Configure IMAP and SMTP settings").option("--show", "Show current configuration").option("--set <key=value>", "Set a configuration value").action(import_config3.default);
   program.command("sync [action]").description("Synchronize emails from IMAP server").option("--folder <name>", "Sync specific folder (default: INBOX)").option("--folders <names>", "Sync multiple folders (comma-separated)").option("--since <date>", "Sync emails since date (YYYY-MM-DD)").option("--account <id>", "Sync specific account").option("--auto", "Start automatic sync mode").option(
     "--interval <minutes>",
     "Sync interval in minutes (default: 5)",
@@ -14987,7 +15997,7 @@ function createCLI() {
         10
       );
     }
-    (0, import_sync.default)(action, options);
+    (0, import_sync2.default)(action, options);
   });
   program.command("list").description("List emails from local storage").option(
     "--folder <name>",
@@ -14996,10 +16006,34 @@ function createCLI() {
     "--limit <number>",
     "Number of emails to show (default: 50)",
     parseInt
-  ).option("--page <number>", "Page number (default: 1)", parseInt).option("--thread", "Display emails in thread view").action(import_list.default);
-  program.command("read <id>").description("Read email details").option("--raw", "Show raw email content").action(import_read.default);
+  ).option("--page <number>", "Page number (default: 1)", parseInt).option("--thread", "Display emails in thread view").option(
+    "--format <format>",
+    "Output format (markdown, json, ids-only)",
+    validateFormat,
+    "markdown"
+  ).option("--ids-only", "Output only email IDs (same as --format ids-only)").option(
+    "--fields <fields>",
+    'Select fields to display (comma-separated, e.g., "id,from,subject" or "*,^body")'
+  ).action(import_list.default);
+  program.command("read <id>").description("Read email details").option("--raw", "Show raw email content").option(
+    "--format <format>",
+    "Output format (markdown, json, ids-only)",
+    validateFormat,
+    "markdown"
+  ).option(
+    "--fields <fields>",
+    'Select fields to display (comma-separated, e.g., "id,from,subject" or "*,^body")'
+  ).action(import_read.default);
   program.command("send").description("Send an email").option("--to <addresses>", "Recipient email addresses (comma-separated)").option("--cc <addresses>", "CC email addresses (comma-separated)").option("--subject <text>", "Email subject").option("--body <text>", "Email body").action(import_send.default);
-  program.command("search [keyword]").description("Search emails").option("--from <address>", "Search by sender").option("--subject <text>", "Search by subject").option("--folder <name>", "Search in specific folder").option("--date <date>", "Search from date (YYYY-MM-DD)").action(import_search.default);
+  program.command("search [keyword]").description("Search emails").option("--from <address>", "Search by sender").option("--subject <text>", "Search by subject").option("--folder <name>", "Search in specific folder").option("--date <date>", "Search from date (YYYY-MM-DD)").option(
+    "--format <format>",
+    "Output format (markdown, json, ids-only)",
+    validateFormat,
+    "markdown"
+  ).option("--ids-only", "Output only email IDs (same as --format ids-only)").option(
+    "--fields <fields>",
+    'Select fields to display (comma-separated, e.g., "id,from,subject" or "*,^body")'
+  ).action(import_search.default);
   program.command("draft <action>").description("Manage drafts (save|list|edit|delete|send|sync)").option("--id <id>", "Draft ID", parseInt).option("--to <addresses>", "Recipient email addresses (comma-separated)").option("--cc <addresses>", "CC email addresses (comma-separated)").option("--subject <text>", "Email subject").option("--body <text>", "Email body").option("--sync", "Sync draft to IMAP server").option(
     "--limit <number>",
     "Number of drafts to show (default: 50)",
@@ -15042,7 +16076,7 @@ function createCLI() {
   program.command("unflag <email-id>").description("Remove important mark from email").action(unflagCommand);
   program.command("account <action>").description(
     "Manage email accounts (add|list|show|edit|delete|default|enable|disable|test|migrate)"
-  ).option("--id <id>", "Account ID", parseInt).option("--email <email>", "Email address").option("--name <name>", "Display name").option("--imap-host <host>", "IMAP server host").option("--imap-port <port>", "IMAP server port", parseInt).option("--smtp-host <host>", "SMTP server host").option("--smtp-port <port>", "SMTP server port", parseInt).option("--username <username>", "Account username").option("--password <password>", "Account password").option("--test", "Test connection after adding account").option("--enabled-only", "Show only enabled accounts").option("--yes", "Skip confirmation prompts").action(import_account.default);
+  ).option("--id <id>", "Account ID", parseInt).option("--email <email>", "Email address").option("--name <name>", "Display name").option("--imap-host <host>", "IMAP server host").option("--imap-port <port>", "IMAP server port", parseInt).option("--smtp-host <host>", "SMTP server host").option("--smtp-port <port>", "SMTP server port", parseInt).option("--username <username>", "Account username").option("--password <password>", "Account password").option("--test", "Test connection after adding account").option("--enabled-only", "Show only enabled accounts").option("--yes", "Skip confirmation prompts").action(import_account2.default);
   program.command("contact <action> [args...]").description(
     "Manage contacts (add|list|show|edit|delete|search|group|import|export)"
   ).option("--email <email>", "Contact email address").option("--name <name>", "Contact display name").option("--phone <phone>", "Contact phone number").option("--company <company>", "Contact company").option("--title <title>", "Contact job title").option("--notes <notes>", "Contact notes").option("--favorite <boolean>", "Mark as favorite (true/false)").option("--group <name>", "Filter by group name").option("--favorites", "Show only favorite contacts").option("--limit <number>", "Number of results to show", parseInt).option("--description <text>", "Group description").option("--yes", "Skip confirmation prompts").action(import_contact.default);
@@ -15051,7 +16085,10 @@ function createCLI() {
     "--limit <number>",
     "Number of threads to show (default: 20)",
     parseInt
-  ).option("--account <id>", "Filter by account ID", parseInt).option("--expanded", "Show expanded thread view").option("--permanent", "Permanently delete thread").action((action, args, options) => {
+  ).option("--account <id>", "Filter by account ID", parseInt).option("--expanded", "Show expanded thread view").option("--permanent", "Permanently delete thread").option(
+    "--fields <fields>",
+    'Select fields to display (comma-separated, e.g., "id,subject,messageCount")'
+  ).action((action, args, options) => {
     if (action === "list") {
       listThreads(options);
     } else if (action === "show" && args.length > 0) {
@@ -15062,13 +16099,14 @@ function createCLI() {
       moveThread(parseInt(args[0], 10), args[1], options);
     } else {
       console.error(
-        import_chalk6.default.red("Invalid thread command. Use: list|show|delete|move")
+        import_chalk7.default.red("Invalid thread command. Use: list|show|delete|move")
       );
       process.exit(1);
     }
   });
   program.addCommand(importExportCommand);
   program.addCommand(importCommand);
+  program.command("serve").description("Start HTTP API server for email management").option("-p, --port <number>", "Port number (default: 3000)", parseInt).option("-h, --host <host>", "Host address (default: 127.0.0.1)").option("--allow-remote", "Allow remote connections (bind to 0.0.0.0)").action(serve_default);
   return program;
 }
 var cli_default = createCLI;

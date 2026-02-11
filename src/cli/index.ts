@@ -26,6 +26,7 @@ import readCommand from './commands/read';
 import replyCommand from './commands/reply';
 import searchCommand from './commands/search';
 import sendCommand from './commands/send';
+import serveCommand from './commands/serve';
 import signatureCommand from './commands/signature';
 import spamCommand from './commands/spam';
 import syncCommand from './commands/sync';
@@ -38,6 +39,17 @@ import {
   moveThread,
 } from './commands/thread';
 import { trashCommand } from './commands/trash';
+
+const VALID_FORMATS = ['markdown', 'json', 'ids-only'];
+
+function validateFormat(value: string): string {
+  if (!VALID_FORMATS.includes(value)) {
+    throw new Error(
+      `Invalid format '${value}'. Valid formats: ${VALID_FORMATS.join(', ')}`
+    );
+  }
+  return value;
+}
 
 /**
  * CLI Application
@@ -107,6 +119,17 @@ function createCLI(): Command {
     )
     .option('--page <number>', 'Page number (default: 1)', parseInt)
     .option('--thread', 'Display emails in thread view')
+    .option(
+      '--format <format>',
+      'Output format (markdown, json, ids-only)',
+      validateFormat,
+      'markdown'
+    )
+    .option('--ids-only', 'Output only email IDs (same as --format ids-only)')
+    .option(
+      '--fields <fields>',
+      'Select fields to display (comma-separated, e.g., "id,from,subject" or "*,^body")'
+    )
     .action(listCommand);
 
   // Read command
@@ -114,6 +137,16 @@ function createCLI(): Command {
     .command('read <id>')
     .description('Read email details')
     .option('--raw', 'Show raw email content')
+    .option(
+      '--format <format>',
+      'Output format (markdown, json, ids-only)',
+      validateFormat,
+      'markdown'
+    )
+    .option(
+      '--fields <fields>',
+      'Select fields to display (comma-separated, e.g., "id,from,subject" or "*,^body")'
+    )
     .action(readCommand);
 
   // Send command
@@ -134,6 +167,17 @@ function createCLI(): Command {
     .option('--subject <text>', 'Search by subject')
     .option('--folder <name>', 'Search in specific folder')
     .option('--date <date>', 'Search from date (YYYY-MM-DD)')
+    .option(
+      '--format <format>',
+      'Output format (markdown, json, ids-only)',
+      validateFormat,
+      'markdown'
+    )
+    .option('--ids-only', 'Output only email IDs (same as --format ids-only)')
+    .option(
+      '--fields <fields>',
+      'Select fields to display (comma-separated, e.g., "id,from,subject" or "*,^body")'
+    )
     .action(searchCommand);
 
   // Draft command
@@ -343,6 +387,7 @@ function createCLI(): Command {
     account?: number;
     expanded?: boolean;
     permanent?: boolean;
+    fields?: string;
   }
 
   // Thread command
@@ -358,6 +403,10 @@ function createCLI(): Command {
     .option('--account <id>', 'Filter by account ID', parseInt)
     .option('--expanded', 'Show expanded thread view')
     .option('--permanent', 'Permanently delete thread')
+    .option(
+      '--fields <fields>',
+      'Select fields to display (comma-separated, e.g., "id,subject,messageCount")'
+    )
     .action((action: string, args: string[], options: ThreadOptions) => {
       if (action === 'list') {
         listThreads(options);
@@ -380,6 +429,15 @@ function createCLI(): Command {
 
   // Import command
   program.addCommand(importCommand);
+
+  // Serve command
+  program
+    .command('serve')
+    .description('Start HTTP API server for email management')
+    .option('-p, --port <number>', 'Port number (default: 3000)', parseInt)
+    .option('-h, --host <host>', 'Host address (default: 127.0.0.1)')
+    .option('--allow-remote', 'Allow remote connections (bind to 0.0.0.0)')
+    .action(serveCommand);
 
   return program;
 }

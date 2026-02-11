@@ -7,6 +7,7 @@ import attachmentModel from '../../storage/models/attachment';
 import emailModel from '../../storage/models/email';
 import logger from '../../utils/logger';
 import { formatEmailDetails } from '../utils/formatter';
+import { getFormatter, type FormatOptions } from '../formatters';
 
 /**
  * Read command - Read email details
@@ -74,14 +75,25 @@ async function readCommand(emailId, options) {
       : [];
 
     // Display email
-    console.log();
-    console.log(formatEmailDetails(email, attachments));
-    console.log();
+    const format = options.format || 'markdown';
+    const formatter = getFormatter(format);
+    const emailWithAttachments = { ...email, attachments };
+    const output = formatter.formatDetail(emailWithAttachments, options);
+
+    if (format !== 'ids-only') {
+      console.log();
+    }
+    console.log(output);
+    if (format === 'markdown') {
+      console.log();
+    }
 
     // Mark as read if not already
     if (!email.isRead) {
       emailModel.markAsRead(emailId);
-      console.log(chalk.gray('(Marked as read)'));
+      if (format === 'markdown') {
+        console.log(chalk.gray('(Marked as read)'));
+      }
     }
   } catch (error) {
     console.error(chalk.red('Error:'), error.message);

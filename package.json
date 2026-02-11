@@ -48,18 +48,24 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@hono/node-server": "^1.19.9",
+    "@hono/swagger-ui": "^0.5.3",
+    "@hono/zod-openapi": "^1.2.1",
+    "@hono/zod-validator": "^0.7.6",
     "better-sqlite3": "^9.0.0",
     "chalk": "^4.1.2",
     "cli-table3": "^0.6.3",
     "commander": "^11.1.0",
     "dotenv": "^16.3.1",
+    "hono": "^4.11.9",
     "inquirer": "^8.2.6",
     "mailparser": "^3.6.5",
     "node-imap": "^0.9.6",
     "node-notifier": "^10.0.1",
     "nodemailer": "^6.9.7",
     "ora": "^5.4.1",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",

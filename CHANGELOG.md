@@ -55,6 +55,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- 🌐 **HTTP API Mode** - RESTful API for email management via local HTTP server (Hono framework)
+  - `GET /api/emails` - List emails with pagination
+  - `GET /api/emails/:id` - Get email details
+  - `POST /api/emails` - Send email
+  - `POST /api/emails/:id/mark-read` - Mark as read/unread
+  - `POST /api/emails/:id/star` - Star/unstar email
+  - `GET /api/accounts` - List accounts
+  - `GET /api/accounts/:id` - Get account details
+  - `POST /api/accounts` - Add account
+  - `POST /api/sync` - Trigger synchronization
+  - `GET /api/sync/status` - Get sync status
+  - Built-in Swagger UI documentation at `/api/docs`
+  - OpenAPI specification at `/api/openapi.json`
+  - Localhost-only access restriction
+  - `mail-cli serve` command to start HTTP API server
+
 ### Planned Features
 - 📱 Mobile companion app
 - 🌐 Web interface

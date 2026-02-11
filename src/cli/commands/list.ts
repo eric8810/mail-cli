@@ -8,6 +8,8 @@ import analyzer from '../../threads/analyzer';
 import builder from '../../threads/builder';
 import logger from '../../utils/logger';
 import { formatEmailList } from '../utils/formatter';
+import { getFormatter, type FormatOptions } from '../formatters';
+import { parsePagination, calculateRange } from '../utils/pagination';
 
 /**
  * List command - List emails from local storage
@@ -15,9 +17,7 @@ import { formatEmailList } from '../utils/formatter';
 function listCommand(options) {
   try {
     const folder = options.folder || 'INBOX';
-    const limit = options.limit || 50;
-    const page = options.page || 1;
-    const offset = (page - 1) * limit;
+    const { limit, offset, page } = parsePagination(options);
     const unreadOnly = options.unread || false;
     const starred = options.starred || false;
     const flagged = options.flagged || false;
@@ -102,16 +102,19 @@ function listCommand(options) {
       title += ' (All Accounts)';
     }
 
-    console.log(chalk.bold.cyan(`${title}:`));
-    console.log();
-
-    if (emails.length === 0) {
-      console.log(chalk.yellow('No emails found.'));
-      return;
-    }
+    const format = options.idsOnly ? 'ids-only' : options.format || 'markdown';
 
     // Display in thread view or flat view
     if (threadView) {
+      if (format === 'ids-only' || format === 'json') {
+        console.log(
+          chalk.yellow(
+            'Thread view is not supported with --format json or --ids-only. Use flat view.'
+          )
+        );
+        return;
+      }
+
       // Fetch more emails to build complete threads
       const allEmails = emailModel.findByFolder(folder, {
         limit: limit * 5,
@@ -120,6 +123,23 @@ function listCommand(options) {
         accountId,
         allAccounts,
       });
+
+      if (allEmails.length === 0) {
+        const range = calculateRange(offset, limit, total);
+        const formatter = getFormatter(format);
+        const meta = {
+          total,
+          unread: emailModel.countByFolder(folder, true),
+          folder: title,
+          page,
+          limit,
+          offset,
+          totalPages: Math.ceil(total / limit),
+          showing: range.showing,
+        };
+        console.log(formatter.formatList([], meta, options));
+        return;
+      }
 
       // Analyze relationships
       const relationships = analyzer.analyzeRelationships(allEmails);
@@ -150,17 +170,32 @@ function listCommand(options) {
       );
     } else {
       // Flat view
-      console.log(formatEmailList(emails));
-      console.log();
+      const formatter = getFormatter(format);
+      const range = calculateRange(offset, limit, total);
+      const unreadCount = options.folder
+        ? emailModel.countByFolder(folder, true)
+        : unreadOnly
+          ? total
+          : emailModel.countByFolder(folder, true);
+      const meta = {
+        total,
+        unread: unreadCount,
+        folder,
+        page,
+        limit,
+        offset,
+        totalPages: Math.ceil(total / limit),
+        showing: range.showing,
+      };
 
-      const totalPages = Math.ceil(total / limit);
-      console.log(
-        chalk.gray(`Page ${page} of ${totalPages} (${total} total emails)`)
-      );
+      const output = formatter.formatList(emails, meta, options);
+      console.log(output);
     }
 
-    if (unreadOnly) {
-      console.log(chalk.gray('Showing unread emails only'));
+    if (format === 'markdown') {
+      if (unreadOnly) {
+        console.log(chalk.gray('Showing unread emails only'));
+      }
     }
   } catch (error) {
     console.error(chalk.red('Error:'), error.message);

@@ -14,14 +14,15 @@
 
 ## <a name="english"></a>🌟 Why Open Mail CLI?
 
-**Open Mail CLI** is a command-line email client specifically designed for AI agents and automation tools. It provides a reliable, programmatic interface for email operations that AI agents can use autonomously:
+**Open Mail CLI** is a complete local email infrastructure specifically designed for AI agents and automation tools. It provides a reliable, programmatic interface for email operations that AI agents can use autonomously:
 
 - **🤖 Agent-First Design** - Built from the ground up for AI agents and automation tools
-- **📡 CLI Interface** - Simple, predictable command-line output that's easy to parse
+- **📡 Multiple Interfaces** - CLI for simple tasks, HTTP API for programmatic integration
 - **⚡ Reliable Operations** - Offline-first architecture with conflict resolution
-- **🔒 Secure & Private** - Local storage with encrypted credentials
+- **🔒 Secure & Private** - Local storage with encrypted credentials, data never leaves your machine
 - **🔧 Easy Integration** - Perfect for Claude Code, Cursor, and other AI coding agents
-- **🎯 Comprehensive API** - Full IMAP/SMTP support for all email operations
+- **🎯 Complete Solution** - Access existing accounts + optional agent email addresses
+- **📊 Context-Aware** - Markdown output optimized for LLMs, with smart pagination
 
 ## ✨ Key Features
 
@@ -96,6 +97,7 @@ mail-cli config --set smtp.port=465
 
 ### Basic Usage
 
+#### CLI Mode (Simple Tasks)
 ```bash
 # Sync your inbox
 mail-cli sync
@@ -116,9 +118,34 @@ mail-cli search "meeting"
 mail-cli sync daemon start
 ```
 
+#### HTTP API Mode (Programmatic Integration)
+```bash
+# Start local server
+mail-cli serve --port 3000
+```
+
+```python
+# Agent writes code to integrate
+import requests
+
+# Get unread emails
+emails = requests.get('http://localhost:3000/api/emails?unread=true').json()
+
+# Send email
+requests.post('http://localhost:3000/api/emails/send', json={
+    'to': 'user@example.com',
+    'subject': 'Hello',
+    'body': 'World'
+})
+```
+
 ## 📚 Documentation
 
 - [📖 User Guide](docs/用户使用手册.md) - Comprehensive usage guide
+- [🎯 Agent Positioning](docs/AGENT_POSITIONING.md) - Why Open Mail CLI for agents
+- [🔌 HTTP API Design](docs/HTTP_API_DESIGN.md) - Programmatic integration guide
+- [📝 Output Format](docs/OUTPUT_FORMAT_DESIGN.md) - Markdown output for LLMs
+- [📏 Content Management](docs/CONTENT_LENGTH_MANAGEMENT.md) - Pagination and truncation
 - [🏗️ Architecture](docs/architecture.md) - Technical architecture overview
 - [🔧 Configuration](docs/requirements.md) - Detailed configuration options
 - [🎨 Features](docs/功能清单.md) - Complete feature list
@@ -207,14 +234,15 @@ If you find this project useful, please consider giving it a ⭐!
 
 ## <a name="chinese"></a>🌟 为什么选择 Open Mail CLI？
 
-**Open Mail CLI** 是一个专为 AI 代理和自动化工具设计的命令行邮件客户端。它为 AI 代理提供了可靠、可编程的邮件操作接口：
+**Open Mail CLI** 是一个专为 AI 代理和自动化工具设计的完整本地邮件基础设施。它为 AI 代理提供了可靠、可编程的邮件操作接口：
 
 - **🤖 AI 优先设计** - 专为 AI 代理和自动化工具从零打造
-- **📡 CLI 接口** - 简单、可预测的命令行输出，易于解析
+- **📡 多种接口** - CLI 用于简单任务，HTTP API 用于编程集成
 - **⚡ 可靠操作** - 离线优先架构，内置冲突解决
-- **🔒 安全私密** - 本地存储，凭据加密
+- **🔒 安全私密** - 本地存储，凭据加密，数据不离开本地
 - **🔧 易于集成** - 完美适配 Claude Code、Cursor 等编程代理
-- **🎯 全面 API** - 完整的 IMAP/SMTP 支持，覆盖所有邮件操作
+- **🎯 完整解决方案** - 访问现有账户 + 可选的 Agent 专属邮箱
+- **📊 上下文感知** - Markdown 输出优化 LLM 解析，智能分页
 
 ## ✨ 核心特性
 
@@ -279,6 +307,7 @@ mail-cli config --set imap.port=993
 
 ### 基本使用
 
+#### CLI 模式（简单任务）
 ```bash
 # 同步收件箱
 mail-cli sync
@@ -297,6 +326,27 @@ mail-cli search "会议"
 
 # 启动后台同步守护进程
 mail-cli sync daemon start
+```
+
+#### HTTP API 模式（编程集成）
+```bash
+# 启动本地服务器
+mail-cli serve --port 3000
+```
+
+```python
+# Agent 编写代码集成
+import requests
+
+# 获取未读邮件
+emails = requests.get('http://localhost:3000/api/emails?unread=true').json()
+
+# 发送邮件
+requests.post('http://localhost:3000/api/emails/send', json={
+    'to': 'user@example.com',
+    'subject': '你好',
+    'body': '世界'
+})
 ```
 
 ## 📊 项目统计
