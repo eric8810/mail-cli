@@ -26,13 +26,25 @@
 
 ## ✨ Key Features
 
+### 🤖 Agent Integration (NEW)
+
+These features are designed to make AI agents work with email reliably and efficiently:
+
+- **Structured Output** - `--format` flag supports Markdown, JSON, and HTML; Markdown tables are optimized for LLM context windows, JSON enables programmatic parsing
+- **Field Selection** - `--fields` flag lets agents request only the data they need (e.g. `--fields id,subject,from`), reducing token usage and keeping responses focused
+- **Standardized Exit Codes** - Consistent exit codes (0=success, 1=error, 2=args, 3=network, 4=auth, 5=permission) allow agents to branch logic based on failure type without parsing error text
+- **JSON Error Output** - When `--format json` is set, errors are returned as structured JSON with error code, message, and category — agents can handle failures programmatically
+- **Event System & Webhooks** - `mail-cli webhook` registers HTTP endpoints or local scripts triggered on new email arrival, enabling agents to react to incoming mail in real-time
+- **OpenAPI Documentation** - Swagger UI at `/api/docs` and OpenAPI spec at `/api/openapi.json` let agents discover and call HTTP APIs with full schema awareness
+- **Smart Pagination** - `--limit`, `--offset`, `--page` with range annotations (Showing 1-20 of 150) help agents navigate large mailboxes without context overflow
+
 ### 📬 Core Email Operations
 - **Full IMAP/SMTP Support** - Works with Gmail, Outlook, QQ Mail, and any standard email service
 - **Offline-First Architecture** - SQLite-based local storage for instant access
 - **Smart Sync** - Incremental synchronization with conflict resolution
 - **Rich Email Viewing** - HTML rendering, attachment handling, and inline images
 
-### 🎨 Advanced Features (P1)
+### 🎨 Advanced Features
 - **📊 Email Threading** - Automatic conversation grouping and visualization
 - **👥 Contact Management** - Built-in address book with groups and auto-collection
 - **✍️ Email Signatures** - Multiple signatures with smart insertion
@@ -42,7 +54,7 @@
 - **💾 Saved Searches** - Bookmark complex search queries
 - **🔄 Background Sync** - Daemon mode for automatic email synchronization
 
-### 🚀 Power User Features (P2)
+### 🚀 Power User Features
 - **📝 Email Templates** - Variable substitution with `{{placeholders}}`
 - **🔔 Smart Notifications** - Desktop alerts with intelligent filtering
 - **📦 Import/Export** - Full support for EML and MBOX formats
@@ -102,8 +114,8 @@ mail-cli config --set smtp.port=465
 # Sync your inbox
 mail-cli sync
 
-# List emails
-mail-cli list
+# List emails (with field selection and format control)
+mail-cli list --format json --fields id,subject,from,date
 
 # Read an email
 mail-cli read 1
@@ -113,6 +125,9 @@ mail-cli send --to user@example.com --subject "Hello" --body "World"
 
 # Search emails
 mail-cli search "meeting"
+
+# Register a webhook for new email events
+mail-cli webhook add --url http://localhost:8080/on-new-mail --event new_email
 
 # Start background sync daemon
 mail-cli sync daemon start
@@ -156,17 +171,18 @@ requests.post('http://localhost:3000/api/emails/send', json={
 - **Runtime**: Node.js 18+ (LTS)
 - **Database**: SQLite3 with better-sqlite3
 - **Email Protocols**: IMAP (node-imap), SMTP (nodemailer)
+- **HTTP API**: Hono (lightweight web framework), Zod (request validation), OpenAPI / Swagger UI
 - **CLI Framework**: Commander.js, Inquirer.js
 - **Email Parsing**: mailparser
 - **UI/UX**: Chalk, Ora, CLI-Table3
 
 ## 📊 Project Stats
 
-- **100+ Files** - Well-organized modular architecture
-- **32,000+ Lines** - Production-ready codebase
-- **16 CLI Commands** - Comprehensive email management
-- **41 Test Cases** - 100% pass rate
-- **11 Modules** - Clean separation of concerns
+- **140+ Files** - Well-organized modular architecture
+- **26,000+ Lines** - Production-ready codebase
+- **26 CLI Commands** - Comprehensive email management
+- **167 Test Cases** - Covering formatters, pagination, field selection, HTTP API, and more
+- **19 Modules** - Clean separation of concerns
 
 ## 🎨 Feature Highlights
 
@@ -246,13 +262,25 @@ If you find this project useful, please consider giving it a ⭐!
 
 ## ✨ 核心特性
 
+### 🤖 Agent 集成能力（NEW）
+
+这些特性专为 AI Agent 可靠、高效地处理邮件而设计：
+
+- **结构化输出** - `--format` 支持 Markdown、JSON、HTML 三种格式；Markdown 表格针对 LLM 上下文窗口优化，JSON 便于程序化解析
+- **字段选择** - `--fields` 让 Agent 只获取所需数据（如 `--fields id,subject,from`），减少 token 消耗，保持响应精简
+- **标准化退出码** - 统一退出码（0=成功, 1=错误, 2=参数错误, 3=网络错误, 4=认证错误, 5=权限错误），Agent 无需解析错误文本即可判断失败类型并分支处理
+- **JSON 错误输出** - `--format json` 时错误以结构化 JSON 返回（含错误码、消息、分类），Agent 可程序化处理异常
+- **事件系统与 Webhook** - `mail-cli webhook` 注册 HTTP 端点或本地脚本，新邮件到达时自动触发，Agent 可实时响应收件
+- **OpenAPI 文档** - Swagger UI（`/api/docs`）和 OpenAPI 规范（`/api/openapi.json`）让 Agent 自动发现和调用 HTTP API
+- **智能分页** - `--limit`、`--offset`、`--page` 配合范围标注（Showing 1-20 of 150），帮助 Agent 在大邮箱中导航而不溢出上下文
+
 ### 📬 基础邮件功能
 - **完整 IMAP/SMTP 支持** - 兼容 Gmail、Outlook、QQ邮箱等所有标准邮件服务
 - **离线优先架构** - 基于 SQLite 的本地存储，即时访问
 - **智能同步** - 增量同步，冲突解决
 - **丰富的邮件查看** - HTML 渲染、附件处理、内联图片
 
-### 🎨 高级功能 (P1)
+### 🎨 高级功能
 - **📊 邮件会话** - 自动对话分组和可视化
 - **👥 联系人管理** - 内置通讯录，支持分组和自动收集
 - **✍️ 邮件签名** - 多签名支持，智能插入
@@ -262,7 +290,7 @@ If you find this project useful, please consider giving it a ⭐!
 - **💾 保存的搜索** - 收藏复杂搜索查询
 - **🔄 后台同步** - 守护进程模式，自动邮件同步
 
-### 🚀 专业功能 (P2)
+### 🚀 专业功能
 - **📝 邮件模板** - 支持 `{{占位符}}` 变量替换
 - **🔔 智能通知** - 桌面提醒，智能过滤
 - **📦 导入/导出** - 完整支持 EML 和 MBOX 格式
@@ -312,8 +340,8 @@ mail-cli config --set imap.port=993
 # 同步收件箱
 mail-cli sync
 
-# 列出邮件
-mail-cli list
+# 列出邮件（支持字段选择和格式控制）
+mail-cli list --format json --fields id,subject,from,date
 
 # 阅读邮件
 mail-cli read 1
@@ -323,6 +351,9 @@ mail-cli send --to user@example.com --subject "你好" --body "世界"
 
 # 搜索邮件
 mail-cli search "会议"
+
+# 注册新邮件事件的 Webhook
+mail-cli webhook add --url http://localhost:8080/on-new-mail --event new_email
 
 # 启动后台同步守护进程
 mail-cli sync daemon start
@@ -351,11 +382,11 @@ requests.post('http://localhost:3000/api/emails/send', json={
 
 ## 📊 项目统计
 
-- **100+ 文件** - 组织良好的模块化架构
-- **32,000+ 行代码** - 生产就绪的代码库
-- **16 个 CLI 命令** - 全面的邮件管理
-- **41 个测试用例** - 100% 通过率
-- **11 个模块** - 清晰的关注点分离
+- **140+ 文件** - 组织良好的模块化架构
+- **26,000+ 行代码** - 生产就绪的代码库
+- **26 个 CLI 命令** - 全面的邮件管理
+- **167 个测试用例** - 覆盖格式化器、分页、字段选择、HTTP API 等
+- **19 个模块** - 清晰的关注点分离
 
 ## 🤝 贡献
 
